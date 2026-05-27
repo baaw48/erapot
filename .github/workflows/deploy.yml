@@ -7,8 +7,10 @@ on:
     paths-ignore:
       - '**.md'
       - 'docs/**'
-      - '.gitignore'
-      - 'E-RAPOT.zip'
+      - 'DEPLOYMENT_GUIDE.md'
+      - 'export_db*.php'
+      - '*.zip'
+      - 'e_rapot*.sql'
 
 jobs:
   deploy:
@@ -36,25 +38,20 @@ jobs:
       - name: Create .env file
         env:
           APP_KEY: ${{ secrets.APP_KEY }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           cat > .env << 'EOF'
           APP_NAME="E-RAPOT"
           APP_ENV=production
           APP_KEY=$APP_KEY
           APP_DEBUG=false
-          APP_URL=${{ secrets.APP_URL }}
+          APP_URL=${{ vars.APP_URL }}
 
           DB_CONNECTION=mysql
-          DB_HOST=$DB_HOST
-          DB_PORT=$DB_PORT
-          DB_DATABASE=$DB_DATABASE
-          DB_USERNAME=$DB_USERNAME
-          DB_PASSWORD=$DB_PASSWORD
+          DB_HOST=${{ secrets.DB_HOST }}
+          DB_PORT=${{ secrets.DB_PORT }}
+          DB_DATABASE=${{ secrets.DB_DATABASE }}
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
 
           SESSION_DRIVER=file
           QUEUE_CONNECTION=sync
@@ -67,25 +64,30 @@ jobs:
           php artisan route:cache
           php artisan view:cache
 
-      - name: Setup SSH Key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
+      - name: Install rsync & sshpass
         run: |
+          apt-get update && apt-get install -y rsync sshpass
+
+      - name: Deploy Files to Server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PASSPHRASE: ${{ secrets.DEPLOY_PASSPHRASE }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        run: |
+          # Setup SSH key with passphrase
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 700 ~/.ssh
 
-      - name: Deploy to Hosting via RSYNC
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: |
-          echo "Deploying to $SSH_USER@$SSH_HOST:$DEPLOY_PATH"
+          # Write private key
+          cat << 'KEYEOF' > ~/.ssh/deploy_key
+          ${{ secrets.DEPLOY_SSH_KEY }}
+          KEYEOF
+          chmod 600 ~/.ssh/deploy_key
 
+          # Add host key to known_hosts
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Rsync files to server with passphrase
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
@@ -95,39 +97,51 @@ jobs:
             --exclude='storage/*.key' \
             --exclude='*.log' \
             --exclude='.env.backup' \
-            --exclude='.env.production' \
             --exclude='bootstrap/cache/*.php' \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+            -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key" \
+            ./ $DEPLOY_HOST:$DEPLOY_PATH/
 
-          echo "Main files deployed!"
-
-      - name: SSH - Install Dependencies & Cache
+      - name: Run Post-Deploy Commands
         env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PASSPHRASE: ${{ secrets.DEPLOY_PASSPHRASE }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
-          ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'ENDSSH'
+          # SSH into server and run post-deploy commands
+          sshpass -p "$DEPLOY_PASSPHRASE" ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key $DEPLOY_HOST << 'ENDSSH'
             cd $DEPLOY_PATH
 
-            # Install composer dependencies
+            # Install dependencies
             composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-
-            # Clear and rebuild caches
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan event:cache
 
             # Set permissions
             chmod -R 775 storage bootstrap/cache
             chmod -R 777 storage/framework/cache storage/framework/views storage/framework/sessions storage/logs
 
-            echo "Deployment completed successfully!"
+            # Clear and rebuild caches
+            php artisan config:cache --force
+            php artisan route:cache --force
+            php artisan view:cache --force
+            php artisan event:cache --force
+
+            echo "========================================"
+            echo " Deployment Success!"
+            echo "========================================"
           ENDSSH
 
-      - name: Show Success Message
+      - name: Show Success
+        if: success()
         run: |
-          echo "✅ Deployment successful!"
-          echo "🌐 Site URL: ${{ secrets.APP_URL }}"
+          echo "========================================"
+          echo " Deployment Successful!"
+          echo " Site: ${{ vars.APP_URL }}"
+          echo "========================================"
+
+      - name: Show Failure
+        if: failure()
+        run: |
+          echo "========================================"
+          echo " Deployment Failed!"
+          echo " Check GitHub Actions logs for details."
+          echo "========================================"
