@@ -21,22 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: intl, zip, mysql, pdo_mysql, dom, curl, xml
-
-      - name: Install NPM dependencies
-        run: npm ci
-
-      - name: Build Assets
-        run: npm run build
-
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --no-interaction
-
-      - name: Deploy via SSH (Upload + Execute)
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -45,48 +30,14 @@ jobs:
           port: 22
           command_timeout: 600
           script: |
-            cd ${{ vars.DEPLOY_PATH }}
-
-            #Upload files
-            rsync -avz --delete \
-              --exclude='.git' \
-              --exclude='.github' \
-              --exclude='node_modules' \
-              --exclude='vendor' \
-              --exclude='.env' \
-              --exclude='storage' \
-              --exclude='bootstrap/cache' \
-              --exclude='*.log' \
-              . ${{ vars.DEPLOY_PATH }}/
-
-            #Create .env
-            cat > .env << 'ENVEOF'
-            APP_NAME="E-RAPOT"
-            APP_ENV=production
-            APP_KEY=${{ secrets.APP_KEY }}
-            APP_DEBUG=false
-            APP_URL=${{ vars.APP_URL }}
-
-            DB_CONNECTION=mysql
-            DB_HOST=${{ secrets.DB_HOST }}
-            DB_PORT=${{ secrets.DB_PORT }}
-            DB_DATABASE=${{ secrets.DB_DATABASE }}
-            DB_USERNAME=${{ secrets.DB_USERNAME }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-
-            SESSION_DRIVER=file
-            QUEUE_CONNECTION=sync
-            CACHE_STORE=file
-            ENVEOF
-
-            #Install dependencies
+            # Install dependencies
             composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-            #Set permissions
+            # Set permissions
             chmod -R 775 storage bootstrap/cache
             chmod -R 777 storage/framework/cache storage/framework/views storage/framework/sessions storage/logs
 
-            #Clear caches
+            # Clear caches
             php artisan config:cache --force
             php artisan route:cache --force
             php artisan view:cache --force
@@ -100,7 +51,6 @@ jobs:
         run: |
           echo "========================================"
           echo " Deployment Successful!"
-          echo " Site: ${{ vars.APP_URL }}"
           echo "========================================"
 
       - name: Show Failure
@@ -108,5 +58,4 @@ jobs:
         run: |
           echo "========================================"
           echo " Deployment Failed!"
-          echo " Check GitHub Actions logs for details."
           echo "========================================"
