@@ -1,0 +1,133 @@
+name: Deploy to Hosting via SSH
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'E-RAPOT.zip'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: intl, zip, mysql, pdo_mysql, dom, curl, xml
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build Assets
+        run: npm run build
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Create .env file
+        env:
+          APP_KEY: ${{ secrets.APP_KEY }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          cat > .env << 'EOF'
+          APP_NAME="E-RAPOT"
+          APP_ENV=production
+          APP_KEY=$APP_KEY
+          APP_DEBUG=false
+          APP_URL=${{ secrets.APP_URL }}
+
+          DB_CONNECTION=mysql
+          DB_HOST=$DB_HOST
+          DB_PORT=$DB_PORT
+          DB_DATABASE=$DB_DATABASE
+          DB_USERNAME=$DB_USERNAME
+          DB_PASSWORD=$DB_PASSWORD
+
+          SESSION_DRIVER=file
+          QUEUE_CONNECTION=sync
+          CACHE_STORE=file
+          EOF
+
+      - name: Run Laravel optimizations
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy to Hosting via RSYNC
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          echo "Deploying to $SSH_USER@$SSH_HOST:$DEPLOY_PATH"
+
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='vendor' \
+            --exclude='.env' \
+            --exclude='storage/*.key' \
+            --exclude='*.log' \
+            --exclude='.env.backup' \
+            --exclude='.env.production' \
+            --exclude='bootstrap/cache/*.php' \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+          echo "Main files deployed!"
+
+      - name: SSH - Install Dependencies & Cache
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'ENDSSH'
+            cd $DEPLOY_PATH
+
+            # Install composer dependencies
+            composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+            # Clear and rebuild caches
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan event:cache
+
+            # Set permissions
+            chmod -R 775 storage bootstrap/cache
+            chmod -R 777 storage/framework/cache storage/framework/views storage/framework/sessions storage/logs
+
+            echo "Deployment completed successfully!"
+          ENDSSH
+
+      - name: Show Success Message
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Site URL: ${{ secrets.APP_URL }}"
