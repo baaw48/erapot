@@ -36,47 +36,30 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction
 
-      - name: Create .env file
-        env:
-          APP_KEY: ${{ secrets.APP_KEY }}
-        run: |
-          cat > .env << 'EOF'
-          APP_NAME="E-RAPOT"
-          APP_ENV=production
-          APP_KEY=${{ secrets.APP_KEY }}
-          APP_DEBUG=false
-          APP_URL=${{ vars.APP_URL }}
-
-          DB_CONNECTION=mysql
-          DB_HOST=${{ secrets.DB_HOST }}
-          DB_PORT=${{ secrets.DB_PORT }}
-          DB_DATABASE=${{ secrets.DB_DATABASE }}
-          DB_USERNAME=${{ secrets.DB_USERNAME }}
-          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-
-          SESSION_DRIVER=file
-          QUEUE_CONNECTION=sync
-          CACHE_STORE=file
-          EOF
-
-      - name: Run Laravel optimizations
-        run: |
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-
-      - name: Deploy to Server via SSH
+      - name: Deploy via SSH (Upload + Execute)
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 22
-          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
+          command_timeout: 600
           script: |
             cd ${{ vars.DEPLOY_PATH }}
 
-            # Create .env file
+            #Upload files
+            rsync -avz --delete \
+              --exclude='.git' \
+              --exclude='.github' \
+              --exclude='node_modules' \
+              --exclude='vendor' \
+              --exclude='.env' \
+              --exclude='storage' \
+              --exclude='bootstrap/cache' \
+              --exclude='*.log' \
+              . ${{ vars.DEPLOY_PATH }}/
+
+            #Create .env
             cat > .env << 'ENVEOF'
             APP_NAME="E-RAPOT"
             APP_ENV=production
@@ -96,46 +79,21 @@ jobs:
             CACHE_STORE=file
             ENVEOF
 
-            # Install/update dependencies
+            #Install dependencies
             composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-            # Set permissions
+            #Set permissions
             chmod -R 775 storage bootstrap/cache
             chmod -R 777 storage/framework/cache storage/framework/views storage/framework/sessions storage/logs
 
-            # Clear and rebuild caches
+            #Clear caches
             php artisan config:cache --force
             php artisan route:cache --force
             php artisan view:cache --force
-            php artisan event:cache --force
 
             echo "========================================"
             echo " Deployment Success!"
             echo "========================================"
-
-      - name: Upload Files to Server
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: 22
-          passphrase: ${{ secrets.DEPLOY_PASSPHRASE }}
-          source: "./"
-          target: "${{ vars.DEPLOY_PATH }}"
-          strip: true
-          overwrite: true
-          rm: true
-          excludes: |
-            .git
-            .github
-            node_modules
-            vendor
-            .env
-            storage/*.key
-            *.log
-            .env.backup
-            bootstrap/cache/*.php
 
       - name: Show Success
         if: success()
