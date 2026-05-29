@@ -22,8 +22,11 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          cd ~/public_html/baawmyid/erapot
+          mkdir -p ~/public_html/baawmyid
+          cd ~/public_html/baawmyid
+          if [ ! -d "erapot" ]; then
+            git clone https://github.com/baaw48/erapot.git
+          fi
+          cd erapot
           git pull origin main
-          # composer install --no-dev --optimize-autoloader
-          # php artisan migrate --force
           # php artisan config:cache
