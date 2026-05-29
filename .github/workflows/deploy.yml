@@ -15,23 +15,43 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Deploy via SSH
-      uses: appleboy/ssh-action@v0.1.10
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        command_timeout: 600s
         script: |
-          cd ~/public_html/baawmyid
-          mkdir -p ~/public_html/baawmyid/erapot 2>/dev/null || true
-          if [ ! -d "erapot/.git" ]; then
-            rm -rf erapot
-            git clone https://github.com/baaw48/erapot.git
+          # 1. Buat folder jika belum ada
+          mkdir -p ~/public_html/baawmyid
+
+          # 2. Clone jika folder erapot belum ada, jika sudah langsung pull
+          if [ ! -d ~/public_html/baawmyid/erapot ]; then
+            git clone https://github.com/baaw48/erapot.git ~/public_html/baawmyid/erapot
           fi
-          cd erapot
+
+          cd ~/public_html/baawmyid/erapot
+
+          # 3. Tarik kode terbaru dari GitHub
           git pull origin main
-          chmod -R 755 storage bootstrap/cache
-          chmod -R 777 storage/framework/cache storage/framework/views storage/framework/sessions storage/logs 2>/dev/null || true
-# Push trigger
-x
+
+          # 4. Install / update dependencies PHP (Composer)
+          composer install --no-dev --optimize-autoloader
+
+          # 5. Buat file .env jika belum ada (copy dari .env.example)
+          if [ ! -f .env ]; then
+            cp .env.example .env
+            php artisan key:generate
+          fi
+
+          # 6. Perbaiki permission folder storage & bootstrap/cache
+          chmod -R 775 storage
+          chmod -R 775 bootstrap/cache
+
+          # 7. Bersihkan & rebuild cache konfigurasi Laravel
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan view:clear
+          php artisan route:clear
+
+          echo "✅ Deploy selesai!"
