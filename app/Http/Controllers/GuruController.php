@@ -129,7 +129,15 @@ class GuruController extends Controller
             'mapel_diampu' => 'nullable|array',
             'mapel_diampu.*' => 'string|max:255',
             'kelas_diampu' => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:6|confirmed',
         ]);
+
+        // Hapus password jika kosong (tidak diupdate)
+        if (empty($validated['password'])) {
+            unset($validated['password']);
+        } else {
+            $validated['password'] = Hash::make($validated['password']);
+        }
 
         if (isset($validated['mapel_diampu'])) {
             $validated['mapel_diampu'] = implode(', ', $validated['mapel_diampu']);
@@ -155,7 +163,7 @@ class GuruController extends Controller
              \App\Models\Kelas::where('nama_kelas', $guru->kelas_diampu)->update(['wali_kelas_id' => $guru->id]);
         }
 
-        return redirect()->back()->with('success', 'Data guru berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Data guru berhasil diperbarui.' . ($request->filled('password') ? ' Password juga telah diperbarui.' : ''));
     }
 
     public function destroy($id)

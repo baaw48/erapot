@@ -61,6 +61,8 @@ const form = useForm({
     nip: '',
     mapel_diampu: [],
     kelas_diampu: '',
+    password: '',
+    password_confirmation: '',
 });
 
 const mapelWarnings = computed(() => {
@@ -85,6 +87,8 @@ const openAddModal = () => {
     isEditing.value = false;
     form.reset();
     form.mapel_diampu = [];
+    form.password = '';
+    form.password_confirmation = '';
     form.clearErrors();
     showModal.value = true;
 };
@@ -97,6 +101,8 @@ const openEditModal = (guru) => {
     form.nip = guru.nip || '';
     form.mapel_diampu = guru.mapel_diampu ? guru.mapel_diampu.split(', ') : [];
     form.kelas_diampu = guru.kelas_diampu || '';
+    form.password = '';
+    form.password_confirmation = '';
     form.clearErrors();
     showModal.value = true;
 };
@@ -319,9 +325,21 @@ const closeDeleteModal = () => {
                 </div>
                 
                 <form @submit.prevent="submit" class="space-y-6 relative z-10">
-                    <div v-if="!isEditing" class="flex items-start gap-3 bg-indigo-50/50 border border-indigo-100 text-indigo-700 px-5 py-4 rounded-2xl">
+                    <div class="flex items-start gap-3 bg-indigo-50/50 border border-indigo-100 text-indigo-700 px-5 py-4 rounded-2xl">
                         <svg class="h-5 w-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <p class="text-sm font-semibold">Password bawaan untuk login guru baru adalah <strong class="font-black bg-indigo-100 px-2 py-0.5 rounded">Yaspih@702</strong>.</p>
+                        <p class="text-sm font-semibold">{{ isEditing ? 'Kosongkan password jika tidak ingin mengubah.' : 'Password bawaan untuk login guru baru adalah <strong class="font-black bg-indigo-100 px-2 py-0.5 rounded">Yaspih@702</strong>.' }}</p>
+                    </div>
+
+                    <div v-if="isEditing" class="space-y-2">
+                        <label for="password" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Password Baru (Opsional)</label>
+                        <input id="password" v-model="form.password" type="password" class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" placeholder="Minimal 6 karakter" />
+                        <div v-if="form.errors.password" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.password }}</div>
+                    </div>
+
+                    <div v-if="isEditing && form.password" class="space-y-2">
+                        <label for="password_confirmation" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Konfirmasi Password</label>
+                        <input id="password_confirmation" v-model="form.password_confirmation" type="password" class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" placeholder="Ulangi password" required />
+                        <div v-if="form.errors.password_confirmation" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.password_confirmation }}</div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
