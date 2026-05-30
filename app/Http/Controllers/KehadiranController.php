@@ -45,10 +45,16 @@ class KehadiranController extends Controller
         }
 
         if ($selectedKelasId && $tahunAktif) {
-            $siswas = Siswa::whereHas('riwayatKelas', function ($query) use ($selectedKelasId, $tahunAktif) {
-                    $query->where('kelas_id', $selectedKelasId)
+            $siswas = Siswa::where(function($query) use ($selectedKelasId, $tahunAktif) {
+                    // Cek di riwayat_kelas dulu
+                    $query->whereHas('riwayatKelas', function ($q) use ($selectedKelasId, $tahunAktif) {
+                        $q->where('kelas_id', $selectedKelasId)
                           ->where('tahun_ajaran_id', $tahunAktif->id);
+                    })
+                    // Fallback: jika tidak ada di riwayatKelas, cek langsung di siswa.kelas_id
+                    ->orWhere('kelas_id', $selectedKelasId);
                 })
+                ->where('status', 'aktif')
                 ->with(['catatanWaliKelas' => function ($query) use ($tahunAktif) {
                     $query->where('tahun_ajaran_id', $tahunAktif->id);
                 }])

@@ -25,8 +25,13 @@ class KenaikanKelasController extends Controller
         if ($kelasAsalId) {
             $tahunAktif = \App\Models\TahunAjaran::where('is_active', true)->first();
             if ($tahunAktif) {
-                $siswas = Siswa::whereHas('riwayatKelas', function($q) use ($kelasAsalId, $tahunAktif) {
-                        $q->where('kelas_id', $kelasAsalId)->where('tahun_ajaran_id', $tahunAktif->id);
+                $siswas = Siswa::where(function($query) use ($kelasAsalId, $tahunAktif) {
+                        // Cek di riwayat_kelas dulu
+                        $query->whereHas('riwayatKelas', function($q) use ($kelasAsalId, $tahunAktif) {
+                            $q->where('kelas_id', $kelasAsalId)->where('tahun_ajaran_id', $tahunAktif->id);
+                        })
+                        // Fallback: jika tidak ada di riwayatKelas, cek langsung di siswa.kelas_id
+                        ->orWhere('kelas_id', $kelasAsalId);
                     })
                     ->where('status', 'aktif')
                     ->orderBy('nama_siswa')
