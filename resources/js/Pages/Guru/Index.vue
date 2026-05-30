@@ -327,7 +327,7 @@ const closeDeleteModal = () => {
                 <form @submit.prevent="submit" class="space-y-6 relative z-10">
                     <div class="flex items-start gap-3 bg-indigo-50/50 border border-indigo-100 text-indigo-700 px-5 py-4 rounded-2xl">
                         <svg class="h-5 w-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <p class="text-sm font-semibold">{{ isEditing ? 'Kosongkan password jika tidak ingin mengubah.' : 'Password bawaan untuk login guru baru adalah <strong class="font-black bg-indigo-100 px-2 py-0.5 rounded">Yaspih@702</strong>.' }}</p>
+                        <p class="text-sm font-semibold">Kosongkan password jika tidak ingin mengubah password lama.</p>
                     </div>
 
                     <div v-if="isEditing" class="space-y-2">
