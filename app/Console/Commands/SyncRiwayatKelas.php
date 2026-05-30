@@ -38,7 +38,7 @@ class SyncRiwayatKelas extends Command
 
         $this->info("Menyinkronkan data siswa ke Riwayat Kelas untuk Tahun Ajaran: {$tahunAjaranAktif->tahun} ({$tahunAjaranAktif->semester})");
 
-        $siswas = Siswa::whereNotNull('kelas_id')->get();
+        $siswas = Siswa::where('status', 'aktif')->whereNotNull('kelas_id')->get();
         $count = 0;
 
         DB::beginTransaction();

@@ -52,7 +52,10 @@ jobs:
           chmod -R 775 storage
           chmod -R 775 bootstrap/cache
 
-          # 7. Bersihkan & rebuild cache konfigurasi Laravel
+          # 7. Sinkronkan riwayat_kelas dengan data siswa
+          php artisan sync:riwayat-kelas
+
+          # 8. Bersihkan & rebuild cache konfigurasi Laravel
           php artisan config:clear
           php artisan cache:clear
           php artisan view:clear
