@@ -57,7 +57,7 @@ class CetakRaporController extends Controller
         }
 
         $sekolah = Sekolah::first();
-        $mapels = Mapel::orderBy('nama_mapel')->get();
+        $mapels = Mapel::orderBy('kelompok', 'asc')->orderBy('urutan', 'asc')->get();
         
         $siswas = Siswa::whereHas('riwayatKelas', function ($q) use ($kelasId, $tahunAktif) {
                 $q->where('kelas_id', $kelasId)->where('tahun_ajaran_id', $tahunAktif->id);
@@ -139,7 +139,7 @@ class CetakRaporController extends Controller
         }
 
         $sekolah = Sekolah::first();
-        $mapels = Mapel::orderBy('nama_mapel')->get();
+        $mapels = Mapel::orderBy('kelompok', 'asc')->orderBy('urutan', 'asc')->get();
         
         $siswas = Siswa::whereHas('riwayatKelas', function ($q) use ($kelasId, $tahunAktif) {
                 $q->where('kelas_id', $kelasId)->where('tahun_ajaran_id', $tahunAktif->id);
@@ -247,7 +247,7 @@ class CetakRaporController extends Controller
         }
 
         $sekolah = Sekolah::first();
-        $mapels = Mapel::orderBy('nama_mapel')->get();
+        $mapels = Mapel::orderBy('kelompok', 'asc')->orderBy('urutan', 'asc')->get();
 
         $siswas = Siswa::whereHas('riwayatKelas', function ($q) use ($kelasId, $tahunId) {
                 $q->where('kelas_id', $kelasId)->where('tahun_ajaran_id', $tahunId);
@@ -327,7 +327,7 @@ class CetakRaporController extends Controller
         }
 
         $sekolah = Sekolah::first();
-        $mapels = Mapel::orderBy('nama_mapel')->get();
+        $mapels = Mapel::orderBy('kelompok', 'asc')->orderBy('urutan', 'asc')->get();
 
         $siswas = Siswa::whereHas('riwayatKelas', function ($q) use ($kelasId, $tahunId) {
                 $q->where('kelas_id', $kelasId)->where('tahun_ajaran_id', $tahunId);

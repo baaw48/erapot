@@ -35,6 +35,12 @@ class MapelController extends Controller
             'urutan' => 'nullable|integer',
         ]);
 
+        // Auto-assign urutan if not provided
+        if (!isset($validated['urutan']) || $validated['urutan'] === null) {
+            $maxUrutan = Mapel::max('urutan') ?? 0;
+            $validated['urutan'] = $maxUrutan + 1;
+        }
+
         Mapel::create($validated);
 
         return redirect()->back()->with('success', 'Data mapel berhasil ditambahkan.');
