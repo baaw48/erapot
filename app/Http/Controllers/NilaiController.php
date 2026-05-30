@@ -62,10 +62,17 @@ class NilaiController extends Controller
 
         if ($selectedKelasId && $selectedMapelId && $tahunAktif) {
             // Ambil siswa beserta nilainya untuk mapel dan tahun ajaran tsb
-            $siswas = Siswa::whereHas('riwayatKelas', function ($query) use ($selectedKelasId, $tahunAktif) {
-                    $query->where('kelas_id', $selectedKelasId)
+            // Prioritas: riwayatKelas > siswa.kelas_id langsung
+            $siswas = Siswa::where(function($query) use ($selectedKelasId, $tahunAktif) {
+                    // Cek di riwayat_kelas dulu
+                    $query->whereHas('riwayatKelas', function ($q) use ($selectedKelasId, $tahunAktif) {
+                        $q->where('kelas_id', $selectedKelasId)
                           ->where('tahun_ajaran_id', $tahunAktif->id);
+                    })
+                    // Fallback: jika tidak ada di riwayatKelas, cek langsung di siswa.kelas_id
+                    ->orWhere('kelas_id', $selectedKelasId);
                 })
+                ->where('status', 'aktif')
                 ->with(['nilais' => function ($query) use ($selectedMapelId, $tahunAktif) {
                     $query->where('mapel_id', $selectedMapelId)
                           ->where('tahun_ajaran_id', $tahunAktif->id);
