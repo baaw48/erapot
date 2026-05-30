@@ -7,6 +7,7 @@ import Modal from '@/Components/Modal.vue';
 const props = defineProps({
     sekolah: Object,
     tahunAjarans: Array,
+    raporSetting: Object,
 });
 
 const page = usePage();
@@ -122,6 +123,25 @@ const closeActivateTaModal = () => {
 };
 
 const inputClass = "w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl px-4 py-3 font-semibold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400";
+
+// Rapor Settings Form
+const formRapor = useForm({
+    show_peringkat: props.raporSetting?.show_peringkat ?? true,
+    show_kehadiran: props.raporSetting?.show_kehadiran ?? true,
+    show_ekskul: props.raporSetting?.show_ekskul ?? true,
+    show_catatan: props.raporSetting?.show_catatan ?? true,
+    show_deskripsi: props.raporSetting?.show_deskripsi ?? true,
+    show_kepribadian: props.raporSetting?.show_kepribadian ?? true,
+});
+
+const submitRapor = () => {
+    formRapor.post(route('sekolah.raporSetting'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            showSuccessModal.value = true;
+        }
+    });
+};
 </script>
 
 <template>

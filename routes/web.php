@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/pengaturan/sekolah', [\App\Http\Controllers\SekolahController::class, 'edit'])->name('sekolah.edit');
     Route::post('/pengaturan/sekolah', [\App\Http\Controllers\SekolahController::class, 'update'])->name('sekolah.update');
+    Route::post('/pengaturan/rapor', [\App\Http\Controllers\SekolahController::class, 'updateRaporSetting'])->name('sekolah.raporSetting');
 
     Route::get('/siswa/template-import', [\App\Http\Controllers\SiswaController::class, 'downloadTemplate'])->name('siswa.template');
     Route::post('/siswa/import', [\App\Http\Controllers\SiswaController::class, 'import'])->name('siswa.import');
