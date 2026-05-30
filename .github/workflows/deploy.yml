@@ -55,3 +55,4 @@ jobs:
           php artisan route:clear
 
           echo "✅ Deploy selesai!"
+# Trigger
