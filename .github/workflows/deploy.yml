@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -22,46 +22,17 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          # 1. Buat folder jika belum ada
-          mkdir -p ~/public_html/baawmyid
-
-          # 2. Clone jika folder erapot belum ada, jika sudah langsung pull
-          if [ ! -d ~/public_html/baawmyid/erapot ]; then
+          cd ~/public_html/baawmyid/erapot 2>/dev/null || mkdir -p ~/public_html/baawmyid/erapot
+          if [ ! -d ~/public_html/baawmyid/erapot/.git ]; then
             git clone https://github.com/baaw48/erapot.git ~/public_html/baawmyid/erapot
           fi
-
           cd ~/public_html/baawmyid/erapot
-
-          # 3. Tarik kode terbaru dari GitHub
           git pull origin main
-
-          # 4. Install / update dependencies PHP (Composer)
           composer install --no-dev --optimize-autoloader
-
-          # 5. Install & build frontend assets
           npm install
           npm run build
-
-          # 6. Buat file .env jika belum ada (copy dari .env.example)
-          if [ ! -f .env ]; then
-            cp .env.example .env
-            php artisan key:generate
-          fi
-
-          # 6. Perbaiki permission folder storage & bootstrap/cache
-          chmod -R 775 storage
-          chmod -R 775 bootstrap/cache
-
-          # 7. Sinkronkan riwayat_kelas dengan data siswa
           php artisan sync:riwayat-kelas
-
-          # 8. Jalankan migrasi database baru
           php artisan migrate --force
-
-          # 9. Bersihkan & rebuild cache konfigurasi Laravel
           php artisan config:clear
           php artisan cache:clear
-          php artisan view:clear
-          php artisan route:clear
-
-          echo "✅ Deploy selesai!"
+          echo "Deploy selesai"
