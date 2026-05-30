@@ -38,7 +38,11 @@ jobs:
           # 4. Install / update dependencies PHP (Composer)
           composer install --no-dev --optimize-autoloader
 
-          # 5. Buat file .env jika belum ada (copy dari .env.example)
+          # 5. Install & build frontend assets
+          npm install
+          npm run build
+
+          # 6. Buat file .env jika belum ada (copy dari .env.example)
           if [ ! -f .env ]; then
             cp .env.example .env
             php artisan key:generate
