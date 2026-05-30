@@ -351,6 +351,68 @@ const submitRapor = () => {
                     </div>
                 </div>
             </div>
+
+            <!-- Pengaturan Rapor -->
+            <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-10 w-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-slate-800">Pengaturan Pencetakan Rapor</h3>
+                        <p class="text-xs font-semibold text-slate-400">Pilih data yang tampil di rapor</p>
+                    </div>
+                </div>
+
+                <form @submit.prevent="submitRapor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-slate-700">Tampilkan Peringkat</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" v-model="formRapor.show_peringkat" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-checked:bg-brand-600 rounded-full peer peer-checked:after:translate-x-full after:absolute after:bg-white after:rounded-full after:h-5 after:w-5 after:top-0.5 after:left-[2px] after:transition-all"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-slate-700">Tampilkan Kehadiran</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" v-model="formRapor.show_kehadiran" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-checked:bg-brand-600 rounded-full peer peer-checked:after:translate-x-full after:absolute after:bg-white after:rounded-full after:h-5 after:w-5 after:top-0.5 after:left-[2px] after:transition-all"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-slate-700">Tampilkan Ekskul</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" v-model="formRapor.show_ekskul" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-checked:bg-brand-600 rounded-full peer peer-checked:after:translate-x-full after:absolute after:bg-white after:rounded-full after:h-5 after:w-5 after:top-0.5 after:left-[2px] after:transition-all"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-bold text-slate-700">Tampilkan Catatan</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" v-model="formRapor.show_catatan" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-checked:bg-brand-600 rounded-full peer peer-checked:after:translate-x-full after:absolute after:bg-white after:rounded-full after:h-5 after:w-5 after:top-0.5 after:left-[2px] after:transition-all"></div>
+                        </label>
+                    </div>
+
+                    <div class="md:col-span-2 pt-4 border-t border-slate-100 flex justify-end">
+                        <button type="submit" :disabled="formRapor.processing" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-xl shadow-md transition-all flex items-center gap-2">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            {{ formRapor.processing ? 'Menyimpan...' : 'Simpan' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- Custom Success Modal -->

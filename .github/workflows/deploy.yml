@@ -55,7 +55,10 @@ jobs:
           # 7. Sinkronkan riwayat_kelas dengan data siswa
           php artisan sync:riwayat-kelas
 
-          # 8. Bersihkan & rebuild cache konfigurasi Laravel
+          # 8. Jalankan migrasi database baru
+          php artisan migrate --force
+
+          # 9. Bersihkan & rebuild cache konfigurasi Laravel
           php artisan config:clear
           php artisan cache:clear
           php artisan view:clear
