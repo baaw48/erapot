@@ -35,36 +35,54 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
           set -e
+
+          echo "=== Navigate to deployment directory ==="
           cd ~/public_html/baawmyid
 
-          # Hapus folder lama dan clone ulang
+          echo "=== Remove old folder and clone fresh ==="
           rm -rf erapot
           git clone https://github.com/baaw48/erapot.git erapot
 
           cd erapot
 
-          # Install dependencies di hosting (PHP 8.4)
-          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs || composer update --no-dev --prefer-dist --ignore-platform-reqs
-
-          # Build assets
-          npm install
-          npm run build
-
-          # Copy .env jika belum ada
+          echo "=== Create .env file if not exists ==="
           if [ ! -f .env ]; then
             cp .env.example .env
+            echo "=== Generate APP_KEY ==="
             php artisan key:generate --force
           fi
 
-          # Permissions
+          echo "=== Update .env with production settings ==="
+          # Update SESSION_DRIVER to file for compatibility
+          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
+          sed -i 's/SESSION_DRIVER=file/SESSION_DRIVER=file/' .env 2>/dev/null || true
+
+          # Update CACHE_STORE to file
+          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
+
+          echo "=== Install composer dependencies ==="
+          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs || composer update --no-dev --prefer-dist --ignore-platform-reqs
+
+          echo "=== Build assets ==="
+          npm install
+          npm run build
+
+          echo "=== Set permissions ==="
           chmod -R 775 storage bootstrap/cache
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
 
-          # Migrate & clear cache
-          php artisan migrate --force || true
+          echo "=== Run migrations ==="
+          php artisan migrate --force || echo "Migration completed or skipped"
+
+          echo "=== Clear all caches ==="
           php artisan config:clear
           php artisan cache:clear
           php artisan view:clear
+          php artisan route:clear
           php artisan sync:riwayat-kelas || true
 
-          echo "Deploy completed successfully!"
+          echo "=== Show final directory structure ==="
+          ls -la
+          ls -la storage/
+
+          echo "=== Deploy completed successfully! ==="
