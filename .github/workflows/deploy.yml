@@ -62,12 +62,27 @@ jobs:
           ls -la
 
           echo "=== Remove old folder and clone fresh ==="
-          rm -rf erapot
-          echo "Testing git clone..."
-          GIT_TERMINAL_PROMPT=0 git clone https://github.com/baaw48/erapot.git erapot
+          echo "Removing old folder..."
+          rm -rf erapot erapot.tar.gz
+          mkdir -p erapot
           cd erapot
-          echo "Clone successful!"
-          git remote -v
+          echo "Downloading repository archive..."
+          timeout 300 curl -L --max-time 300 -o erapot.zip https://github.com/baaw48/erapot/archive/refs/heads/main.zip 2>&1
+          CURL_EXIT=$?
+          if [ $CURL_EXIT -eq 124 ]; then
+            echo "Curl download timed out after 5 minutes!"
+            exit 1
+          elif [ $CURL_EXIT -ne 0 ]; then
+            echo "Curl failed with exit code: $CURL_EXIT"
+            exit 1
+          fi
+          echo "Download complete, extracting..."
+          unzip -q erapot.zip
+          mv erapot-*/* .
+          rmdir erapot-* 2>/dev/null || true
+          rm erapot.zip
+          echo "Extract successful!"
+          ls -la
 
           echo "=== Create .env file if not exists ==="
           if [ ! -f .env ]; then
