@@ -18,10 +18,6 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv, zip, pdo, mysql
-
-    - name: Install Composer dependencies
-      run: composer install --no-dev --optimize-autoloader --prefer-dist
 
     - name: Install NPM dependencies
       run: npm install
@@ -41,18 +37,24 @@ jobs:
           set -e
           cd ~/public_html/baawmyid
 
-          # Clone if not exists
-          if [ ! -d "erapot" ]; then
-            git clone https://github.com/baaw48/erapot.git erapot
-          fi
+          # Hapus folder lama dan clone ulang
+          rm -rf erapot
+          git clone https://github.com/baaw48/erapot.git erapot
 
           cd erapot
-          git pull origin main || git clone https://github.com/baaw48/erapot.git . --force
 
-          # Install & build
-          composer install --no-dev --optimize-autoloader
+          # Install dependencies di hosting (PHP 8.4)
+          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs || composer update --no-dev --prefer-dist --ignore-platform-reqs
+
+          # Build assets
           npm install
           npm run build
+
+          # Copy .env jika belum ada
+          if [ ! -f .env ]; then
+            cp .env.example .env
+            php artisan key:generate --force
+          fi
 
           # Permissions
           chmod -R 775 storage bootstrap/cache
