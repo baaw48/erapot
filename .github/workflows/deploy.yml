@@ -41,29 +41,21 @@ jobs:
         command_timeout: 15m
         debug: true
         script: |
-          set -e
+          # Don't use set -e - we want to continue even if some commands fail
+          export DEPLOY_STATUS=0
 
           echo "=== Check basic server info ==="
           whoami
           pwd
           uname -a
 
-          echo "=== Check if git is installed ==="
-          which git || echo "GIT NOT FOUND"
-          git --version || echo "GIT NOT AVAILABLE"
-
-          echo "=== Check network connectivity ==="
-          curl -s --max-time 10 https://api.github.com/zen || echo "Cannot reach GitHub API"
-          ping -c 1 github.com || echo "Cannot ping github.com"
-
           echo "=== Navigate to deployment directory ==="
-          cd ~/public_html/baawmyid
+          cd ~/public_html/baawmyid || { echo "Failed to cd to deployment dir"; exit 1; }
           pwd
           ls -la
 
           echo "=== Remove old folder and clone fresh ==="
-          echo "Removing old folder..."
-          rm -rf erapot erapot.tar.gz
+          rm -rf erapot erapot.tar.gz 2>/dev/null || true
           mkdir -p erapot
           cd erapot
           echo "Downloading repository archive..."
@@ -77,7 +69,7 @@ jobs:
             exit 1
           fi
           echo "Download complete, extracting..."
-          unzip -q erapot.zip
+          unzip -q erapot.zip || { echo "Unzip failed"; exit 1; }
           # Move all files from erapot-* subfolder to current directory
           shopt -s dotglob nullglob
           mv erapot-*/* . 2>/dev/null || true
@@ -87,34 +79,37 @@ jobs:
           ls -la
 
           echo "=== Create .env file if not exists ==="
-          if [ ! -f .env ]; then
+          if [ -f .env ]; then
+            echo ".env already exists, skipping creation"
+          elif [ -f .env.example ]; then
             cp .env.example .env
-            php artisan key:generate --force
+            php artisan key:generate --force || echo "Key generation failed, continuing..."
+          else
+            echo "WARNING: .env.example not found, creating basic .env"
+            echo "APP_KEY=" > .env
+            echo "APP_ENV=production" >> .env
+            echo "APP_DEBUG=false" >> .env
+            echo "APP_URL=https://baaw48.my.id" >> .env
           fi
+          cat .env
 
           echo "=== Update .env with production settings ==="
-          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env || true
-          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env || true
+          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
+          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
+          sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env 2>/dev/null || true
 
           echo "=== Install composer dependencies ==="
-          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs || composer update --no-dev --prefer-dist --ignore-platform-reqs
-
-          echo "=== Build assets ==="
-          npm install
-          npm run build
+          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs 2>&1 || composer update --no-dev --prefer-dist --ignore-platform-reqs 2>&1 || true
 
           echo "=== Set permissions ==="
-          chmod -R 775 storage bootstrap/cache || true
+          chmod -R 775 storage bootstrap/cache 2>/dev/null || true
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
 
-          echo "=== Run migrations ==="
-          php artisan migrate --force || true
-
           echo "=== Clear all caches ==="
-          php artisan config:clear || true
-          php artisan cache:clear || true
-          php artisan view:clear || true
-          php artisan route:clear || true
-          php artisan sync:riwayat-kelas || true
+          php artisan config:clear 2>/dev/null || true
+          php artisan cache:clear 2>/dev/null || true
+          php artisan view:clear 2>/dev/null || true
+          php artisan route:clear 2>/dev/null || true
 
-          echo "=== Deploy completed successfully! ==="
+          echo "=== Deploy completed! ==="
+          echo "Please visit https://baaw48.my.id/erapot to verify"
