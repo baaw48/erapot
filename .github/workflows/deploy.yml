@@ -29,6 +29,15 @@ jobs:
     - name: Build assets
       run: npm run build
 
+    - name: Debug SSH Connection
+      run: |
+        echo "=== Debug SSH ==="
+        echo "Host: ${{ secrets.SSH_HOST }}"
+        echo "Username: ${{ secrets.SSH_USERNAME }}"
+        echo "Port: ${{ secrets.SSH_PORT }}"
+        echo "Key starts with: $(echo '${{ secrets.SSH_PRIVATE_KEY }}' | head -c 50)"
+        echo "Key length: $(echo '${{ secrets.SSH_PRIVATE_KEY }}' | wc -c)"
+
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -39,8 +48,11 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         timeout: 15m
         command_timeout: 10m
+        debug: true
         script: |
           set -e
+
+          echo "=== SSH Connected Successfully ==="
 
           echo "=== Navigate to deployment directory ==="
           cd ~/public_html/baawmyid
