@@ -80,17 +80,26 @@ jobs:
 
           echo "=== Create .env file if not exists ==="
           if [ -f .env ]; then
-            echo ".env already exists, skipping creation"
+            echo ".env already exists, will update it"
           elif [ -f .env.example ]; then
             cp .env.example .env
-            php artisan key:generate --force || echo "Key generation failed, continuing..."
           else
-            echo "WARNING: .env.example not found, creating basic .env"
-            echo "APP_KEY=" > .env
-            echo "APP_ENV=production" >> .env
-            echo "APP_DEBUG=false" >> .env
-            echo "APP_URL=https://baaw48.my.id" >> .env
+            echo "Creating basic .env file"
+            printf 'APP_NAME="E-RAPOT"\nAPP_ENV=production\nAPP_KEY=\nAPP_DEBUG=false\nAPP_URL=https://baaw48.my.id\n' > .env
           fi
+
+          # Generate APP_KEY
+          php artisan key:generate --force
+
+          # Update .env with production settings
+          sed -i 's/APP_ENV=local/APP_ENV=production/' .env 2>/dev/null || true
+          sed -i 's|APP_URL=http://localhost|APP_URL=https://baaw48.my.id|' .env 2>/dev/null || true
+          sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env 2>/dev/null || true
+          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
+          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
+          sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env 2>/dev/null || true
+
+          echo "=== Current .env content ==="
           cat .env
 
           echo "=== Update .env with production settings ==="
