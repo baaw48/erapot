@@ -6,6 +6,9 @@ on:
       - main
       - master
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -53,11 +56,7 @@ jobs:
           fi
 
           echo "=== Update .env with production settings ==="
-          # Update SESSION_DRIVER to file for compatibility
           sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
-          sed -i 's/SESSION_DRIVER=file/SESSION_DRIVER=file/' .env 2>/dev/null || true
-
-          # Update CACHE_STORE to file
           sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
 
           echo "=== Install composer dependencies ==="
@@ -80,9 +79,5 @@ jobs:
           php artisan view:clear
           php artisan route:clear
           php artisan sync:riwayat-kelas || true
-
-          echo "=== Show final directory structure ==="
-          ls -la
-          ls -la storage/
 
           echo "=== Deploy completed successfully! ==="
