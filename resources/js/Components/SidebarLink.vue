@@ -19,20 +19,20 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'nav-item active w-full flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-white bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg transition-all duration-300'
-        : 'nav-item w-full flex items-center px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm transition-all duration-300 border border-transparent'
+        ? 'nav-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white bg-white/15 border border-white/20 transition-all duration-200'
+        : 'nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200'
 );
 </script>
 
 <template>
     <Link :href="href" :class="classes" :title="isCollapsed ? $slots.default()[0]?.children : ''">
-        <div class="shrink-0 transition-all duration-300" :class="{ 'scale-110': active }">
+        <div class="shrink-0 transition-all duration-200" :class="{ 'scale-110': active }">
             <slot name="icon" />
         </div>
 
         <span
             v-if="!isCollapsed"
-            class="transition-all duration-300 whitespace-nowrap overflow-hidden"
+            class="transition-all duration-200 whitespace-nowrap overflow-hidden"
         >
             <slot />
         </span>

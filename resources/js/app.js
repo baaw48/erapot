@@ -6,7 +6,13 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'E-RAPOT';
+
+// Initialize dark mode from localStorage
+const darkMode = localStorage.getItem('darkMode');
+if (darkMode === 'true' || (!darkMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+}
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -22,6 +28,6 @@ createInertiaApp({
             .mount(el);
     },
     progress: {
-        color: '#4B5563',
-    },
+        color: '#1e40af',
+ },
 });

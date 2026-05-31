@@ -92,12 +92,13 @@ const totalKehadiran = computed(() => kehadiranSakit.value + kehadiranIzin.value
         <div class="space-y-6">
 
             <!-- Welcome Banner -->
-            <div class="relative overflow-hidden bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-600 rounded-2xl shadow-xl shadow-primary-500/20">
-                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1cmwoI3BhdHRlcm4tY29sb3IpIj48cGF0dGVyblVuaXRzIHVuaXQ9ImNpcmNsZSIgY3g9IjAuNSIgY3k9IjAuNSIgcj0iMS41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==')] opacity-10"></div>
-                <div class="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-                <div class="absolute -left-10 -bottom-10 w-60 h-60 bg-white/5 rounded-full blur-2xl"></div>
+            <div class="relative overflow-hidden bg-gradient-to-r from-primary-600 via-primary-500 to-primary-700 rounded-2xl shadow-xl">
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute -right-16 -top-16 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+                    <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-white/30 rounded-full blur-2xl"></div>
+                </div>
 
-                <div class="relative px-8 py-10">
+                <div class="relative px-8 py-8">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                         <div>
                             <h3 class="text-2xl font-bold text-white mb-2">
