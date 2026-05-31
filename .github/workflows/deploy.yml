@@ -78,8 +78,10 @@ jobs:
           fi
           echo "Download complete, extracting..."
           unzip -q erapot.zip
-          mv erapot-*/* .
-          rmdir erapot-* 2>/dev/null || true
+          # Move all files from erapot-* subfolder to current directory
+          shopt -s dotglob nullglob
+          mv erapot-*/* . 2>/dev/null || true
+          rm -rf erapot-*
           rm erapot.zip
           echo "Extract successful!"
           ls -la
