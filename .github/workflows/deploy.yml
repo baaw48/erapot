@@ -29,15 +29,6 @@ jobs:
     - name: Build assets
       run: npm run build
 
-    - name: Debug SSH Connection
-      run: |
-        echo "=== Debug SSH ==="
-        echo "Host: ${{ secrets.SSH_HOST }}"
-        echo "Username: ${{ secrets.SSH_USERNAME }}"
-        echo "Port: ${{ secrets.SSH_PORT }}"
-        echo "Key starts with: $(echo '${{ secrets.SSH_PRIVATE_KEY }}' | head -c 50)"
-        echo "Key length: $(echo '${{ secrets.SSH_PRIVATE_KEY }}' | wc -c)"
-
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -46,21 +37,37 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT || 22 }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        timeout: 15m
-        command_timeout: 10m
+        timeout: 30m
+        command_timeout: 15m
         debug: true
         script: |
           set -e
 
-          echo "=== SSH Connected Successfully ==="
+          echo "=== Check basic server info ==="
+          whoami
+          pwd
+          uname -a
+
+          echo "=== Check if git is installed ==="
+          which git || echo "GIT NOT FOUND"
+          git --version || echo "GIT NOT AVAILABLE"
+
+          echo "=== Check network connectivity ==="
+          curl -s --max-time 10 https://api.github.com/zen || echo "Cannot reach GitHub API"
+          ping -c 1 github.com || echo "Cannot ping github.com"
 
           echo "=== Navigate to deployment directory ==="
           cd ~/public_html/baawmyid
+          pwd
+          ls -la
 
           echo "=== Remove old folder and clone fresh ==="
           rm -rf erapot
-          git clone https://github.com/baaw48/erapot.git erapot
+          echo "Testing git clone..."
+          GIT_TERMINAL_PROMPT=0 git clone https://github.com/baaw48/erapot.git erapot
           cd erapot
+          echo "Clone successful!"
+          git remote -v
 
           echo "=== Create .env file if not exists ==="
           if [ ! -f .env ]; then
