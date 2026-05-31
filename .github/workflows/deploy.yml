@@ -12,6 +12,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
     - name: Checkout code
@@ -36,6 +37,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT || 22 }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        timeout: 15m
+        command_timeout: 10m
         script: |
           set -e
 
@@ -45,19 +48,17 @@ jobs:
           echo "=== Remove old folder and clone fresh ==="
           rm -rf erapot
           git clone https://github.com/baaw48/erapot.git erapot
-
           cd erapot
 
           echo "=== Create .env file if not exists ==="
           if [ ! -f .env ]; then
             cp .env.example .env
-            echo "=== Generate APP_KEY ==="
             php artisan key:generate --force
           fi
 
           echo "=== Update .env with production settings ==="
-          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
-          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
+          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env || true
+          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env || true
 
           echo "=== Install composer dependencies ==="
           composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs || composer update --no-dev --prefer-dist --ignore-platform-reqs
@@ -67,17 +68,17 @@ jobs:
           npm run build
 
           echo "=== Set permissions ==="
-          chmod -R 775 storage bootstrap/cache
+          chmod -R 775 storage bootstrap/cache || true
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
 
           echo "=== Run migrations ==="
-          php artisan migrate --force || echo "Migration completed or skipped"
+          php artisan migrate --force || true
 
           echo "=== Clear all caches ==="
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan view:clear
-          php artisan route:clear
+          php artisan config:clear || true
+          php artisan cache:clear || true
+          php artisan view:clear || true
+          php artisan route:clear || true
           php artisan sync:riwayat-kelas || true
 
           echo "=== Deploy completed successfully! ==="
