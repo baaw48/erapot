@@ -91,7 +91,7 @@ jobs:
           # Generate APP_KEY
           php artisan key:generate --force
 
-          # Update .env with production settings
+          # Update .env with production settings (KEEP MySQL settings!)
           sed -i 's/APP_ENV=local/APP_ENV=production/' .env 2>/dev/null || true
           sed -i 's|APP_URL=http://localhost|APP_URL=https://baaw48.my.id|' .env 2>/dev/null || true
           sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env 2>/dev/null || true
@@ -99,13 +99,12 @@ jobs:
           sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
           sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env 2>/dev/null || true
 
+          # Ensure MySQL connection is set correctly
+          sed -i 's/DB_CONNECTION=sqlite/DB_CONNECTION=mysql/' .env 2>/dev/null || true
+          sed -i 's/DB_HOST=127.0.0.1/DB_HOST=localhost/' .env 2>/dev/null || true
+
           echo "=== Current .env content ==="
           cat .env
-
-          echo "=== Update .env with production settings ==="
-          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
-          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
-          sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env 2>/dev/null || true
 
           echo "=== Install composer dependencies ==="
           composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs 2>&1 || composer update --no-dev --prefer-dist --ignore-platform-reqs 2>&1 || true
