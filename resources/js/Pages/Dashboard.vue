@@ -93,46 +93,49 @@ const totalKehadiran = computed(() => sakit.value + izin.value + alpa.value || 1
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- Kelas -->
-                <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 dark:border-slate-700/60 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                    <div class="flex items-center gap-5 relative z-10">
+                        <div class="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/30 text-white group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Kelas</p>
-                            <p class="text-2xl font-bold text-slate-800 dark:text-white">{{ totalKelas }}</p>
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Kelas</p>
+                            <p class="text-3xl font-black text-slate-800 dark:text-white mt-1">{{ totalKelas }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Siswa -->
-                <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 dark:border-slate-700/60 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all duration-500"></div>
+                    <div class="flex items-center gap-5 relative z-10">
+                        <div class="p-4 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl shadow-lg shadow-emerald-500/30 text-white group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">Total Siswa</p>
-                            <p class="text-2xl font-bold text-slate-800 dark:text-white">{{ totalSiswa }}</p>
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Siswa</p>
+                            <p class="text-3xl font-black text-slate-800 dark:text-white mt-1">{{ totalSiswa }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mapel -->
-                <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm border border-slate-200 dark:border-slate-700">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-                            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 dark:border-slate-700/60 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
+                    <div class="flex items-center gap-5 relative z-10">
+                        <div class="p-4 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl shadow-lg shadow-purple-500/30 text-white group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">Mata Pelajaran</p>
-                            <p class="text-2xl font-bold text-slate-800 dark:text-white">{{ totalMapel }}</p>
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Mata Pelajaran</p>
+                            <p class="text-3xl font-black text-slate-800 dark:text-white mt-1">{{ totalMapel }}</p>
                         </div>
                     </div>
                 </div>

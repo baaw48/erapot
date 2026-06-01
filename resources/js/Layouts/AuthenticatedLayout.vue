@@ -66,7 +66,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
 
         <!-- SIDEBAR -->
         <aside
-            class="flex flex-col z-50 transition-all duration-300 ease-out relative bg-slate-800 dark:bg-slate-950"
+            class="flex flex-col z-50 transition-all duration-300 ease-out relative bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-white/5 shadow-2xl"
             :class="[
                 isSidebarCollapsed ? 'w-[72px]' : 'w-[260px]',
                 isMobileSidebarOpen ? 'fixed inset-y-0 left-0 translate-x-0' : 'fixed inset-y-0 left-0 -translate-x-full md:relative md:translate-x-0'
@@ -92,14 +92,14 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
 
             <!-- User Info Card -->
             <div class="px-3 py-4 shrink-0">
-                <div class="rounded-xl bg-white/5 border border-white/10 p-3" :class="isSidebarCollapsed ? 'text-center' : ''">
+                <div class="rounded-xl bg-white/5 border border-white/10 p-3 hover:bg-white/10 transition-colors cursor-pointer group shadow-inner" :class="isSidebarCollapsed ? 'text-center' : ''">
                     <div class="flex items-center" :class="isSidebarCollapsed ? 'justify-center' : 'gap-3'">
-                        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center font-bold text-white text-sm shadow-lg">
+                        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-primary-500 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-primary-500/30 group-hover:scale-105 transition-transform duration-300">
                             {{ userInitial }}
                         </div>
                         <div v-if="!isSidebarCollapsed" class="overflow-hidden min-w-0">
                             <p class="text-sm font-semibold text-white truncate">{{ userName }}</p>
-                            <p class="text-[11px] text-white/50 font-medium uppercase tracking-wider truncate">{{ userRole }}</p>
+                            <p class="text-[11px] text-primary-300 font-medium uppercase tracking-wider truncate">{{ userRole }}</p>
                         </div>
                     </div>
                 </div>
@@ -247,7 +247,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
         <!-- MAIN CONTENT -->
         <main class="flex-grow flex flex-col min-w-0 overflow-hidden relative">
             <!-- Header -->
-            <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 h-[64px] shrink-0 flex items-center justify-between px-6 lg:px-8 z-20 shadow-sm transition-colors duration-300">
+            <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60 h-[72px] shrink-0 flex items-center justify-between px-6 lg:px-8 z-20 shadow-sm transition-colors duration-300">
                 <div class="flex items-center gap-4">
                     <!-- Mobile Menu -->
                     <button
