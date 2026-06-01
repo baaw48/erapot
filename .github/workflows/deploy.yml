@@ -54,6 +54,12 @@ jobs:
           pwd
           ls -la
 
+          echo "=== Backup .env if exists ==="
+          if [ -f erapot/.env ]; then
+            cp erapot/.env /tmp/erapot_env_backup
+            echo "Backed up existing .env"
+          fi
+
           echo "=== Remove old folder and clone fresh ==="
           rm -rf erapot erapot.tar.gz 2>/dev/null || true
           mkdir -p erapot
@@ -78,9 +84,11 @@ jobs:
           echo "Extract successful!"
           ls -la
 
-          echo "=== Create .env file if not exists ==="
-          if [ -f .env ]; then
-            echo ".env already exists, will update it"
+          echo "=== Restore or Create .env file ==="
+          if [ -f /tmp/erapot_env_backup ]; then
+            cp /tmp/erapot_env_backup .env
+            echo "Restored .env from backup!"
+            rm /tmp/erapot_env_backup
           elif [ -f .env.example ]; then
             cp .env.example .env
           else
