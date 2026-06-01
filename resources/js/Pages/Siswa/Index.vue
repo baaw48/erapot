@@ -146,19 +146,19 @@ const executeDelete = () => {
         <div class="space-y-6">
 
             <!-- Flash Messages -->
-            <div v-if="flash?.success" class="flex items-center gap-3 bg-success-50 border border-success-200 text-success-700 px-5 py-4 rounded-xl">
+            <div v-if="flash?.success" class="flex items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-5 py-4 rounded-xl">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-medium text-sm">{{ flash.success }}</span>
             </div>
-            <div v-if="flash?.error" class="flex items-center gap-3 bg-danger-50 border border-danger-200 text-danger-700 px-5 py-4 rounded-xl">
+            <div v-if="flash?.error" class="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-5 py-4 rounded-xl">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-medium text-sm">{{ flash.error }}</span>
             </div>
 
             <!-- Main Card -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <!-- Filters -->
                         <div class="flex flex-col sm:flex-row gap-3 flex-1">
@@ -224,50 +224,50 @@ const executeDelete = () => {
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                                <th class="px-6 py-4 text-center w-16">No</th>
-                                <th class="px-6 py-4">NIS / NISN</th>
-                                <th class="px-6 py-4">Nama Siswa</th>
-                                <th class="px-6 py-4 text-center w-16">JK</th>
-                                <th class="px-6 py-4">Kelas</th>
-                                <th class="px-6 py-4 text-right w-32">Aksi</th>
+                            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                <th class="px-6 py-3.5 text-center w-16">No</th>
+                                <th class="px-6 py-3.5">NIS / NISN</th>
+                                <th class="px-6 py-3.5">Nama Siswa</th>
+                                <th class="px-6 py-3.5 text-center w-16">JK</th>
+                                <th class="px-6 py-3.5">Kelas</th>
+                                <th class="px-6 py-3.5 text-right w-32">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-50">
-                            <tr v-for="(siswa, index) in siswas.data" :key="siswa.id" class="hover:bg-slate-50/50 transition-colors">
-                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400">
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr v-for="(siswa, index) in siswas.data" :key="siswa.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
                                     {{ (siswas.current_page - 1) * siswas.per_page + index + 1 }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="font-semibold text-slate-700">{{ siswa.nis }}</div>
-                                    <div class="text-xs text-slate-400">{{ siswa.nisn || '-' }}</div>
+                                    <div class="font-semibold text-slate-700 dark:text-slate-200">{{ siswa.nis }}</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500">{{ siswa.nisn || '-' }}</div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="h-9 w-9 rounded-xl flex items-center justify-center font-bold text-sm"
-                                            :class="siswa.jenis_kelamin === 'L' ? 'bg-primary-100 text-primary-600' : 'bg-secondary-100 text-secondary-600'">
+                                        <div class="h-9 w-9 rounded-lg flex items-center justify-center font-bold text-sm"
+                                            :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400'">
                                             {{ siswa.nama_siswa.charAt(0) }}
                                         </div>
-                                        <span class="font-medium text-slate-700">{{ siswa.nama_siswa }}</span>
+                                        <span class="font-medium text-slate-700 dark:text-slate-200">{{ siswa.nama_siswa }}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg font-semibold text-xs"
-                                        :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-50 text-blue-600' : 'bg-pink-50 text-pink-600'">
+                                        :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400'">
                                         {{ siswa.jenis_kelamin }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-primary-50 text-primary-700 text-xs font-semibold border border-primary-100">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium border border-blue-100 dark:border-blue-800">
                                         {{ siswa.kelas?.nama_kelas || '-' }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-1">
-                                        <button @click="openEditModal(siswa)" class="p-2 text-primary-500 hover:bg-primary-50 rounded-lg transition-colors" title="Edit">
+                                        <button @click="openEditModal(siswa)" class="p-2 text-slate-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all" title="Edit">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                         </button>
-                                        <button @click="confirmDelete(siswa.id)" class="p-2 text-danger-500 hover:bg-danger-50 rounded-lg transition-colors" title="Hapus">
+                                        <button @click="confirmDelete(siswa.id)" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all" title="Hapus">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                         </button>
                                     </div>
@@ -275,11 +275,11 @@ const executeDelete = () => {
                             </tr>
                             <tr v-if="siswas.data.length === 0">
                                 <td colspan="6" class="px-6 py-16 text-center">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 text-slate-300 mb-4">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-4">
                                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                     </div>
-                                    <p class="font-semibold text-slate-500">Belum ada data siswa</p>
-                                    <p class="text-xs text-slate-400 mt-1">Tambahkan data siswa baru atau import dari file Excel</p>
+                                    <p class="font-semibold text-slate-500 dark:text-slate-400">Belum ada data siswa</p>
+                                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Tambahkan data siswa baru atau import dari file Excel</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -287,7 +287,7 @@ const executeDelete = () => {
                 </div>
 
                 <!-- Pagination -->
-                <div class="px-6 py-4 border-t border-slate-100 bg-slate-50" v-if="siswas.links?.length > 3">
+                <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50" v-if="siswas.links?.length > 3">
                     <Pagination :links="siswas.links" />
                 </div>
             </div>
