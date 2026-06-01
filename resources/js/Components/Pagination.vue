@@ -13,7 +13,7 @@ defineProps({
     <div v-if="links.length > 3" class="flex flex-wrap justify-center gap-1 mt-2 mb-2">
         <template v-for="(link, k) in links" :key="k">
             <div v-if="link.url === null"
-                 class="px-4 py-2 text-sm font-bold leading-4 text-slate-400 bg-slate-50 dark:bg-slate-800 dark:text-slate-500 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-center min-w-[40px]"
+                 class="px-4 py-2 text-sm font-bold leading-4 text-slate-400 bg-slate-50 dark:bg-slate-800 dark:text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-center min-w-[40px]"
                  v-html="link.label">
             </div>
             <Link v-else

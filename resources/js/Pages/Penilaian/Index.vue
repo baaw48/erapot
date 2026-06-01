@@ -76,7 +76,7 @@ const getGradeClass = (val) => {
 };
 
 const getGradeBadge = (val) => {
-    if (val === '' || val === null) return { text: '-', class: 'bg-slate-100 dark:text-slate-400' };
+    if (val === '' || val === null) return { text: '-', class: 'bg-slate-100 dark:text-slate-400 dark:text-slate-500' };
     const num = Number(val);
     if (num >= 85) return { text: 'Sangat Baik', class: 'bg-emerald-100 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800' };
     if (num >= 70) return { text: 'Cukup', class: 'bg-amber-100 text-amber-700 border border-amber-200' };
@@ -112,7 +112,7 @@ const mapelOptions = computed(() => [
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">
                         {{ $page.props.auth.user.role === 'admin' ? 'Monitoring Nilai' : `Input Nilai ${$page.props.sekolah?.jenis_asesmen || 'ASTS'}` }}
                     </h2>
-                    <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Kelola & pantau nilai siswa</p>
+                    <p class="text-xs font-bold dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola & pantau nilai siswa</p>
                 </div>
             </div>
         </template>
@@ -137,7 +137,7 @@ const mapelOptions = computed(() => [
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                     <div class="space-y-2">
-                        <label class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                        <label class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                             Pilih Kelas
                         </label>
@@ -149,7 +149,7 @@ const mapelOptions = computed(() => [
                         />
                     </div>
                     <div class="space-y-2">
-                        <label class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                        <label class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                             Pilih Mata Pelajaran
                         </label>
@@ -173,12 +173,12 @@ const mapelOptions = computed(() => [
                             <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm shrink-0">
                                 {{ siswas.length }}
                             </div>
-                            <span class="text-sm font-bold text-slate-600">Siswa Terdaftar</span>
+                            <span class="text-sm font-bold text-slate-600 dark:text-slate-300">Siswa Terdaftar</span>
                         </div>
                         <div class="flex items-center gap-3 w-full md:w-auto">
                             <!-- Fitur Setel Semua Nilai -->
                             <div class="flex-1 md:flex-none flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
-                                <span class="text-[10px] font-black dark:text-slate-400 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
+                                <span class="text-[10px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
                                 <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Ketik angka..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah akan otomatis terisi">
                             </div>
                             
@@ -192,7 +192,7 @@ const mapelOptions = computed(() => [
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black dark:text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No</th>
                                     <th class="px-6 py-4 w-32">NIS</th>
                                     <th class="px-6 py-4">Nama Lengkap</th>
@@ -203,14 +203,14 @@ const mapelOptions = computed(() => [
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
                                     <td class="px-6 py-4 text-center">
-                                        <span class="text-xs font-bold dark:text-slate-400 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
+                                        <span class="text-xs font-bold dark:text-slate-400 dark:text-slate-500 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="text-sm font-semibold text-slate-500 font-mono">{{ siswa.nis }}</span>
+                                        <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 font-mono">{{ siswa.nis }}</span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">
-                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-black uppercase shrink-0">
+                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center justify-center text-xs font-black uppercase shrink-0">
                                                 {{ siswa.nama_siswa.charAt(0) }}
                                             </div>
                                             <span class="text-sm font-bold dark:text-white">{{ siswa.nama_siswa }}</span>
@@ -255,15 +255,15 @@ const mapelOptions = computed(() => [
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 text-slate-300 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>
-                <h3 class="text-lg font-black text-slate-700 mb-1">Belum Ada Siswa</h3>
-                <p class="text-sm font-medium dark:text-slate-400">Tidak ada data siswa yang terdaftar di kelas ini.</p>
+                <h3 class="text-lg font-black text-slate-700 dark:text-slate-200 mb-1">Belum Ada Siswa</h3>
+                <p class="text-sm font-medium dark:text-slate-400 dark:text-slate-500">Tidak ada data siswa yang terdaftar di kelas ini.</p>
             </div>
             
             <div v-else class="flex flex-col items-center justify-center py-16 opacity-50">
                 <svg class="h-16 w-16 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                 </svg>
-                <p class="text-sm font-bold dark:text-slate-400 uppercase tracking-widest">Silakan pilih Kelas & Mapel terlebih dahulu</p>
+                <p class="text-sm font-bold dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Silakan pilih Kelas & Mapel terlebih dahulu</p>
             </div>
         </div>
 
@@ -279,7 +279,7 @@ const mapelOptions = computed(() => [
                 <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Berhasil Disimpan!
                 </h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     {{ page.props.flash?.success || 'Seluruh nilai mata pelajaran untuk kelas ini telah berhasil disimpan ke database.' }}
                 </p>
                 <div class="flex justify-center relative z-10">

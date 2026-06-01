@@ -49,7 +49,7 @@ defineProps({
                         Sistem <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600">E-Rapor ASTS</span>
                     </h1>
                     
-                    <p class="text-lg md:text-xl font-semibold text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-lg md:text-xl font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 max-w-2xl mx-auto leading-relaxed">
                         Solusi modern, cepat, dan terintegrasi untuk pengisian serta pencetakan nilai Asesmen Sumatif Tengah Semester bagi Bapak/Ibu Guru.
                     </p>
                 </div>
@@ -76,7 +76,7 @@ defineProps({
                         <Link
                             v-if="canRegister"
                             :href="route('register')"
-                            class="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-2xl shadow-sm hover:border-brand-300 hover:bg-slate-50 hover:-translate-y-1 transition-all flex items-center justify-center"
+                            class="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 dark:text-slate-200 font-bold rounded-2xl shadow-sm hover:border-brand-300 hover:bg-slate-50 hover:-translate-y-1 transition-all flex items-center justify-center"
                         >
                             Daftar Baru
                         </Link>
@@ -84,7 +84,7 @@ defineProps({
                 </nav>
             </div>
             
-            <p class="absolute -bottom-16 left-0 right-0 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <p class="absolute -bottom-16 left-0 right-0 text-center text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                 <span v-if="$page.props.sekolah && $page.props.sekolah.nama_sekolah">{{ $page.props.sekolah.nama_sekolah }}</span>
                 <span v-else>E-RAPOT SISTEM</span> 
                 &copy; {{ new Date().getFullYear() }}

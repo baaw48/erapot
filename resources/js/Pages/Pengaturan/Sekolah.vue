@@ -122,7 +122,7 @@ const closeActivateTaModal = () => {
     itemToActivateTa.value = null;
 };
 
-const inputClass = "w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-semibold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400";
+const inputClass = "w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-semibold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500";
 
 // Rapor Settings Form
 const formRapor = useForm({
@@ -157,7 +157,7 @@ const submitRapor = () => {
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Pengaturan Sistem</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Identitas Sekolah & Tahun Ajaran</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Identitas Sekolah & Tahun Ajaran</p>
                 </div>
             </div>
         </template>
@@ -183,38 +183,38 @@ const submitRapor = () => {
                     </div>
                     <div>
                         <h3 class="text-lg font-black dark:text-white">Identitas Sekolah</h3>
-                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-0.5">Informasi utama untuk Kop Rapor</p>
+                        <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Informasi utama untuk Kop Rapor</p>
                     </div>
                 </div>
 
                 <form @submit.prevent="submit" class="p-8 relative z-10 space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label for="nama_sekolah" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Nama Sekolah</label>
+                            <label for="nama_sekolah" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Nama Sekolah</label>
                             <input id="nama_sekolah" v-model="form.nama_sekolah" type="text" :class="inputClass" required placeholder="Contoh: MTs Al-Hasanah" />
                         </div>
                         <div class="space-y-2">
-                            <label for="npsn" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">NPSN</label>
+                            <label for="npsn" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">NPSN</label>
                             <input id="npsn" v-model="form.npsn" type="text" :class="inputClass" placeholder="Nomor Pokok Sekolah Nasional" />
                         </div>
                         <div class="md:col-span-2 space-y-2">
-                            <label for="alamat" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Alamat Lengkap</label>
+                            <label for="alamat" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Alamat Lengkap</label>
                             <input id="alamat" v-model="form.alamat" type="text" :class="inputClass" placeholder="Jalan, Desa, Kecamatan, Kab/Kota" />
                         </div>
                         <div class="space-y-2">
-                            <label for="kepala_sekolah" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Nama Kepala Sekolah</label>
+                            <label for="kepala_sekolah" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Nama Kepala Sekolah</label>
                             <input id="kepala_sekolah" v-model="form.kepala_sekolah" type="text" :class="inputClass" placeholder="Nama lengkap beserta gelar" />
                         </div>
                         <div class="space-y-2">
-                            <label for="nip_kepsek" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">NIP Kepala Sekolah</label>
+                            <label for="nip_kepsek" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">NIP Kepala Sekolah</label>
                             <input id="nip_kepsek" v-model="form.nip_kepsek" type="text" :class="inputClass" placeholder="(Opsional)" />
                         </div>
                         <div class="space-y-2">
-                            <label for="email" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Email Sekolah</label>
+                            <label for="email" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Email Sekolah</label>
                             <input id="email" v-model="form.email" type="email" :class="inputClass" placeholder="admin@sekolah.sch.id" />
                         </div>
                         <div class="space-y-2">
-                            <label for="website" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Website</label>
+                            <label for="website" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Website</label>
                             <input id="website" v-model="form.website" type="text" :class="inputClass" placeholder="www.sekolah.sch.id" />
                         </div>
                         
@@ -228,7 +228,7 @@ const submitRapor = () => {
                         </div>
 
                         <div class="md:col-span-2 space-y-2">
-                            <label for="logo" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Logo Sekolah</label>
+                            <label for="logo" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Logo Sekolah</label>
                             <div class="flex items-center gap-6 p-4 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 transition-colors">
                                 <div class="shrink-0 relative group">
                                     <div class="h-24 w-24 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden">
@@ -237,8 +237,8 @@ const submitRapor = () => {
                                     </div>
                                 </div>
                                 <div class="flex-1">
-                                    <input id="logo" type="file" @input="form.logo = $event.target.files[0]" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer" accept="image/*" />
-                                    <p class="text-xs text-slate-400 mt-2 font-medium">Format: JPG, PNG. Maksimal ukuran file: 2MB.</p>
+                                    <input id="logo" type="file" @input="form.logo = $event.target.files[0]" class="block w-full text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer" accept="image/*" />
+                                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 font-medium">Format: JPG, PNG. Maksimal ukuran file: 2MB.</p>
                                     <div v-if="form.errors.logo" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.logo }}</div>
                                 </div>
                             </div>
@@ -263,22 +263,22 @@ const submitRapor = () => {
                     </div>
                     <div>
                         <h3 class="text-lg font-black dark:text-white">Manajemen Tahun Pelajaran</h3>
-                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-0.5">Kelola semester dan tahun aktif</p>
+                        <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola semester dan tahun aktif</p>
                     </div>
                 </div>
 
                 <div class="p-8">
                     <!-- Form Tambah/Edit TA -->
                     <form @submit.prevent="submitTa" class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl p-6 mb-8 relative">
-                        <h4 class="text-sm font-black text-slate-700 mb-4">{{ isEditingTa ? 'Edit Data Semester' : 'Tambah Semester Baru' }}</h4>
+                        <h4 class="text-sm font-black text-slate-700 dark:text-slate-200 mb-4">{{ isEditingTa ? 'Edit Data Semester' : 'Tambah Semester Baru' }}</h4>
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                             <div class="md:col-span-5 space-y-2">
-                                <label for="tahun" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Tahun Ajaran</label>
+                                <label for="tahun" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Tahun Ajaran</label>
                                 <input id="tahun" v-model="formTa.tahun" type="text" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" placeholder="Cth: 2025/2026" required />
                                 <div v-if="formTa.errors.tahun" class="text-rose-500 text-xs font-bold">{{ formTa.errors.tahun }}</div>
                             </div>
                             <div class="md:col-span-4 space-y-2">
-                                <label for="semester" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Semester</label>
+                                <label for="semester" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Semester</label>
                                 <select id="semester" v-model="formTa.semester" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" required>
                                     <option value="Ganjil">Ganjil</option>
                                     <option value="Genap">Genap</option>
@@ -290,7 +290,7 @@ const submitRapor = () => {
                                     <button type="submit" :disabled="formTa.processing" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition-colors shadow-md hover:shadow-lg disabled:opacity-70 flex items-center justify-center">
                                         {{ isEditingTa ? 'Update' : 'Tambah' }}
                                     </button>
-                                    <button v-if="isEditingTa" type="button" @click="cancelEditTa" class="px-4 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl transition-colors">
+                                    <button v-if="isEditingTa" type="button" @click="cancelEditTa" class="px-4 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl transition-colors">
                                         Batal
                                     </button>
                                 </div>
@@ -302,7 +302,7 @@ const submitRapor = () => {
                     <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-6 py-4">Tahun Ajaran</th>
                                     <th class="px-6 py-4">Semester</th>
@@ -312,21 +312,21 @@ const submitRapor = () => {
                             </thead>
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(ta, index) in tahunAjarans" :key="ta.id" class="transition-colors group" :class="{'bg-emerald-50/30': ta.is_active, 'hover:bg-slate-50 dark:bg-slate-800/50': !ta.is_active}">
-                                    <td class="px-6 py-4 text-center text-sm font-bold text-slate-400">
+                                    <td class="px-6 py-4 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <span class="text-sm font-black dark:text-white">{{ ta.tahun }}</span>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="text-sm font-bold text-slate-600">{{ ta.semester }}</span>
+                                        <span class="text-sm font-bold text-slate-600 dark:text-slate-300">{{ ta.semester }}</span>
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <span v-if="ta.is_active" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest border border-emerald-200">
                                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                             Aktif Saat Ini
                                         </span>
-                                        <button v-else @click="setActiveTa(ta.id)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 text-[10px] font-black uppercase tracking-widest border border-transparent transition-all">
+                                        <button v-else @click="setActiveTa(ta.id)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 text-[10px] font-black uppercase tracking-widest border border-transparent transition-all">
                                             Jadikan Aktif
                                         </button>
                                     </td>
@@ -343,7 +343,7 @@ const submitRapor = () => {
                                 </tr>
                                 <tr v-if="tahunAjarans.length === 0">
                                     <td colspan="5" class="px-6 py-12 text-center">
-                                        <div class="text-sm font-bold text-slate-400">Belum ada data Tahun Pelajaran.</div>
+                                        <div class="text-sm font-bold text-slate-400 dark:text-slate-500">Belum ada data Tahun Pelajaran.</div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -360,14 +360,14 @@ const submitRapor = () => {
                     </div>
                     <div>
                         <h3 class="text-lg font-black dark:text-white">Pengaturan Pencetakan Rapor</h3>
-                        <p class="text-xs font-semibold text-slate-400">Pilih data yang tampil di rapor</p>
+                        <p class="text-xs font-semibold text-slate-400 dark:text-slate-500">Pilih data yang tampil di rapor</p>
                     </div>
                 </div>
 
                 <form @submit.prevent="submitRapor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700">Tampilkan Peringkat</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Peringkat</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_peringkat" class="sr-only peer">
@@ -377,7 +377,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700">Tampilkan Kehadiran</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Kehadiran</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_kehadiran" class="sr-only peer">
@@ -387,7 +387,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700">Tampilkan Ekskul</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Ekskul</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_ekskul" class="sr-only peer">
@@ -397,7 +397,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700">Tampilkan Catatan</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Catatan</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_catatan" class="sr-only peer">
@@ -427,7 +427,7 @@ const submitRapor = () => {
                 <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Pengaturan Tersimpan!
                 </h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     Data profil sekolah berhasil diperbarui.
                 </p>
                 <div class="flex justify-center relative z-10">
@@ -446,11 +446,11 @@ const submitRapor = () => {
                     <svg class="h-10 w-10 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
                 <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Hapus</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     Apakah Anda yakin ingin menghapus <strong class="text-rose-600">Tahun Pelajaran</strong> ini?
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDeleteTa" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -468,11 +468,11 @@ const submitRapor = () => {
                     <svg class="h-10 w-10 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
                 <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Aktifkan Semester?</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10 leading-relaxed">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10 leading-relaxed">
                     Perhatian! Mengaktifkan Tahun Pelajaran ini akan merubah halaman input nilai dan fitur lain agar menyesuaikan dengan periode semester ini. <br/><strong class="text-amber-600">Lanjutkan?</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeActivateTa" class="flex-1 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">

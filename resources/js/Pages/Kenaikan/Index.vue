@@ -113,7 +113,7 @@ const executeProses = () => {
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Kenaikan & Kelulusan</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola Pemindahan Peserta Didik</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola Pemindahan Peserta Didik</p>
                 </div>
             </div>
         </template>
@@ -127,10 +127,10 @@ const executeProses = () => {
 
             <!-- Panel Mode Selector -->
             <div class="flex gap-4 p-2 bg-slate-100 rounded-2xl max-w-md mx-auto relative z-10">
-                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kenaikan Kelas
                 </button>
-                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kelulusan (Alumni)
                 </button>
             </div>
@@ -159,8 +159,8 @@ const executeProses = () => {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
                         <!-- Kelas Asal -->
                         <div class="space-y-2">
-                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest">
-                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600">1</span>
+                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600 dark:text-slate-300">1</span>
                                 Pilih Kelas Asal
                             </label>
                             <SearchableSelect
@@ -173,8 +173,8 @@ const executeProses = () => {
 
                         <!-- Kelas Tujuan (Hanya Kenaikan) -->
                         <div v-if="tipeMode === 'kenaikan'" class="space-y-2">
-                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest">
-                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600">2</span>
+                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600 dark:text-slate-300">2</span>
                                 Pilih Kelas Tujuan
                             </label>
                             <SearchableSelect
@@ -201,9 +201,9 @@ const executeProses = () => {
                     <div class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-100 px-8 py-4 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="selectAll" v-model="selectAll" @change="toggleSelectAll" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer">
-                            <label for="selectAll" class="text-xs font-black text-slate-500 uppercase tracking-widest cursor-pointer select-none">Pilih Semua Siswa</label>
+                            <label for="selectAll" class="text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest cursor-pointer select-none">Pilih Semua Siswa</label>
                         </div>
-                        <div class="text-xs font-black text-slate-500 uppercase tracking-widest">
+                        <div class="text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                             Terpilih: <span class="text-blue-600 dark:text-blue-400 text-sm">{{ selectedSiswas.length }}</span> / {{ siswas.length }}
                         </div>
                     </div>
@@ -215,7 +215,7 @@ const executeProses = () => {
                                     <td class="px-8 py-4 w-12">
                                         <input type="checkbox" :id="'siswa_'+siswa.id" :value="siswa.id" v-model="selectedSiswas" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer">
                                     </td>
-                                    <td class="px-2 py-4 w-12 text-center text-sm font-bold text-slate-400">
+                                    <td class="px-2 py-4 w-12 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}
                                     </td>
                                     <td class="px-4 py-4">
@@ -226,7 +226,7 @@ const executeProses = () => {
                                             </div>
                                             <div>
                                                 <div class="text-sm font-bold dark:text-white">{{ siswa.nama_siswa }}</div>
-                                                <div class="text-[11px] font-bold text-slate-400 mt-0.5">NIS: {{ siswa.nis }}</div>
+                                                <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 mt-0.5">NIS: {{ siswa.nis }}</div>
                                             </div>
                                         </label>
                                     </td>
@@ -236,8 +236,8 @@ const executeProses = () => {
                                         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
                                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                                         </div>
-                                        <h3 class="text-sm font-black text-slate-600">Siswa Tidak Ditemukan</h3>
-                                        <p class="text-xs font-medium text-slate-400 mt-1">Belum ada siswa aktif di kelas ini.</p>
+                                        <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Siswa Tidak Ditemukan</h3>
+                                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">Belum ada siswa aktif di kelas ini.</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -263,7 +263,7 @@ const executeProses = () => {
                     <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Proses</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     Apakah Anda yakin ingin <strong :class="tipeMode === 'kenaikan' ? 'text-blue-600 dark:text-blue-400' : 'text-indigo-600'">{{ tipeMode === 'kenaikan' ? 'Menaikkan' : 'Meluluskan' }}</strong> {{ selectedSiswas.length }} siswa yang dipilih?
                 </p>
                 <div class="flex gap-3 relative z-10">
@@ -285,7 +285,7 @@ const executeProses = () => {
                     <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">Berhasil!</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     Proses {{ tipeMode }} telah berhasil dilakukan untuk {{ form.siswa_ids.length }} siswa.
                 </p>
                 <div class="flex justify-center relative z-10">

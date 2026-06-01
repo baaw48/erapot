@@ -22,7 +22,7 @@ const props = defineProps({
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Cetak Dokumen Rapor</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Cetak Leger & Rapor Siswa</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Cetak Leger & Rapor Siswa</p>
                 </div>
             </div>
         </template>
@@ -42,7 +42,7 @@ const props = defineProps({
                     <div class="px-8 py-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <h3 class="text-lg font-black dark:text-white">Daftar Kelas</h3>
-                            <p class="text-sm font-semibold text-slate-500 mt-1">Pilih kelas yang ingin dicetak rapor atau leger-nya.</p>
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">Pilih kelas yang ingin dicetak rapor atau leger-nya.</p>
                         </div>
                         <div class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 border border-brand-100 rounded-xl inline-flex flex-col">
                             <span class="text-[10px] font-black text-brand-500 uppercase tracking-widest">Tahun Ajaran Aktif</span>
@@ -53,7 +53,7 @@ const props = defineProps({
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-8 py-4 w-1/3">Nama Kelas</th>
                                     <th class="px-8 py-4 w-1/3">Wali Kelas</th>
@@ -62,7 +62,7 @@ const props = defineProps({
                             </thead>
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(k, index) in kelas" :key="k.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
-                                    <td class="px-6 py-5 text-center text-sm font-bold text-slate-400">
+                                    <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}
                                     </td>
                                     <td class="px-8 py-5">
@@ -72,13 +72,13 @@ const props = defineProps({
                                             </div>
                                             <div>
                                                 <div class="text-sm font-bold dark:text-white">{{ k.nama_kelas }}</div>
-                                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Tingkat {{ k.tingkat }}</div>
+                                                <div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-0.5">Tingkat {{ k.tingkat }}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-8 py-5">
                                         <div class="flex items-center gap-3">
-                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
+                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
                                                 {{ k.wali_kelas ? k.wali_kelas.name.charAt(0) : '?' }}
                                             </div>
                                             <span class="text-sm font-bold dark:text-slate-200">{{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</span>
@@ -102,8 +102,8 @@ const props = defineProps({
                                         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
                                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                                         </div>
-                                        <h3 class="text-sm font-black text-slate-600">Belum Ada Kelas</h3>
-                                        <p class="text-xs font-medium text-slate-400 mt-1">Data kelas tidak ditemukan untuk dicetak.</p>
+                                        <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Kelas</h3>
+                                        <p class="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">Data kelas tidak ditemukan untuk dicetak.</p>
                                     </td>
                                 </tr>
                             </tbody>

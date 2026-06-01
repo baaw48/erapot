@@ -53,20 +53,20 @@ const submit = () => {
                     </div>
                     
                     <h2 class="text-2xl font-black text-slate-800 tracking-tight mb-2">Pendaftaran Akun</h2>
-                    <p class="text-xs font-semibold text-slate-500">Buat akun baru untuk mengakses sistem E-Rapot</p>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500">Buat akun baru untuk mengakses sistem E-Rapot</p>
                 </div>
 
                 <form @submit.prevent="submit" class="space-y-5">
                     <div class="space-y-1.5">
-                        <label for="name" class="flex items-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-widest pl-1">Nama Lengkap</label>
+                        <label for="name" class="flex items-center gap-2 text-[11px] font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest pl-1">Nama Lengkap</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-4 w-4 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             </div>
                             <input
                                 id="name"
                                 type="text"
-                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500"
                                 v-model="form.name"
                                 required
                                 autofocus
@@ -78,15 +78,15 @@ const submit = () => {
                     </div>
 
                     <div class="space-y-1.5">
-                        <label for="email" class="flex items-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-widest pl-1">Username / Email</label>
+                        <label for="email" class="flex items-center gap-2 text-[11px] font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest pl-1">Username / Email</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-4 w-4 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
                             <input
                                 id="email"
                                 type="email"
-                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500"
                                 v-model="form.email"
                                 required
                                 autocomplete="username"
@@ -97,15 +97,15 @@ const submit = () => {
                     </div>
 
                     <div class="space-y-1.5">
-                        <label for="password" class="flex items-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-widest pl-1">Password</label>
+                        <label for="password" class="flex items-center gap-2 text-[11px] font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest pl-1">Password</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-4 w-4 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                             </div>
                             <input
                                 id="password"
                                 type="password"
-                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500"
                                 v-model="form.password"
                                 required
                                 autocomplete="new-password"
@@ -116,15 +116,15 @@ const submit = () => {
                     </div>
 
                     <div class="space-y-1.5">
-                        <label for="password_confirmation" class="flex items-center gap-2 text-[11px] font-black text-slate-500 uppercase tracking-widest pl-1">Konfirmasi Password</label>
+                        <label for="password_confirmation" class="flex items-center gap-2 text-[11px] font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest pl-1">Konfirmasi Password</label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-4 w-4 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                             </div>
                             <input
                                 id="password_confirmation"
                                 type="password"
-                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                                class="block w-full bg-slate-50/50 border border-slate-200 text-slate-800 rounded-2xl pl-10 pr-4 py-3 text-sm font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500"
                                 v-model="form.password_confirmation"
                                 required
                                 autocomplete="new-password"
@@ -148,7 +148,7 @@ const submit = () => {
                         <div class="text-center">
                             <Link
                                 :href="route('login')"
-                                class="text-xs font-bold text-slate-500 hover:text-brand-600 transition-colors"
+                                class="text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:text-brand-600 transition-colors"
                             >
                                 Sudah punya akun? Masuk di sini.
                             </Link>
@@ -157,7 +157,7 @@ const submit = () => {
                 </form>
             </div>
             
-            <p class="text-center mt-6 text-[11px] font-bold text-slate-400">
+            <p class="text-center mt-6 text-[11px] font-bold text-slate-400 dark:text-slate-500">
                 &copy; {{ new Date().getFullYear() }} Sistem Informasi E-Rapot
             </p>
         </div>

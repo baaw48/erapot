@@ -95,7 +95,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                 </div>
                 <div>
                     <h2 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300">Dashboard Interaktif</h2>
-                    <p class="text-xs font-medium dark:text-slate-400 dark:text-slate-400 uppercase tracking-widest">Pusat Informasi</p>
+                    <p class="text-xs font-medium dark:text-slate-400 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Pusat Informasi</p>
                 </div>
             </div>
         </template>
@@ -144,7 +144,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
 
             <!-- Quick Actions -->
             <div>
-                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Aksi Cepat</h4>
+                <h4 class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Aksi Cepat</h4>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <Link v-if="userRole === 'admin'" :href="route('siswa.index')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-primary-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
@@ -192,14 +192,14 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
 
             <!-- Floating Stats Grid -->
             <div>
-                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Data Akademik Saat Ini</h4>
+                <h4 class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Data Akademik Saat Ini</h4>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Kelas Card -->
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-slate-200/50 dark:border-slate-700/50 group relative overflow-hidden">
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Total Kelas</p>
+                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 dark:dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total Kelas</p>
                                 <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalKelas }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg shadow-blue-500/40 text-white transform group-hover:rotate-12 transition-transform duration-500">
@@ -215,7 +215,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Siswa Aktif</p>
+                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 dark:dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Siswa Aktif</p>
                                 <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalSiswa }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-2xl shadow-lg shadow-emerald-500/40 text-white transform group-hover:rotate-12 transition-transform duration-500">
@@ -231,7 +231,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Mata Pelajaran</p>
+                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 dark:dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Mata Pelajaran</p>
                                 <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalMapel }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-2xl shadow-lg shadow-purple-500/40 text-white transform group-hover:-rotate-12 transition-transform duration-500">
@@ -263,10 +263,10 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                                 </svg>
                                 <div class="absolute inset-0 flex flex-col items-center justify-center">
                                     <span class="text-2xl font-black dark:text-white dark:text-white">{{ lakiPercent }}%</span>
-                                    <span class="text-xs font-bold text-slate-400">Laki-laki</span>
+                                    <span class="text-xs font-bold text-slate-400 dark:text-slate-500">Laki-laki</span>
                                 </div>
                             </div>
-                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-300">Total: {{ lakiCount }}</p>
+                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-500 dark:text-slate-300">Total: {{ lakiCount }}</p>
                         </div>
                         
                         <!-- Perempuan Ring -->
@@ -278,10 +278,10 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                                 </svg>
                                 <div class="absolute inset-0 flex flex-col items-center justify-center">
                                     <span class="text-2xl font-black dark:text-white dark:text-white">{{ perempuanPercent }}%</span>
-                                    <span class="text-xs font-bold text-slate-400">Perempuan</span>
+                                    <span class="text-xs font-bold text-slate-400 dark:text-slate-500">Perempuan</span>
                                 </div>
                             </div>
-                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-300">Total: {{ perempuanCount }}</p>
+                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-500 dark:text-slate-300">Total: {{ perempuanCount }}</p>
                         </div>
                     </div>
                 </div>

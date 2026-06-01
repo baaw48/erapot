@@ -113,7 +113,7 @@ const closeDeleteModal = () => {
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Manajemen Admin</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola Akun Akses Penuh</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola Akun Akses Penuh</p>
                 </div>
             </div>
         </template>
@@ -151,19 +151,19 @@ const closeDeleteModal = () => {
                 <div class="p-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10">
                     <div class="flex flex-col md:flex-row gap-4 mb-6">
                         <div class="flex-1 relative group">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-brand-500 transition-colors">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                             </div>
                             <input 
                                 v-model="searchQuery"
                                 type="text" 
                                 placeholder="Cari nama atau username admin..." 
-                                class="w-full pl-11 pr-11 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all font-medium placeholder:text-slate-400"
+                                class="w-full pl-11 pr-11 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-slate-200 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all font-medium placeholder:text-slate-400 dark:text-slate-500"
                             >
                             <button 
                                 v-if="searchQuery" 
                                 @click="searchQuery = ''"
-                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-rose-500 transition-colors"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 dark:text-slate-500 hover:text-rose-500 transition-colors"
                             >
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                             </button>
@@ -171,13 +171,13 @@ const closeDeleteModal = () => {
                         
                         <div class="w-full md:w-32 shrink-0">
                             <div class="relative">
-                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
+                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-slate-200 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
                                     <option value="10">10 Baris</option>
                                     <option value="25">25 Baris</option>
                                     <option value="50">50 Baris</option>
                                     <option value="100">100 Baris</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400 dark:text-slate-500">
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@ const closeDeleteModal = () => {
 
                     <div class="flex items-center gap-4">
                         <div class="hidden md:block text-right mr-2">
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Admin</p>
+                            <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Total Admin</p>
                             <p class="text-xl font-black text-brand-600">{{ admins.total }}</p>
                         </div>
                         <div class="flex gap-2 w-full md:w-auto">
@@ -201,7 +201,7 @@ const closeDeleteModal = () => {
                 <div class="overflow-x-auto relative z-10">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                            <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <th class="px-6 py-4 w-16 text-center">No.</th>
                                 <th class="px-8 py-4">Nama Lengkap</th>
                                 <th class="px-8 py-4">Username</th>
@@ -211,12 +211,12 @@ const closeDeleteModal = () => {
                         </thead>
                         <tbody class="divide-y divide-slate-50">
                             <tr v-for="(admin, index) in admins.data" :key="admin.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
-                                <td class="px-6 py-5 text-center text-sm font-bold text-slate-400">
+                                <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                     {{ (admins.current_page - 1) * admins.per_page + index + 1 }}
                                 </td>
                                 <td class="px-8 py-5">
                                     <div class="flex items-center gap-4">
-                                        <div class="h-10 w-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-black shadow-inner uppercase border border-slate-200">
+                                        <div class="h-10 w-10 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center justify-center font-black shadow-inner uppercase border border-slate-200">
                                             {{ admin.name.charAt(0) }}
                                         </div>
                                         <div>
@@ -228,7 +228,7 @@ const closeDeleteModal = () => {
                                     </div>
                                 </td>
                                 <td class="px-8 py-5">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 text-slate-600 text-xs font-bold border border-slate-200">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 text-slate-600 dark:text-slate-300 text-xs font-bold border border-slate-200">
                                         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                         {{ admin.username }}
                                     </span>
@@ -254,7 +254,7 @@ const closeDeleteModal = () => {
                                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
                                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                                     </div>
-                                    <h3 class="text-sm font-black text-slate-600">Belum Ada Admin Lain</h3>
+                                    <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Admin Lain</h3>
                                 </td>
                             </tr>
                         </tbody>
@@ -277,37 +277,37 @@ const closeDeleteModal = () => {
                     </div>
                     <div>
                         <h2 class="text-xl font-black dark:text-white">{{ isEditing ? 'Edit Data Admin' : 'Tambah Admin Baru' }}</h2>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Lengkapi profil akses penuh</p>
+                        <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Lengkapi profil akses penuh</p>
                     </div>
                 </div>
                 
                 <form @submit.prevent="submit" class="space-y-6 relative z-10">
                     <div class="space-y-2">
-                        <label for="name" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Nama Lengkap</label>
-                        <input id="name" v-model="form.name" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="Cth: Budi Santoso" />
+                        <label for="name" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Nama Lengkap</label>
+                        <input id="name" v-model="form.name" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500" required placeholder="Cth: Budi Santoso" />
                         <div v-if="form.errors.name" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.name }}</div>
                     </div>
                     
                     <div class="space-y-2">
-                        <label for="username" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Username Login</label>
+                        <label for="username" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Username Login</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                <svg class="h-5 w-5 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             </div>
-                            <input id="username" v-model="form.username" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl pl-11 pr-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="admin_budi" />
+                            <input id="username" v-model="form.username" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl pl-11 pr-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500" required placeholder="admin_budi" />
                         </div>
                         <div v-if="form.errors.username" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.username }}</div>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="password" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Password</label>
-                        <input id="password" v-model="form.password" type="password" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" :required="!isEditing" placeholder="Minimal 8 karakter" />
-                        <p v-if="isEditing" class="text-[10px] font-semibold text-slate-400 mt-1">*Kosongkan jika tidak ingin mengubah password.</p>
+                        <label for="password" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Password</label>
+                        <input id="password" v-model="form.password" type="password" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400 dark:text-slate-500" :required="!isEditing" placeholder="Minimal 8 karakter" />
+                        <p v-if="isEditing" class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 mt-1">*Kosongkan jika tidak ingin mengubah password.</p>
                         <div v-if="form.errors.password" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.password }}</div>
                     </div>
                     
                     <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 hover:border-slate-300 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 hover:border-slate-300 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                             Batal
                         </button>
                         <button type="submit" :disabled="form.processing" class="flex-1 px-4 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70 flex items-center justify-center gap-2">
@@ -327,11 +327,11 @@ const closeDeleteModal = () => {
                     <svg class="h-10 w-10 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
                 <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Hapus</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     Apakah Anda yakin ingin menghapus admin ini? <strong class="text-rose-600">Akses admin mereka akan segera dicabut.</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDelete" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -349,7 +349,7 @@ const closeDeleteModal = () => {
                     <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">Berhasil!</h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     {{ $page.props.flash.success || 'Data berhasil disimpan.' }}
                 </p>
                 <div class="flex justify-center relative z-10">

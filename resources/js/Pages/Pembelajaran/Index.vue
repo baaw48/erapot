@@ -133,7 +133,7 @@ const saveAll = () => {
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Penugasan Mengajar</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">
                         Tahun Ajaran Aktif: <span class="text-brand-600">{{ tahunAktif ? tahunAktif.tahun + ' - ' + tahunAktif.semester : 'Belum Ada' }}</span>
                     </p>
                 </div>
@@ -183,7 +183,7 @@ const saveAll = () => {
                 <div class="overflow-x-auto relative z-10 p-2">
                     <table class="w-full text-left border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700">
                         <thead>
-                            <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                            <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <th class="px-6 py-4 w-16 text-center">No</th>
                                 <th class="px-6 py-4 w-1/3">Mata Pelajaran</th>
                                 <th class="px-6 py-4">Guru Pengampu</th>
@@ -192,12 +192,12 @@ const saveAll = () => {
                         </thead>
                         <tbody class="divide-y divide-slate-50">
                             <tr v-for="(mapel, index) in mapels" :key="mapel.id" class="hover:bg-slate-50/50 transition-colors group" :class="{'bg-rose-50/20': !assignments[mapel.id]}">
-                                <td class="px-6 py-4 text-center font-bold text-slate-400">
+                                <td class="px-6 py-4 text-center font-bold text-slate-400 dark:text-slate-500">
                                     {{ index + 1 }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm font-bold dark:text-white">{{ mapel.nama_mapel }}</div>
-                                    <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
+                                    <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <SearchableSelect
@@ -226,7 +226,7 @@ const saveAll = () => {
                                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 text-slate-300 mb-4">
                                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                     </div>
-                                    <h3 class="text-sm font-black text-slate-600">Belum Ada Mapel</h3>
+                                    <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Mapel</h3>
                                 </td>
                             </tr>
                         </tbody>

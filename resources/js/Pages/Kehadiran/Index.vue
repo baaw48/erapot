@@ -88,7 +88,7 @@ const kelasOptions = computed(() => [
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">
                         {{ $page.props.auth.user.role === 'admin' ? 'Monitoring Kehadiran' : 'Input Kehadiran & Ekskul' }}
                     </h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola data absensi & ekskul</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola data absensi & ekskul</p>
                 </div>
             </div>
         </template>
@@ -110,7 +110,7 @@ const kelasOptions = computed(() => [
             <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 <div class="max-w-xl relative z-10 space-y-2">
-                    <label class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <label class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                         Pilih Kelas
                     </label>
@@ -132,7 +132,7 @@ const kelasOptions = computed(() => [
                             <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm">
                                 {{ siswas.length }}
                             </div>
-                            <span class="text-sm font-bold text-slate-600">Siswa Terdaftar</span>
+                            <span class="text-sm font-bold text-slate-600 dark:text-slate-300">Siswa Terdaftar</span>
                         </div>
                         <button type="button" @click="submit" class="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
@@ -143,13 +143,13 @@ const kelasOptions = computed(() => [
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th rowspan="2" class="px-4 py-4 w-12 text-center border-r border-slate-200">No</th>
                                     <th rowspan="2" class="px-4 py-4 w-40 border-r border-slate-200">Nama Lengkap</th>
                                     <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 border-b bg-blue-100 dark:bg-blue-900/30/50 text-blue-600 dark:text-blue-400">Kehadiran (Hari)</th>
                                     <th colspan="6" class="px-4 py-3 text-center border-b border-slate-200 bg-purple-50/50 text-purple-600">Ekstrakurikuler</th>
                                 </tr>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 border-b border-slate-100 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Sakit</th>
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Izin</th>
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Alpa</th>
@@ -167,11 +167,11 @@ const kelasOptions = computed(() => [
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
                                     <td class="px-3 py-4 text-center border-r border-slate-50">
-                                        <span class="text-xs font-bold text-slate-400 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
+                                        <span class="text-xs font-bold text-slate-400 dark:text-slate-500 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
                                     </td>
                                     <td class="px-4 py-4 border-r border-slate-50">
                                         <div class="flex items-center gap-3">
-                                            <div class="h-7 w-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
+                                            <div class="h-7 w-7 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
                                                 {{ siswa.nama_siswa.charAt(0) }}
                                             </div>
                                             <span class="text-xs font-bold dark:text-white">{{ siswa.nama_siswa }}</span>
@@ -211,15 +211,15 @@ const kelasOptions = computed(() => [
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 text-slate-300 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>
-                <h3 class="text-lg font-black text-slate-700 mb-1">Belum Ada Siswa</h3>
-                <p class="text-sm font-medium text-slate-400">Tidak ada data siswa yang terdaftar di kelas ini.</p>
+                <h3 class="text-lg font-black text-slate-700 dark:text-slate-200 mb-1">Belum Ada Siswa</h3>
+                <p class="text-sm font-medium text-slate-400 dark:text-slate-500">Tidak ada data siswa yang terdaftar di kelas ini.</p>
             </div>
             
             <div v-else class="flex flex-col items-center justify-center py-16 opacity-50">
                 <svg class="h-16 w-16 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <p class="text-sm font-bold text-slate-400 uppercase tracking-widest">Silakan pilih Kelas terlebih dahulu</p>
+                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Silakan pilih Kelas terlebih dahulu</p>
             </div>
         </div>
 
@@ -235,7 +235,7 @@ const kelasOptions = computed(() => [
                 <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Berhasil Disimpan!
                 </h2>
-                <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
+                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
                     {{ page.props.flash?.success || 'Seluruh data absensi & ekstrakurikuler telah berhasil disimpan ke database.' }}
                 </p>
                 <div class="flex justify-center relative z-10">

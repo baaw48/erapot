@@ -42,7 +42,7 @@ const urlLeger = (kelasId) => {
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Arsip Rapor</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Cetak Rapor & Leger Tahun Lalu</p>
+                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Cetak Rapor & Leger Tahun Lalu</p>
                 </div>
             </div>
         </template>
@@ -72,10 +72,10 @@ const urlLeger = (kelasId) => {
                         <div class="h-7 w-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-black text-sm shrink-0">1</div>
                         <h3 class="text-base font-black dark:text-white">Pilih Tahun Ajaran</h3>
                     </div>
-                    <p class="text-sm font-semibold text-slate-400 ml-10">Pilih periode tahun ajaran yang ingin Anda lihat arsipnya.</p>
+                    <p class="text-sm font-semibold text-slate-400 dark:text-slate-500 ml-10">Pilih periode tahun ajaran yang ingin Anda lihat arsipnya.</p>
                 </div>
                 <div class="p-8 relative z-10">
-                    <div v-if="semuaTahun.length === 0" class="text-center py-8 text-slate-400 font-semibold text-sm">
+                    <div v-if="semuaTahun.length === 0" class="text-center py-8 text-slate-400 dark:text-slate-500 font-semibold text-sm">
                         Belum ada data tahun ajaran yang tersimpan.
                     </div>
                     <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -96,13 +96,13 @@ const urlLeger = (kelasId) => {
                                     Aktif
                                 </span>
                             </div>
-                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 dark:bg-amber-600 text-white' : 'bg-white text-slate-600 border border-slate-200 group-hover:bg-amber-100 group-hover:dark:text-amber-300']">
+                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 dark:bg-amber-600 text-white' : 'bg-white text-slate-600 dark:text-slate-300 border border-slate-200 group-hover:bg-amber-100 group-hover:dark:text-amber-300']">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                             </div>
                             <p :class="['font-black text-base', selectedTahunId == tahun.id ? 'dark:text-amber-300' : 'dark:text-white']">{{ tahun.tahun }}</p>
-                            <p :class="['font-bold text-xs mt-0.5', selectedTahunId == tahun.id ? 'text-amber-500' : 'text-slate-400']">Semester {{ tahun.semester }}</p>
+                            <p :class="['font-bold text-xs mt-0.5', selectedTahunId == tahun.id ? 'text-amber-500' : 'text-slate-400 dark:text-slate-500']">Semester {{ tahun.semester }}</p>
                         </button>
                     </div>
                 </div>
@@ -119,7 +119,7 @@ const urlLeger = (kelasId) => {
                                 <div class="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-sm shrink-0">2</div>
                                 <h3 class="text-base font-black dark:text-white">Pilih Kelas & Cetak Dokumen</h3>
                             </div>
-                            <p class="text-sm font-semibold text-slate-400 ml-10">Klik tombol cetak di baris kelas yang ingin Anda unduh.</p>
+                            <p class="text-sm font-semibold text-slate-400 dark:text-slate-500 ml-10">Klik tombol cetak di baris kelas yang ingin Anda unduh.</p>
                         </div>
                         <div class="shrink-0 px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-2xl text-right">
                             <p class="text-[10px] font-black text-amber-500 uppercase tracking-widest">Melihat Arsip Periode</p>
@@ -130,7 +130,7 @@ const urlLeger = (kelasId) => {
                     <div class="overflow-x-auto relative z-10">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-8 py-4 w-1/3">Nama Kelas</th>
                                     <th class="px-8 py-4 w-1/3">Wali Kelas</th>
@@ -139,7 +139,7 @@ const urlLeger = (kelasId) => {
                             </thead>
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(k, index) in kelas" :key="k.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
-                                    <td class="px-6 py-5 text-center text-sm font-bold text-slate-400">
+                                    <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}
                                     </td>
                                     <td class="px-8 py-5">
@@ -149,16 +149,16 @@ const urlLeger = (kelasId) => {
                                             </div>
                                             <div>
                                                 <div class="text-sm font-bold dark:text-white">{{ k.nama_kelas }}</div>
-                                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-0.5">Tingkat {{ k.tingkat }}</div>
+                                                <div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-0.5">Tingkat {{ k.tingkat }}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-8 py-5">
                                         <div class="flex items-center gap-3">
-                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
+                                            <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 dark:text-slate-400 dark:text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
                                                 {{ k.wali_kelas ? k.wali_kelas.name.charAt(0) : '?' }}
                                             </div>
-                                            <span class="text-sm font-bold text-slate-700">{{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</span>
+                                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">{{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</span>
                                         </div>
                                     </td>
                                     <td class="px-8 py-5">
@@ -187,7 +187,7 @@ const urlLeger = (kelasId) => {
                                         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
                                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                                         </div>
-                                        <h3 class="text-sm font-black text-slate-600">Belum Ada Data Kelas</h3>
+                                        <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Data Kelas</h3>
                                     </td>
                                 </tr>
                             </tbody>
@@ -201,8 +201,8 @@ const urlLeger = (kelasId) => {
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-50 text-amber-300 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 </div>
-                <h3 class="text-base font-black text-slate-500">Belum Ada Tahun Dipilih</h3>
-                <p class="text-sm font-semibold text-slate-400 mt-1">Pilih periode tahun ajaran di atas untuk menampilkan daftar kelas yang bisa dicetak.</p>
+                <h3 class="text-base font-black text-slate-500 dark:text-slate-400 dark:text-slate-500">Belum Ada Tahun Dipilih</h3>
+                <p class="text-sm font-semibold text-slate-400 dark:text-slate-500 mt-1">Pilih periode tahun ajaran di atas untuk menampilkan daftar kelas yang bisa dicetak.</p>
             </div>
 
         </div>

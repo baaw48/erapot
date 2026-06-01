@@ -28,7 +28,7 @@ defineProps({
                 </div>
                 <div>
                     <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Pengaturan Profil</h2>
-                    <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Kelola Akun dan Keamanan</p>
+                    <p class="text-xs font-bold dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola Akun dan Keamanan</p>
                 </div>
             </div>
         </template>
