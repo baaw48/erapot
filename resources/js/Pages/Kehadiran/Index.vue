@@ -79,13 +79,13 @@ const kelasOptions = computed(() => [
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-brand-50 text-brand-600 rounded-xl">
+                <div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-black text-xl text-slate-800 leading-tight tracking-tight">
+                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">
                         {{ $page.props.auth.user.role === 'admin' ? 'Monitoring Kehadiran' : 'Input Kehadiran & Ekskul' }}
                     </h2>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola data absensi & ekskul</p>
@@ -96,19 +96,19 @@ const kelasOptions = computed(() => [
         <div class="animate-fade-in space-y-6">
             
             <!-- Notifikasi Flash -->
-            <div v-if="page.props.flash && page.props.flash.success" class="flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-2xl shadow-sm" role="alert">
+            <div v-if="page.props.flash && page.props.flash.success" class="flex items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-5 py-4 rounded-2xl shadow-sm" role="alert">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-sm">{{ page.props.flash.success }}</span>
             </div>
 
-            <div v-if="page.props.flash && page.props.flash.error" class="flex items-center gap-3 bg-rose-50 border border-rose-200 text-rose-700 px-5 py-4 rounded-2xl shadow-sm" role="alert">
+            <div v-if="page.props.flash && page.props.flash.error" class="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-5 py-4 rounded-2xl shadow-sm" role="alert">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 <span class="font-bold text-sm">{{ page.props.flash.error }}</span>
             </div>
 
             <!-- Panel Filter -->
-            <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 <div class="max-w-xl relative z-10 space-y-2">
                     <label class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
@@ -124,12 +124,12 @@ const kelasOptions = computed(() => [
             </div>
 
             <!-- Area Data & Form -->
-            <div v-if="siswas && siswas.length > 0" class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-if="siswas && siswas.length > 0" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <form @submit.prevent="submit">
                     <!-- Header Tabel -->
                     <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                         <div class="flex items-center gap-3">
-                            <div class="h-8 w-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-black text-sm">
+                            <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm">
                                 {{ siswas.length }}
                             </div>
                             <span class="text-sm font-bold text-slate-600">Siswa Terdaftar</span>
@@ -146,7 +146,7 @@ const kelasOptions = computed(() => [
                                 <tr class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                                     <th rowspan="2" class="px-4 py-4 w-12 text-center border-r border-slate-200">No</th>
                                     <th rowspan="2" class="px-4 py-4 w-40 border-r border-slate-200">Nama Lengkap</th>
-                                    <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 border-b bg-brand-50/50 text-brand-600">Kehadiran (Hari)</th>
+                                    <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 border-b bg-blue-100 dark:bg-blue-900/30/50 text-blue-600 dark:text-blue-400">Kehadiran (Hari)</th>
                                     <th colspan="6" class="px-4 py-3 text-center border-b border-slate-200 bg-purple-50/50 text-purple-600">Ekstrakurikuler</th>
                                 </tr>
                                 <tr class="bg-slate-50 border-b border-slate-100 text-[9px] font-black text-slate-400 uppercase tracking-widest">
@@ -174,7 +174,7 @@ const kelasOptions = computed(() => [
                                             <div class="h-7 w-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
                                                 {{ siswa.nama_siswa.charAt(0) }}
                                             </div>
-                                            <span class="text-xs font-bold text-slate-800">{{ siswa.nama_siswa }}</span>
+                                            <span class="text-xs font-bold dark:text-white">{{ siswa.nama_siswa }}</span>
                                         </div>
                                     </td>
                                     
@@ -207,7 +207,7 @@ const kelasOptions = computed(() => [
             </div>
 
             <!-- Empty State -->
-            <div v-else-if="form.kelas_id" class="bg-white border border-slate-100 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-else-if="form.kelas_id" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 text-slate-300 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>
@@ -226,13 +226,13 @@ const kelasOptions = computed(() => [
         <!-- Custom Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false">
             <div class="p-8 text-center relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-emerald-50 mb-6 shadow-inner border border-emerald-100 relative z-10">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-green-50 dark:bg-green-900/200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-6 shadow-inner border border-emerald-100 relative z-10">
                     <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-black text-slate-800 mb-2 relative z-10">
+                <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Berhasil Disimpan!
                 </h2>
                 <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">

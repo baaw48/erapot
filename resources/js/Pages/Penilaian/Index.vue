@@ -68,17 +68,17 @@ const applyBulkNilai = () => {
 };
 
 const getGradeClass = (val) => {
-    if (val === '' || val === null) return 'border-slate-200 bg-slate-50 text-slate-800 focus:border-brand-500 focus:ring-brand-500/20';
+    if (val === '' || val === null) return 'border-slate-200 bg-slate-50 dark:text-white focus:border-brand-500 focus:ring-brand-500/20';
     const num = Number(val);
-    if (num >= 85) return 'border-emerald-200 bg-emerald-50 text-emerald-700 focus:border-emerald-500 focus:ring-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]';
+    if (num >= 85) return 'border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 focus:border-emerald-500 focus:ring-emerald-500/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]';
     if (num >= 70) return 'border-amber-200 bg-amber-50 text-amber-700 focus:border-amber-500 focus:ring-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.1)]';
     return 'border-rose-200 bg-rose-50 text-rose-700 focus:border-rose-500 focus:ring-rose-500/20 shadow-[0_0_10px_rgba(225,29,72,0.1)]';
 };
 
 const getGradeBadge = (val) => {
-    if (val === '' || val === null) return { text: '-', class: 'bg-slate-100 text-slate-400' };
+    if (val === '' || val === null) return { text: '-', class: 'bg-slate-100 dark:text-slate-400' };
     const num = Number(val);
-    if (num >= 85) return { text: 'Sangat Baik', class: 'bg-emerald-100 text-emerald-700 border border-emerald-200' };
+    if (num >= 85) return { text: 'Sangat Baik', class: 'bg-emerald-100 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800' };
     if (num >= 70) return { text: 'Cukup', class: 'bg-amber-100 text-amber-700 border border-amber-200' };
     return { text: 'Kurang', class: 'bg-rose-100 text-rose-700 border border-rose-200' };
 };
@@ -103,16 +103,16 @@ const mapelOptions = computed(() => [
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-brand-50 text-brand-600 rounded-xl">
+                <div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-black text-xl text-slate-800 leading-tight tracking-tight">
+                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">
                         {{ $page.props.auth.user.role === 'admin' ? 'Monitoring Nilai' : `Input Nilai ${$page.props.sekolah?.jenis_asesmen || 'ASTS'}` }}
                     </h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola & pantau nilai siswa</p>
+                    <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Kelola & pantau nilai siswa</p>
                 </div>
             </div>
         </template>
@@ -120,7 +120,7 @@ const mapelOptions = computed(() => [
         <div class="animate-fade-in space-y-6">
             
             <!-- Notifikasi Flash -->
-            <div v-if="page.props.flash && page.props.flash.success" class="flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-2xl shadow-sm" role="alert">
+            <div v-if="page.props.flash && page.props.flash.success" class="flex items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-5 py-4 rounded-2xl shadow-sm" role="alert">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-sm">{{ page.props.flash.success }}</span>
             </div>
@@ -133,7 +133,7 @@ const mapelOptions = computed(() => [
             <!-- Panel Filter -->
             <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
                 <!-- Dekorasi Background -->
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                     <div class="space-y-2">
@@ -170,7 +170,7 @@ const mapelOptions = computed(() => [
                     <!-- Header Tabel -->
                     <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-4">
                         <div class="flex items-center gap-3">
-                            <div class="h-8 w-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-black text-sm shrink-0">
+                            <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm shrink-0">
                                 {{ siswas.length }}
                             </div>
                             <span class="text-sm font-bold text-slate-600">Siswa Terdaftar</span>
@@ -178,7 +178,7 @@ const mapelOptions = computed(() => [
                         <div class="flex items-center gap-3 w-full md:w-auto">
                             <!-- Fitur Setel Semua Nilai -->
                             <div class="flex-1 md:flex-none flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
-                                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
+                                <span class="text-[10px] font-black dark:text-slate-400 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
                                 <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Ketik angka..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah akan otomatis terisi">
                             </div>
                             
@@ -192,7 +192,7 @@ const mapelOptions = computed(() => [
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black dark:text-slate-400 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No</th>
                                     <th class="px-6 py-4 w-32">NIS</th>
                                     <th class="px-6 py-4">Nama Lengkap</th>
@@ -203,7 +203,7 @@ const mapelOptions = computed(() => [
                             <tbody class="divide-y divide-slate-50">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
                                     <td class="px-6 py-4 text-center">
-                                        <span class="text-xs font-bold text-slate-400 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
+                                        <span class="text-xs font-bold dark:text-slate-400 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <span class="text-sm font-semibold text-slate-500 font-mono">{{ siswa.nis }}</span>
@@ -213,7 +213,7 @@ const mapelOptions = computed(() => [
                                             <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-black uppercase shrink-0">
                                                 {{ siswa.nama_siswa.charAt(0) }}
                                             </div>
-                                            <span class="text-sm font-bold text-slate-800">{{ siswa.nama_siswa }}</span>
+                                            <span class="text-sm font-bold dark:text-white">{{ siswa.nama_siswa }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 text-center">
@@ -256,27 +256,27 @@ const mapelOptions = computed(() => [
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>
                 <h3 class="text-lg font-black text-slate-700 mb-1">Belum Ada Siswa</h3>
-                <p class="text-sm font-medium text-slate-400">Tidak ada data siswa yang terdaftar di kelas ini.</p>
+                <p class="text-sm font-medium dark:text-slate-400">Tidak ada data siswa yang terdaftar di kelas ini.</p>
             </div>
             
             <div v-else class="flex flex-col items-center justify-center py-16 opacity-50">
                 <svg class="h-16 w-16 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                 </svg>
-                <p class="text-sm font-bold text-slate-400 uppercase tracking-widest">Silakan pilih Kelas & Mapel terlebih dahulu</p>
+                <p class="text-sm font-bold dark:text-slate-400 uppercase tracking-widest">Silakan pilih Kelas & Mapel terlebih dahulu</p>
             </div>
         </div>
 
         <!-- Custom Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false">
             <div class="p-8 text-center relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-emerald-50 mb-6 shadow-inner border border-emerald-100 relative z-10">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-green-50 dark:bg-green-900/200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-6 shadow-inner border border-emerald-100 relative z-10">
                     <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-black text-slate-800 mb-2 relative z-10">
+                <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Berhasil Disimpan!
                 </h2>
                 <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">

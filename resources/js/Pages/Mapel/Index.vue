@@ -99,8 +99,8 @@ const executeDelete = () => {
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-bold text-xl text-slate-800">Mata Pelajaran</h2>
-                    <p class="text-xs font-medium text-slate-500 mt-0.5">Kelola Data Mapel</p>
+                    <h2 class="font-bold text-xl dark:text-white">Mata Pelajaran</h2>
+                    <p class="text-xs font-medium dark:text-slate-400 mt-0.5">Kelola Data Mapel</p>
                 </div>
             </div>
         </template>
@@ -115,10 +115,10 @@ const executeDelete = () => {
 
             <!-- Card -->
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-                <div class="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="px-6 py-5 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h3 class="font-semibold text-slate-800">Daftar Mata Pelajaran</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">{{ mapels.total }} mapel terdaftar</p>
+                        <h3 class="font-semibold dark:text-white">Daftar Mata Pelajaran</h3>
+                        <p class="text-xs dark:text-slate-400 mt-0.5">{{ mapels.total }} mapel terdaftar</p>
                     </div>
                     <button @click="openAddModal" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-primary-500/30 hover:shadow-xl hover:-translate-y-0.5 transition-all">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
@@ -129,7 +129,7 @@ const executeDelete = () => {
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                            <tr class="bg-slate-50 border-b border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                                 <th class="px-6 py-4 text-center w-16">No</th>
                                 <th class="px-6 py-4">Mata Pelajaran</th>
                                 <th class="px-6 py-4 text-center">Kelompok</th>
@@ -137,7 +137,7 @@ const executeDelete = () => {
                                 <th class="px-6 py-4 text-right w-28">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-50">
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
                             <tr v-for="(mapel, index) in mapels.data" :key="mapel.id" class="hover:bg-slate-50/50 transition-colors">
                                 <td class="px-6 py-4 text-center text-sm font-medium text-slate-400">
                                     {{ (mapels.current_page - 1) * mapels.per_page + index + 1 }}
@@ -197,7 +197,7 @@ const executeDelete = () => {
                         <svg v-else class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold text-slate-800">{{ isEditing ? 'Edit Mapel' : 'Tambah Mapel' }}</h2>
+                        <h2 class="text-lg font-bold dark:text-white">{{ isEditing ? 'Edit Mapel' : 'Tambah Mapel' }}</h2>
                         <p class="text-xs text-slate-500">Lengkapi formulir</p>
                     </div>
                 </div>
@@ -243,7 +243,7 @@ const executeDelete = () => {
                 <div class="mx-auto w-16 h-16 rounded-2xl bg-danger-50 flex items-center justify-center mb-4">
                     <svg class="h-8 w-8 text-danger-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
-                <h2 class="text-lg font-bold text-slate-800 mb-2">Konfirmasi Hapus</h2>
+                <h2 class="text-lg font-bold dark:text-white mb-2">Konfirmasi Hapus</h2>
                 <p class="text-sm text-slate-500 mb-6">Yakin hapus mapel ini? Data nilai terkait ikut terhapus.</p>
                 <div class="flex gap-3">
                     <button @click="showDeleteModal = false" class="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-600 font-medium rounded-xl hover:bg-slate-50 transition-all">Batal</button>
@@ -258,7 +258,7 @@ const executeDelete = () => {
                 <div class="mx-auto w-16 h-16 rounded-2xl bg-success-50 flex items-center justify-center mb-4 shadow-inner">
                     <svg class="h-8 w-8 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <h2 class="text-lg font-bold text-slate-800 mb-2">Berhasil!</h2>
+                <h2 class="text-lg font-bold dark:text-white mb-2">Berhasil!</h2>
                 <p class="text-sm text-slate-500 mb-5">Data mapel berhasil disimpan.</p>
                 <button @click="showSuccessModal = false" class="px-8 py-3 bg-primary-600 text-white font-medium rounded-xl hover:bg-primary-700 transition-all">Tutup</button>
             </div>

@@ -95,7 +95,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                 </div>
                 <div>
                     <h2 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300">Dashboard Interaktif</h2>
-                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Pusat Informasi</p>
+                    <p class="text-xs font-medium dark:text-slate-400 dark:text-slate-400 uppercase tracking-widest">Pusat Informasi</p>
                 </div>
             </div>
         </template>
@@ -150,42 +150,42 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="w-12 h-12 bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Kelola Siswa</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Kelola Siswa</span>
                     </Link>
 
                     <Link v-if="userRole === 'admin'" :href="route('guru.index')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-indigo-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Data Guru</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Data Guru</span>
                     </Link>
 
                     <Link v-if="userRole === 'admin'" :href="route('kelas.index')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-emerald-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Data Kelas</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Data Kelas</span>
                     </Link>
 
                     <Link v-if="userRole === 'admin'" :href="route('sekolah.edit')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-purple-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Pengaturan Web</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Pengaturan Web</span>
                     </Link>
 
                     <Link v-if="userRole === 'guru'" :href="route('nilai.index')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-primary-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-primary-50 text-primary-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Input Nilai Siswa</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Input Nilai Siswa</span>
                     </Link>
                     
                     <Link v-if="userRole === 'guru' && $page.props.auth.user.kelas_diampu" :href="route('cetak.index')" class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-emerald-300 transition-all duration-300 group">
                         <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         </div>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Cetak Rapor</span>
+                        <span class="text-sm font-semibold dark:text-slate-200 dark:text-slate-200">Cetak Rapor</span>
                     </Link>
                 </div>
             </div>
@@ -199,8 +199,8 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total Kelas</p>
-                                <p class="text-6xl font-black text-slate-800 dark:text-white tracking-tighter">{{ totalKelas }}</p>
+                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Total Kelas</p>
+                                <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalKelas }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg shadow-blue-500/40 text-white transform group-hover:rotate-12 transition-transform duration-500">
                                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -215,8 +215,8 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Siswa Aktif</p>
-                                <p class="text-6xl font-black text-slate-800 dark:text-white tracking-tighter">{{ totalSiswa }}</p>
+                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Siswa Aktif</p>
+                                <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalSiswa }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-2xl shadow-lg shadow-emerald-500/40 text-white transform group-hover:rotate-12 transition-transform duration-500">
                                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -231,8 +231,8 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-colors duration-700"></div>
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
-                                <p class="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Mata Pelajaran</p>
-                                <p class="text-6xl font-black text-slate-800 dark:text-white tracking-tighter">{{ totalMapel }}</p>
+                                <p class="text-sm font-bold text-slate-400 dark:dark:text-slate-400 uppercase tracking-widest mb-1">Mata Pelajaran</p>
+                                <p class="text-6xl font-black dark:text-white dark:text-white tracking-tighter">{{ totalMapel }}</p>
                             </div>
                             <div class="p-4 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-2xl shadow-lg shadow-purple-500/40 text-white transform group-hover:-rotate-12 transition-transform duration-500">
                                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -248,7 +248,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
             <div v-if="userRole === 'admin'" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Advanced Gender Circular Progress -->
                 <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-200/50 dark:border-slate-700/50">
-                    <h4 class="font-bold text-slate-800 dark:text-white text-lg mb-6 flex items-center gap-2">
+                    <h4 class="font-bold dark:text-white dark:text-white text-lg mb-6 flex items-center gap-2">
                         <span class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg></span>
                         Distribusi Gender
                     </h4>
@@ -258,37 +258,37 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <div class="relative flex flex-col items-center">
                             <div class="relative w-32 h-32">
                                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                                    <circle class="text-slate-100 dark:text-slate-700" stroke-width="10" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
+                                    <circle class="text-slate-100 dark:dark:text-slate-200" stroke-width="10" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
                                     <circle class="text-blue-500 transition-all duration-1000 ease-out" stroke-width="10" :stroke-dasharray="strokeDasharray" :stroke-dashoffset="calcOffset(lakiPercent)" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
                                 </svg>
                                 <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                    <span class="text-2xl font-black text-slate-800 dark:text-white">{{ lakiPercent }}%</span>
+                                    <span class="text-2xl font-black dark:text-white dark:text-white">{{ lakiPercent }}%</span>
                                     <span class="text-xs font-bold text-slate-400">Laki-laki</span>
                                 </div>
                             </div>
-                            <p class="mt-4 text-sm font-semibold text-slate-600 dark:text-slate-300">Total: {{ lakiCount }}</p>
+                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-300">Total: {{ lakiCount }}</p>
                         </div>
                         
                         <!-- Perempuan Ring -->
                         <div class="relative flex flex-col items-center">
                             <div class="relative w-32 h-32">
                                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                                    <circle class="text-slate-100 dark:text-slate-700" stroke-width="10" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
+                                    <circle class="text-slate-100 dark:dark:text-slate-200" stroke-width="10" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
                                     <circle class="text-pink-500 transition-all duration-1000 ease-out delay-300" stroke-width="10" :stroke-dasharray="strokeDasharray" :stroke-dashoffset="calcOffset(perempuanPercent)" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50"/>
                                 </svg>
                                 <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                    <span class="text-2xl font-black text-slate-800 dark:text-white">{{ perempuanPercent }}%</span>
+                                    <span class="text-2xl font-black dark:text-white dark:text-white">{{ perempuanPercent }}%</span>
                                     <span class="text-xs font-bold text-slate-400">Perempuan</span>
                                 </div>
                             </div>
-                            <p class="mt-4 text-sm font-semibold text-slate-600 dark:text-slate-300">Total: {{ perempuanCount }}</p>
+                            <p class="mt-4 text-sm font-semibold dark:text-slate-400 dark:text-slate-300">Total: {{ perempuanCount }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Modern Attendance Bars -->
                 <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-200/50 dark:border-slate-700/50">
-                    <h4 class="font-bold text-slate-800 dark:text-white text-lg mb-6 flex items-center gap-2">
+                    <h4 class="font-bold dark:text-white dark:text-white text-lg mb-6 flex items-center gap-2">
                         <span class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
                         Statistik Kehadiran
                     </h4>
@@ -297,7 +297,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <!-- Hadir -->
                         <div>
                             <div class="flex justify-between items-end mb-2">
-                                <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Hadir</span>
+                                <span class="text-sm font-bold dark:text-slate-200 dark:text-slate-300">Hadir</span>
                                 <span class="text-sm font-bold text-emerald-600">{{ totalHadir }} Siswa</span>
                             </div>
                             <div class="h-3 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
@@ -308,7 +308,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <!-- Izin/Sakit -->
                         <div>
                             <div class="flex justify-between items-end mb-2">
-                                <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Izin & Sakit</span>
+                                <span class="text-sm font-bold dark:text-slate-200 dark:text-slate-300">Izin & Sakit</span>
                                 <span class="text-sm font-bold text-amber-500">{{ sakit + izin }} Siswa</span>
                             </div>
                             <div class="h-3 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
@@ -319,7 +319,7 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
                         <!-- Alpa -->
                         <div>
                             <div class="flex justify-between items-end mb-2">
-                                <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Alpa</span>
+                                <span class="text-sm font-bold dark:text-slate-200 dark:text-slate-300">Alpa</span>
                                 <span class="text-sm font-bold text-red-500">{{ alpa }} Siswa</span>
                             </div>
                             <div class="h-3 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
