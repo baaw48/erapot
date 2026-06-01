@@ -42,7 +42,7 @@ const submit = () => {
         <div class="w-full max-w-[28rem] px-6 relative z-10">
 
             <!-- Card Container -->
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-slate-200/50 p-10 relative overflow-hidden">
+            <div class="bg-white/80 backdrop-blur-xl dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 p-10 relative overflow-hidden">
 
                 <div class="text-center mb-8">
                     <div class="mx-auto w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/30 mb-4">

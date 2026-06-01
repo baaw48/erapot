@@ -127,10 +127,10 @@ const executeProses = () => {
 
             <!-- Panel Mode Selector -->
             <div class="flex gap-4 p-2 bg-slate-100 rounded-2xl max-w-md mx-auto relative z-10">
-                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 hover:text-slate-700'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kenaikan Kelas
                 </button>
-                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:text-slate-700'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kelulusan (Alumni)
                 </button>
             </div>
@@ -267,7 +267,7 @@ const executeProses = () => {
                     Apakah Anda yakin ingin <strong :class="tipeMode === 'kenaikan' ? 'text-blue-600 dark:text-blue-400' : 'text-indigo-600'">{{ tipeMode === 'kenaikan' ? 'Menaikkan' : 'Meluluskan' }}</strong> {{ selectedSiswas.length }} siswa yang dipilih?
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="showConfirmModal = false" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="showConfirmModal = false" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeProses" class="flex-1 px-4 py-3 text-white text-sm font-bold rounded-xl shadow-md transition-all" :class="tipeMode === 'kenaikan' ? 'bg-brand-600 hover:bg-brand-700' : 'bg-indigo-600 hover:bg-indigo-700'">

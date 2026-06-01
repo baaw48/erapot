@@ -58,7 +58,7 @@ const urlLeger = (kelasId) => {
                 </div>
                 <div>
                     <h4 class="text-sm font-black text-amber-800 uppercase tracking-widest mb-1">Mode Hanya Baca (Read-Only)</h4>
-                    <p class="text-sm font-semibold text-amber-700 leading-relaxed">
+                    <p class="text-sm font-semibold dark:text-amber-300 leading-relaxed">
                         Halaman ini digunakan untuk <strong>melihat dan mencetak</strong> rapor dari tahun-tahun ajaran yang sudah tersimpan. Untuk mengedit data nilai tahun lalu, gunakan fitur <strong>Ganti Tahun Ajaran Aktif</strong> di menu Pengaturan.
                     </p>
                 </div>
@@ -67,7 +67,7 @@ const urlLeger = (kelasId) => {
             <!-- Step 1: Pilih Tahun Ajaran -->
             <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-                <div class="px-8 py-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10">
+                <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10">
                     <div class="flex items-center gap-3 mb-1">
                         <div class="h-7 w-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-black text-sm shrink-0">1</div>
                         <h3 class="text-base font-black dark:text-white">Pilih Tahun Ajaran</h3>
@@ -96,12 +96,12 @@ const urlLeger = (kelasId) => {
                                     Aktif
                                 </span>
                             </div>
-                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 text-white' : 'bg-white text-slate-600 border border-slate-200 group-hover:bg-amber-100 group-hover:text-amber-700']">
+                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 dark:bg-amber-600 text-white' : 'bg-white text-slate-600 border border-slate-200 group-hover:bg-amber-100 group-hover:dark:text-amber-300']">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                             </div>
-                            <p :class="['font-black text-base', selectedTahunId == tahun.id ? 'text-amber-700' : 'dark:text-white']">{{ tahun.tahun }}</p>
+                            <p :class="['font-black text-base', selectedTahunId == tahun.id ? 'dark:text-amber-300' : 'dark:text-white']">{{ tahun.tahun }}</p>
                             <p :class="['font-bold text-xs mt-0.5', selectedTahunId == tahun.id ? 'text-amber-500' : 'text-slate-400']">Semester {{ tahun.semester }}</p>
                         </button>
                     </div>
@@ -113,7 +113,7 @@ const urlLeger = (kelasId) => {
                 <div v-if="selectedTahunId" class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative">
                     <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-green-50 dark:bg-green-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-                    <div class="px-8 py-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <div class="flex items-center gap-3 mb-1">
                                 <div class="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-sm shrink-0">2</div>
@@ -174,7 +174,7 @@ const urlLeger = (kelasId) => {
                                             <a
                                                 :href="urlRapor(k.id)"
                                                 target="_blank"
-                                                class="inline-flex items-center gap-2 rounded-xl bg-amber-50 text-amber-700 hover:bg-amber-500 hover:text-white px-4 py-2.5 text-xs font-bold tracking-widest transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5 border border-amber-200 hover:border-amber-500"
+                                                class="inline-flex items-center gap-2 rounded-xl bg-amber-50 dark:text-amber-300 hover:bg-amber-500 dark:bg-amber-600 hover:text-white px-4 py-2.5 text-xs font-bold tracking-widest transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5 border border-amber-200 hover:border-amber-500"
                                             >
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                                                 Rapor

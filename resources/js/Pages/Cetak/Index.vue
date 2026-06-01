@@ -81,7 +81,7 @@ const props = defineProps({
                                             <div class="h-8 w-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-[10px] font-black uppercase shrink-0">
                                                 {{ k.wali_kelas ? k.wali_kelas.name.charAt(0) : '?' }}
                                             </div>
-                                            <span class="text-sm font-bold text-slate-700">{{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</span>
+                                            <span class="text-sm font-bold dark:text-slate-200">{{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</span>
                                         </div>
                                     </td>
                                     <td class="px-8 py-5">

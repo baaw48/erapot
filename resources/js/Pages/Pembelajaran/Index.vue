@@ -132,7 +132,7 @@ const saveAll = () => {
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-black text-xl text-slate-800 leading-tight tracking-tight">Penugasan Mengajar</h2>
+                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Penugasan Mengajar</h2>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">
                         Tahun Ajaran Aktif: <span class="text-brand-600">{{ tahunAktif ? tahunAktif.tahun + ' - ' + tahunAktif.semester : 'Belum Ada' }}</span>
                     </p>
@@ -143,7 +143,7 @@ const saveAll = () => {
         <div class="animate-fade-in space-y-6 max-w-[90rem] mx-auto pb-12">
             
             <!-- Tabel Data -->
-            <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
                 <div class="p-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -181,7 +181,7 @@ const saveAll = () => {
                 </div>
 
                 <div class="overflow-x-auto relative z-10 p-2">
-                    <table class="w-full text-left border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+                    <table class="w-full text-left border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700">
                         <thead>
                             <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
                                 <th class="px-6 py-4 w-16 text-center">No</th>
@@ -196,7 +196,7 @@ const saveAll = () => {
                                     {{ index + 1 }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm font-bold text-slate-800">{{ mapel.nama_mapel }}</div>
+                                    <div class="text-sm font-bold dark:text-white">{{ mapel.nama_mapel }}</div>
                                     <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
                                 <td class="px-6 py-4">
