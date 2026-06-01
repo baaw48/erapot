@@ -176,7 +176,7 @@ const executeDelete = () => {
                             <div class="w-full sm:w-44">
                                 <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 block">Kelas</label>
                                 <div class="relative">
-                                    <select v-model="filterKelasId" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                                    <select v-model="filterKelasId" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                         <option value="">Semua Kelas</option>
                                         <option v-for="k in kelas" :key="k.id" :value="k.id">{{ k.nama_kelas }}</option>
                                     </select>
@@ -187,7 +187,7 @@ const executeDelete = () => {
                             <div class="w-full sm:w-32">
                                 <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 block">Tampilkan</label>
                                 <div class="relative">
-                                    <select v-model="perPage" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                                    <select v-model="perPage" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>

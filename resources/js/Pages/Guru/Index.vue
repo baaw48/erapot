@@ -159,13 +159,13 @@ const executeDelete = () => {
             <!-- Main Card -->
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white">
+                <div class="px-6 py-5 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div class="flex flex-col sm:flex-row gap-3 flex-1">
                             <div class="flex-1 max-w-xs">
                                 <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 block">Cari</label>
                                 <div class="relative">
-                                    <input v-model="searchQuery" type="text" placeholder="Nama, NIP, username..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
+                                    <input v-model="searchQuery" type="text" placeholder="Nama, NIP, username..." class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:placeholder-slate-500 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
                                     <svg class="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                     <button v-if="searchQuery" @click="searchQuery = ''" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-rose-500">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -176,7 +176,7 @@ const executeDelete = () => {
                             <div class="w-full sm:w-32">
                                 <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 block">Tampilkan</label>
                                 <div class="relative">
-                                    <select v-model="perPage" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                                    <select v-model="perPage" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
@@ -190,12 +190,12 @@ const executeDelete = () => {
                         <div class="flex items-center gap-3">
                             <span class="text-xs text-slate-400">Total:</span>
                             <span class="text-lg font-bold text-primary-600">{{ gurus.total }}</span>
-                            <div class="h-5 w-px bg-slate-200 mx-2"></div>
-                            <button @click="openImportModal" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-sm font-medium rounded-xl transition-all">
+                            <div class="h-5 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+                            <button @click="openImportModal" class="inline-flex items-center gap-2 px-4 py-2.5 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
                                 Import
                             </button>
-                            <a :href="route('guru.export')" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-sm font-medium rounded-xl transition-all">
+                            <a :href="route('guru.export')" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
                                 <svg class="h-4 w-4 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" /></svg>
                                 Export
                             </a>
@@ -211,7 +211,7 @@ const executeDelete = () => {
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                                 <th class="px-6 py-4 text-center w-16">No</th>
                                 <th class="px-6 py-4">Nama & NIP</th>
                                 <th class="px-6 py-4">Username</th>
@@ -219,40 +219,40 @@ const executeDelete = () => {
                                 <th class="px-6 py-4 text-right w-28">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-50">
-                            <tr v-for="(guru, index) in gurus.data" :key="guru.id" class="hover:bg-slate-50/50 transition-colors">
-                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400">
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr v-for="(guru, index) in gurus.data" :key="guru.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
                                     {{ (gurus.current_page - 1) * gurus.per_page + index + 1 }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 flex items-center justify-center font-bold shadow-inner">
+                                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-100 dark:from-primary-900/50 to-primary-200 dark:to-primary-800 text-primary-600 dark:text-primary-400 flex items-center justify-center font-bold shadow-inner">
                                             {{ guru.name.charAt(0) }}
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-slate-700">{{ guru.name }}</div>
-                                            <div class="text-xs text-slate-400">{{ guru.nip ? 'NIP. ' + guru.nip : '-' }}</div>
+                                            <div class="font-semibold text-slate-700 dark:text-slate-200">{{ guru.name }}</div>
+                                            <div class="text-xs text-slate-400 dark:text-slate-500">{{ guru.nip ? 'NIP. ' + guru.nip : '-' }}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 text-slate-600 text-xs font-medium">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium">
                                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                         {{ guru.username }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span v-if="guru.kelas_diampu" class="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-50 text-secondary-700 text-xs font-semibold border border-secondary-100">
+                                    <span v-if="guru.kelas_diampu" class="inline-flex items-center px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-medium border border-purple-100 dark:border-purple-800">
                                         {{ guru.kelas_diampu }}
                                     </span>
-                                    <span v-else class="text-xs text-slate-400">-</span>
+                                    <span v-else class="text-xs text-slate-400 dark:text-slate-500">-</span>
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-1">
-                                        <button @click="openEditModal(guru)" class="p-2 text-primary-500 hover:bg-primary-50 rounded-lg transition-colors">
+                                        <button @click="openEditModal(guru)" class="p-2 text-slate-400 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-colors">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                         </button>
-                                        <button @click="confirmDelete(guru.id)" class="p-2 text-danger-500 hover:bg-danger-50 rounded-lg transition-colors">
+                                        <button @click="confirmDelete(guru.id)" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                         </button>
                                     </div>
@@ -260,11 +260,11 @@ const executeDelete = () => {
                             </tr>
                             <tr v-if="gurus.data.length === 0">
                                 <td colspan="5" class="px-6 py-16 text-center">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 text-slate-300 mb-4">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-4">
                                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                     </div>
-                                    <p class="font-semibold text-slate-500">Belum ada data guru</p>
-                                    <p class="text-xs text-slate-400 mt-1">Tambahkan data guru baru</p>
+                                    <p class="font-semibold text-slate-500 dark:text-slate-400">Belum ada data guru</p>
+                                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Tambahkan data guru baru</p>
                                 </td>
                             </tr>
                         </tbody>
