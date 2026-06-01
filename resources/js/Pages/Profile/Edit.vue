@@ -27,8 +27,8 @@ defineProps({
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-black text-xl text-slate-800 leading-tight tracking-tight">Pengaturan Profil</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kelola Akun dan Keamanan</p>
+                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Pengaturan Profil</h2>
+                    <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Kelola Akun dan Keamanan</p>
                 </div>
             </div>
         </template>
@@ -48,7 +48,7 @@ defineProps({
                 </div>
 
                 <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.2s; animation-fill-mode: both;">
-                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                     <div class="p-8 sm:p-10 relative z-10">
                         <UpdatePasswordForm class="max-w-xl" />
                     </div>

@@ -142,19 +142,19 @@ onUnmounted(() => {
             :disabled="disabled"
             class="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-sm text-left shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed border"
             :class="[
-                isOpen ? 'border-brand-400 ring-2 ring-brand-400/20 bg-white' : '',
-                error && !isOpen ? 'border-rose-300 bg-rose-50 text-rose-700 hover:border-rose-400 focus:ring-rose-400 focus:border-rose-400' : '',
-                warning && !isOpen ? 'border-amber-300 bg-amber-50 text-amber-700 hover:border-amber-400 focus:ring-amber-400 focus:border-amber-400' : '',
-                success && !isOpen ? 'border-emerald-300 bg-emerald-50 text-emerald-700 hover:border-emerald-400 focus:ring-emerald-400 focus:border-emerald-400' : '',
-                !error && !warning && !success && !isOpen ? 'bg-white border-slate-200 hover:border-brand-300 focus:ring-brand-400 focus:border-brand-400' : ''
+                isOpen ? 'border-blue-400 ring-2 ring-blue-400/20 bg-white dark:bg-slate-800' : 'dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200',
+                error && !isOpen ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:border-red-400 focus:ring-red-400' : '',
+                warning && !isOpen ? 'border-amber-300 dark:border-amber-500 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 hover:border-amber-400 focus:ring-amber-400' : '',
+                success && !isOpen ? 'border-green-300 dark:border-green-500 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 hover:border-green-400 focus:ring-green-400' : '',
+                !error && !warning && !success && !isOpen ? 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 focus:ring-blue-400' : ''
             ]"
         >
             <span :class="[
-                selectedOption && !error && !warning && !success ? 'text-slate-800 font-medium' : '',
-                !selectedOption && !error && !warning && !success ? 'text-slate-400' : '',
-                error ? 'font-medium text-rose-700' : '',
-                warning ? 'font-medium text-amber-700' : '',
-                success ? 'font-medium text-emerald-700' : ''
+                selectedOption && !error && !warning && !success ? 'text-slate-800 dark:text-slate-200 font-medium' : '',
+                !selectedOption && !error && !warning && !success ? 'text-slate-400 dark:text-slate-500' : '',
+                error ? 'font-medium text-red-700 dark:text-red-300' : '',
+                warning ? 'font-medium text-amber-700 dark:text-amber-300' : '',
+                success ? 'font-medium text-green-700 dark:text-green-300' : ''
             ]">
                 {{ selectedOption ? selectedOption.label : placeholder }}
             </span>
@@ -184,24 +184,24 @@ onUnmounted(() => {
                 <div
                     v-if="isOpen"
                     ref="dropdownContainer"
-                    class="fixed z-[9999] bg-white border border-slate-200 rounded-xl shadow-2xl overflow-hidden"
+                    class="fixed z-[9999] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl overflow-hidden"
                     :style="dropdownStyle"
                 >
                 <!-- Search box -->
-                <div class="p-2 border-b border-slate-100">
-                    <div class="flex items-center gap-2 px-2 py-1.5 bg-slate-50 rounded-lg border border-slate-200 focus-within:border-brand-400 focus-within:ring-2 focus-within:ring-brand-400/20 transition-all">
-                        <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <input
-                            ref="searchInput"
-                            v-model="search"
-                            type="text"
-                            :placeholder="searchPlaceholder"
-                            class="w-full text-xs bg-transparent outline-none text-slate-700 placeholder-slate-400"
-                            @keydown.escape="close"
-                        />
-                    </div>
+                <div class="p-2 border-b border-slate-100 dark:border-slate-700">
+                    <div class="flex items-center gap-2 px-2 py-1.5 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-400/20 transition-all">
+                    <svg class="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input
+                        ref="searchInput"
+                        v-model="search"
+                        type="text"
+                        :placeholder="searchPlaceholder"
+                        class="w-full text-xs bg-transparent dark:text-slate-200 outline-none text-slate-700 placeholder-slate-400 dark:placeholder-slate-500"
+                        @keydown.escape="close"
+                    />
+                </div>
                 </div>
 
                 <!-- Options list -->
@@ -212,8 +212,8 @@ onUnmounted(() => {
                         @click="select(option)"
                         class="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer transition-colors duration-100"
                         :class="String(option.value) === String(modelValue)
-                            ? 'bg-brand-50 text-brand-700 font-semibold'
-                            : 'text-slate-700 hover:bg-slate-50 hover:text-brand-600'"
+                            ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold'
+                            : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'"
                     >
                         <svg v-if="String(option.value) === String(modelValue)" class="w-3.5 h-3.5 text-brand-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>

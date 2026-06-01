@@ -39,8 +39,8 @@ const closeModal = () => {
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </div>
             <div>
-                <h2 class="text-xl font-black text-slate-800 tracking-tight">Hapus Akun</h2>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tindakan ini bersifat permanen</p>
+                <h2 class="text-xl font-black dark:text-white tracking-tight">Hapus Akun</h2>
+                <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Tindakan ini bersifat permanen</p>
             </div>
         </header>
 
@@ -62,9 +62,9 @@ const closeModal = () => {
                     <svg class="h-10 w-10 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
                 
-                <h2 class="text-xl font-black text-slate-800 mb-2 relative z-10">Konfirmasi Penghapusan</h2>
+                <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Penghapusan</h2>
                 
-                <p class="text-sm font-semibold text-slate-500 mb-6 relative z-10">
+                <p class="text-sm font-semibold dark:text-slate-400 mb-6 relative z-10">
                     Apakah Anda yakin ingin menghapus akun ini? Silakan masukkan password Anda untuk mengonfirmasi bahwa Anda ingin menghapus akun ini <strong class="text-rose-600">secara permanen</strong>.
                 </p>
 
@@ -72,14 +72,14 @@ const closeModal = () => {
                     <label for="password" class="sr-only">Password</label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-slate-400 group-focus-within:text-rose-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            <svg class="h-5 w-5 dark:text-slate-400 group-focus-within:text-rose-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                         </div>
                         <input
                             id="password"
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
-                            class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                            class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                             placeholder="Masukkan password Anda..."
                             @keyup.enter="deleteUser"
                         />
@@ -88,7 +88,7 @@ const closeModal = () => {
                 </div>
 
                 <div class="mt-8 flex gap-3 relative z-10">
-                    <button @click="closeModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
 

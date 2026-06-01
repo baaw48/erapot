@@ -122,7 +122,7 @@ const closeActivateTaModal = () => {
     itemToActivateTa.value = null;
 };
 
-const inputClass = "w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl px-4 py-3 font-semibold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400";
+const inputClass = "w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-semibold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400";
 
 // Rapor Settings Form
 const formRapor = useForm({
@@ -156,7 +156,7 @@ const submitRapor = () => {
                     </svg>
                 </div>
                 <div>
-                    <h2 class="font-black text-xl text-slate-800 leading-tight tracking-tight">Pengaturan Sistem</h2>
+                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Pengaturan Sistem</h2>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Identitas Sekolah & Tahun Ajaran</p>
                 </div>
             </div>
@@ -175,14 +175,14 @@ const submitRapor = () => {
             </div>
 
             <!-- Form Identitas Sekolah -->
-            <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 <div class="px-8 py-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10 flex items-center gap-3">
                     <div class="h-10 w-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-black text-slate-800">Identitas Sekolah</h3>
+                        <h3 class="text-lg font-black dark:text-white">Identitas Sekolah</h3>
                         <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-0.5">Informasi utama untuk Kop Rapor</p>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ const submitRapor = () => {
 
                         <div class="md:col-span-2 space-y-2">
                             <label for="logo" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Logo Sekolah</label>
-                            <div class="flex items-center gap-6 p-4 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-colors">
+                            <div class="flex items-center gap-6 p-4 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 transition-colors">
                                 <div class="shrink-0 relative group">
                                     <div class="h-24 w-24 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center overflow-hidden">
                                         <img v-if="page.props.sekolah.logo_url" :src="page.props.sekolah.logo_url" alt="Logo Sekolah" class="h-full w-full object-contain p-2" />
@@ -256,30 +256,30 @@ const submitRapor = () => {
             </div>
 
             <!-- Form Tahun Pelajaran -->
-            <div id="form-ta" class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.2s; animation-fill-mode: both;">
+            <div id="form-ta" class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.2s; animation-fill-mode: both;">
                 <div class="px-8 py-6 border-b border-slate-100 bg-white flex items-center gap-3">
                     <div class="h-10 w-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-black text-slate-800">Manajemen Tahun Pelajaran</h3>
+                        <h3 class="text-lg font-black dark:text-white">Manajemen Tahun Pelajaran</h3>
                         <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-0.5">Kelola semester dan tahun aktif</p>
                     </div>
                 </div>
 
                 <div class="p-8">
                     <!-- Form Tambah/Edit TA -->
-                    <form @submit.prevent="submitTa" class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-8 relative">
+                    <form @submit.prevent="submitTa" class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl p-6 mb-8 relative">
                         <h4 class="text-sm font-black text-slate-700 mb-4">{{ isEditingTa ? 'Edit Data Semester' : 'Tambah Semester Baru' }}</h4>
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                             <div class="md:col-span-5 space-y-2">
                                 <label for="tahun" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Tahun Ajaran</label>
-                                <input id="tahun" v-model="formTa.tahun" type="text" class="w-full bg-white border border-slate-200 text-slate-800 rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" placeholder="Cth: 2025/2026" required />
+                                <input id="tahun" v-model="formTa.tahun" type="text" class="w-full bg-white border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" placeholder="Cth: 2025/2026" required />
                                 <div v-if="formTa.errors.tahun" class="text-rose-500 text-xs font-bold">{{ formTa.errors.tahun }}</div>
                             </div>
                             <div class="md:col-span-4 space-y-2">
                                 <label for="semester" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Semester</label>
-                                <select id="semester" v-model="formTa.semester" class="w-full bg-white border border-slate-200 text-slate-800 rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" required>
+                                <select id="semester" v-model="formTa.semester" class="w-full bg-white border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" required>
                                     <option value="Ganjil">Ganjil</option>
                                     <option value="Genap">Genap</option>
                                 </select>
@@ -299,10 +299,10 @@ const submitRapor = () => {
                     </form>
 
                     <!-- Tabel TA -->
-                    <div class="overflow-x-auto border border-slate-100 rounded-2xl">
+                    <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-6 py-4">Tahun Ajaran</th>
                                     <th class="px-6 py-4">Semester</th>
@@ -311,12 +311,12 @@ const submitRapor = () => {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-50">
-                                <tr v-for="(ta, index) in tahunAjarans" :key="ta.id" class="transition-colors group" :class="{'bg-emerald-50/30': ta.is_active, 'hover:bg-slate-50': !ta.is_active}">
+                                <tr v-for="(ta, index) in tahunAjarans" :key="ta.id" class="transition-colors group" :class="{'bg-emerald-50/30': ta.is_active, 'hover:bg-slate-50 dark:bg-slate-800/50': !ta.is_active}">
                                     <td class="px-6 py-4 text-center text-sm font-bold text-slate-400">
                                         {{ index + 1 }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="text-sm font-black text-slate-800">{{ ta.tahun }}</span>
+                                        <span class="text-sm font-black dark:text-white">{{ ta.tahun }}</span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <span class="text-sm font-bold text-slate-600">{{ ta.semester }}</span>
@@ -353,19 +353,19 @@ const submitRapor = () => {
             </div>
 
             <!-- Pengaturan Rapor -->
-            <div class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8">
+            <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="h-10 w-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-black text-slate-800">Pengaturan Pencetakan Rapor</h3>
+                        <h3 class="text-lg font-black dark:text-white">Pengaturan Pencetakan Rapor</h3>
                         <p class="text-xs font-semibold text-slate-400">Pilih data yang tampil di rapor</p>
                     </div>
                 </div>
 
                 <form @submit.prevent="submitRapor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-bold text-slate-700">Tampilkan Peringkat</span>
                         </div>
@@ -375,7 +375,7 @@ const submitRapor = () => {
                         </label>
                     </div>
 
-                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-bold text-slate-700">Tampilkan Kehadiran</span>
                         </div>
@@ -385,7 +385,7 @@ const submitRapor = () => {
                         </label>
                     </div>
 
-                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-bold text-slate-700">Tampilkan Ekskul</span>
                         </div>
@@ -395,7 +395,7 @@ const submitRapor = () => {
                         </label>
                     </div>
 
-                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-bold text-slate-700">Tampilkan Catatan</span>
                         </div>
@@ -424,7 +424,7 @@ const submitRapor = () => {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-black text-slate-800 mb-2 relative z-10">
+                <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
                     Pengaturan Tersimpan!
                 </h2>
                 <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
@@ -445,12 +445,12 @@ const submitRapor = () => {
                 <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-rose-50 mb-6 relative z-10">
                     <svg class="h-10 w-10 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
-                <h2 class="text-xl font-black text-slate-800 mb-2 relative z-10">Konfirmasi Hapus</h2>
+                <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Hapus</h2>
                 <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10">
                     Apakah Anda yakin ingin menghapus <strong class="text-rose-600">Tahun Pelajaran</strong> ini?
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDeleteTa" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -467,12 +467,12 @@ const submitRapor = () => {
                 <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-amber-50 mb-6 relative z-10">
                     <svg class="h-10 w-10 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
-                <h2 class="text-xl font-black text-slate-800 mb-2 relative z-10">Aktifkan Semester?</h2>
+                <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Aktifkan Semester?</h2>
                 <p class="text-sm font-semibold text-slate-500 mb-8 relative z-10 leading-relaxed">
                     Perhatian! Mengaktifkan Tahun Pelajaran ini akan merubah halaman input nilai dan fitur lain agar menyesuaikan dengan periode semester ini. <br/><strong class="text-amber-600">Lanjutkan?</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeActivateTa" class="flex-1 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">

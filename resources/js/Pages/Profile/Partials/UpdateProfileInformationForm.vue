@@ -26,18 +26,18 @@ const form = useForm({
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
             </div>
             <div>
-                <h2 class="text-xl font-black text-slate-800 tracking-tight">Informasi Pribadi</h2>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Perbarui nama dan username Anda</p>
+                <h2 class="text-xl font-black dark:text-white tracking-tight">Informasi Pribadi</h2>
+                <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Perbarui nama dan username Anda</p>
             </div>
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="space-y-6">
             <div class="space-y-2">
-                <label for="name" class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest pl-1">Nama Lengkap</label>
+                <label for="name" class="flex items-center gap-2 text-xs font-black dark:text-slate-400 uppercase tracking-widest pl-1">Nama Lengkap</label>
                 <input
                     id="name"
                     type="text"
-                    class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl px-4 py-3.5 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl px-4 py-3.5 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                     v-model="form.name"
                     required
                     autofocus
@@ -47,15 +47,15 @@ const form = useForm({
             </div>
 
             <div class="space-y-2">
-                <label for="username" class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest pl-1">Username Login</label>
+                <label for="username" class="flex items-center gap-2 text-xs font-black dark:text-slate-400 uppercase tracking-widest pl-1">Username Login</label>
                 <div class="relative group">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        <svg class="h-5 w-5 dark:text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                     </div>
                     <input
                         id="username"
                         type="text"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                        class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                         v-model="form.username"
                         required
                         autocomplete="username"

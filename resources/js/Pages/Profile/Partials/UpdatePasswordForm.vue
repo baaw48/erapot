@@ -33,28 +33,28 @@ const updatePassword = () => {
 <template>
     <section>
         <header class="mb-8 flex items-center gap-4">
-            <div class="h-12 w-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <div class="h-12 w-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             </div>
             <div>
-                <h2 class="text-xl font-black text-slate-800 tracking-tight">Perbarui Password</h2>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">Pastikan akun menggunakan password aman</p>
+                <h2 class="text-xl font-black dark:text-white tracking-tight">Perbarui Password</h2>
+                <p class="text-xs font-bold dark:text-slate-400 uppercase tracking-widest mt-0.5">Pastikan akun menggunakan password aman</p>
             </div>
         </header>
 
         <form @submit.prevent="updatePassword" class="space-y-6">
             <div class="space-y-2">
-                <label for="current_password" class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest pl-1">Password Saat Ini</label>
+                <label for="current_password" class="flex items-center gap-2 text-xs font-black dark:text-slate-400 uppercase tracking-widest pl-1">Password Saat Ini</label>
                 <div class="relative group">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                        <svg class="h-5 w-5 dark:text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
                     </div>
                     <input
                         id="current_password"
                         ref="currentPasswordInput"
                         v-model="form.current_password"
                         type="password"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                        class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                         autocomplete="current-password"
                         placeholder="••••••••"
                     />
@@ -63,17 +63,17 @@ const updatePassword = () => {
             </div>
 
             <div class="space-y-2">
-                <label for="password" class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest pl-1">Password Baru</label>
+                <label for="password" class="flex items-center gap-2 text-xs font-black dark:text-slate-400 uppercase tracking-widest pl-1">Password Baru</label>
                 <div class="relative group">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                        <svg class="h-5 w-5 dark:text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
                     </div>
                     <input
                         id="password"
                         ref="passwordInput"
                         v-model="form.password"
                         type="password"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                        class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                         autocomplete="new-password"
                         placeholder="Minimal 8 karakter"
                     />
@@ -82,16 +82,16 @@ const updatePassword = () => {
             </div>
 
             <div class="space-y-2">
-                <label for="password_confirmation" class="flex items-center gap-2 text-xs font-black text-slate-500 uppercase tracking-widest pl-1">Konfirmasi Password Baru</label>
+                <label for="password_confirmation" class="flex items-center gap-2 text-xs font-black dark:text-slate-400 uppercase tracking-widest pl-1">Konfirmasi Password Baru</label>
                 <div class="relative group">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg class="h-5 w-5 dark:text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <input
                         id="password_confirmation"
                         v-model="form.password_confirmation"
                         type="password"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:text-slate-400"
+                        class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                         autocomplete="new-password"
                         placeholder="Ulangi password baru"
                     />
