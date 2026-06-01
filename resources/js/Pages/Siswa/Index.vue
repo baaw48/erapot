@@ -204,11 +204,11 @@ const executeDelete = () => {
                                 <span class="text-xs text-slate-400 dark:text-slate-500">Total:</span>
                                 <span class="text-lg font-bold text-primary-600 ml-1">{{ siswas.total }}</span>
                             </div>
-                            <button @click="openImportModal" class="inline-flex items-center gap-2 px-4 py-2.5 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 bg-white dark:bg-slate-700 border border-slate-600 dark:border-slate-500 text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
+                            <button @click="openImportModal" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
                                 Import
                             </button>
-                            <a :href="filterKelasId ? route('siswa.export', { kelas_id: filterKelasId }) : route('siswa.export')" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 bg-white dark:bg-slate-700 border border-slate-600 dark:border-slate-500 text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
+                            <a :href="filterKelasId ? route('siswa.export', { kelas_id: filterKelasId }) : route('siswa.export')" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
                                 <svg class="h-4 w-4 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" /></svg>
                                 Export
                             </a>
