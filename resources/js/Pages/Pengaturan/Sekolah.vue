@@ -270,7 +270,7 @@ const submitRapor = () => {
                 <div class="p-8">
                     <!-- Form Tambah/Edit TA -->
                     <form @submit.prevent="submitTa" class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl p-6 mb-8 relative">
-                        <h4 class="text-sm font-black text-slate-700 dark:text-slate-200 mb-4">{{ isEditingTa ? 'Edit Data Semester' : 'Tambah Semester Baru' }}</h4>
+                        <h4 class="text-sm font-black text-slate-700 dark:text-white dark:text-slate-200 mb-4">{{ isEditingTa ? 'Edit Data Semester' : 'Tambah Semester Baru' }}</h4>
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                             <div class="md:col-span-5 space-y-2">
                                 <label for="tahun" class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">Tahun Ajaran</label>
@@ -290,7 +290,7 @@ const submitRapor = () => {
                                     <button type="submit" :disabled="formTa.processing" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition-colors shadow-md hover:shadow-lg disabled:opacity-70 flex items-center justify-center">
                                         {{ isEditingTa ? 'Update' : 'Tambah' }}
                                     </button>
-                                    <button v-if="isEditingTa" type="button" @click="cancelEditTa" class="px-4 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl transition-colors">
+                                    <button v-if="isEditingTa" type="button" @click="cancelEditTa" class="px-4 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 dark:text-white dark:text-slate-200 text-xs font-bold rounded-xl transition-colors">
                                         Batal
                                     </button>
                                 </div>
@@ -367,7 +367,7 @@ const submitRapor = () => {
                 <form @submit.prevent="submitRapor" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Peringkat</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-white dark:text-slate-200">Tampilkan Peringkat</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_peringkat" class="sr-only peer">
@@ -377,7 +377,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Kehadiran</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-white dark:text-slate-200">Tampilkan Kehadiran</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_kehadiran" class="sr-only peer">
@@ -387,7 +387,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Ekskul</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-white dark:text-slate-200">Tampilkan Ekskul</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_ekskul" class="sr-only peer">
@@ -397,7 +397,7 @@ const submitRapor = () => {
 
                     <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-2xl">
                         <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Tampilkan Catatan</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-white dark:text-slate-200">Tampilkan Catatan</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" v-model="formRapor.show_catatan" class="sr-only peer">
@@ -450,7 +450,7 @@ const submitRapor = () => {
                     Apakah Anda yakin ingin menghapus <strong class="text-rose-600">Tahun Pelajaran</strong> ini?
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDeleteTa" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -472,7 +472,7 @@ const submitRapor = () => {
                     Perhatian! Mengaktifkan Tahun Pelajaran ini akan merubah halaman input nilai dan fitur lain agar menyesuaikan dengan periode semester ini. <br/><strong class="text-amber-600">Lanjutkan?</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeActivateTaModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeActivateTa" class="flex-1 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">

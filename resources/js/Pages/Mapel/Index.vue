@@ -147,7 +147,7 @@ const executeDelete = () => {
                                         <div class="h-10 w-10 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center shadow-inner">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                                         </div>
-                                        <span class="font-semibold text-slate-700 dark:text-slate-200">{{ mapel.nama_mapel }}</span>
+                                        <span class="font-semibold text-slate-700 dark:text-white dark:text-white dark:text-slate-200">{{ mapel.nama_mapel }}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
@@ -156,7 +156,7 @@ const executeDelete = () => {
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 text-slate-700 dark:text-slate-200 font-semibold text-sm">{{ mapel.urutan || 0 }}</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 font-semibold text-sm">{{ mapel.urutan || 0 }}</span>
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-1">

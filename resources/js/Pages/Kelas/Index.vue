@@ -157,7 +157,7 @@ const executeDelete = () => {
                                         <div class="h-10 w-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold shadow-inner">
                                             {{ k.nama_kelas.charAt(0) }}
                                         </div>
-                                        <span class="font-semibold text-slate-700 dark:text-slate-200 dark:text-slate-200">{{ k.nama_kelas }}</span>
+                                        <span class="font-semibold text-slate-700 dark:text-white dark:text-white dark:text-slate-200 dark:text-slate-200">{{ k.nama_kelas }}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
@@ -168,7 +168,7 @@ const executeDelete = () => {
                                         <div class="h-7 w-7 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-[10px] font-bold uppercase border border-white dark:border-slate-600 shadow-sm">
                                             {{ k.wali_kelas.name.charAt(0) }}
                                         </div>
-                                        <span class="text-sm font-medium text-slate-700 dark:text-slate-200 dark:text-slate-200">{{ k.wali_kelas.name }}</span>
+                                        <span class="text-sm font-medium text-slate-700 dark:text-white dark:text-white dark:text-slate-200 dark:text-slate-200">{{ k.wali_kelas.name }}</span>
                                     </div>
                                     <span v-else class="text-xs text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500">-</span>
                                 </td>

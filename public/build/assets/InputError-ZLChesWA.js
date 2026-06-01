@@ -1,0 +1,1 @@
+import{E as e,L as t,v as n,y as r}from"./app-lmLuJ4uy.js";var i={key:0,class:`mt-1.5 text-sm text-red-600 dark:text-red-400`},a={__name:`InputError`,props:{message:{type:String}},setup(a){return(o,s)=>a.message?(e(),r(`p`,i,t(a.message),1)):n(``,!0)}};export{a as t};

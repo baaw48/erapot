@@ -158,7 +158,7 @@ const closeDeleteModal = () => {
                                 v-model="searchQuery"
                                 type="text" 
                                 placeholder="Cari nama atau username admin..." 
-                                class="w-full pl-11 pr-11 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-slate-200 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all font-medium placeholder:text-slate-400 dark:text-slate-500"
+                                class="w-full pl-11 pr-11 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all font-medium placeholder:text-slate-400 dark:text-slate-500"
                             >
                             <button 
                                 v-if="searchQuery" 
@@ -171,7 +171,7 @@ const closeDeleteModal = () => {
                         
                         <div class="w-full md:w-32 shrink-0">
                             <div class="relative">
-                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-slate-200 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
+                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
                                     <option value="10">10 Baris</option>
                                     <option value="25">25 Baris</option>
                                     <option value="50">50 Baris</option>
@@ -307,7 +307,7 @@ const closeDeleteModal = () => {
                     </div>
                     
                     <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 hover:border-slate-300 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 hover:border-slate-300 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                             Batal
                         </button>
                         <button type="submit" :disabled="form.processing" class="flex-1 px-4 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70 flex items-center justify-center gap-2">
@@ -331,7 +331,7 @@ const closeDeleteModal = () => {
                     Apakah Anda yakin ingin menghapus admin ini? <strong class="text-rose-600">Akses admin mereka akan segera dicabut.</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDelete" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
