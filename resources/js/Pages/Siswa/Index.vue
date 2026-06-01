@@ -165,7 +165,7 @@ const executeDelete = () => {
                             <div class="flex-1 max-w-xs">
                                 <label class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 block">Cari</label>
                                 <div class="relative">
-                                    <input v-model="searchQuery" type="text" placeholder="Nama, NIS, NISN..." class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
+                                    <input v-model="searchQuery" type="text" placeholder="Nama, NIS, NISN..." class="w-full bg-white dark:bg-slate-800 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
                                     <svg class="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                     <button v-if="searchQuery" @click="searchQuery = ''" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-rose-500">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -310,19 +310,19 @@ const executeDelete = () => {
                 <form @submit.prevent="submit" class="space-y-4">
                     <div>
                         <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Nama Lengkap</label>
-                        <input v-model="form.nama_siswa" type="text" required placeholder="Nama siswa..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                        <input v-model="form.nama_siswa" type="text" required placeholder="Nama siswa..." class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                         <div v-if="form.errors.nama_siswa" class="text-xs text-danger-500 mt-1">{{ form.errors.nama_siswa }}</div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">NIS</label>
-                            <input v-model="form.nis" type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.nis" type="text" required class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.nis" class="text-xs text-danger-500 mt-1">{{ form.errors.nis }}</div>
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">NISN <span class="text-slate-400 font-normal">(opsional)</span></label>
-                            <input v-model="form.nisn" type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.nisn" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.nisn" class="text-xs text-danger-500 mt-1">{{ form.errors.nisn }}</div>
                         </div>
                     </div>
@@ -330,14 +330,14 @@ const executeDelete = () => {
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Jenis Kelamin</label>
-                            <select v-model="form.jenis_kelamin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <select v-model="form.jenis_kelamin" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Kelas</label>
-                            <select v-model="form.kelas_id" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <select v-model="form.kelas_id" required class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="" disabled>-- Pilih --</option>
                                 <option v-for="k in kelas" :key="k.id" :value="k.id">{{ k.nama_kelas }}</option>
                             </select>

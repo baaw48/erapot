@@ -205,14 +205,14 @@ const executeDelete = () => {
                 <form @submit.prevent="submit" class="space-y-4">
                     <div>
                         <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Nama Mapel</label>
-                        <input v-model="form.nama_mapel" type="text" required placeholder="Contoh: PAI" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                        <input v-model="form.nama_mapel" type="text" required placeholder="Contoh: PAI" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                         <div v-if="form.errors.nama_mapel" class="text-xs text-danger-500 mt-1">{{ form.errors.nama_mapel }}</div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Kelompok</label>
-                            <select v-model="form.kelompok" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <select v-model="form.kelompok" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="A">Kelompok A</option>
                                 <option value="B">Kelompok B</option>
                                 <option value="C">Kelompok C</option>
@@ -221,7 +221,7 @@ const executeDelete = () => {
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Urutan</label>
-                            <input v-model="form.urutan" type="number" min="1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.urutan" type="number" min="1" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.urutan" class="text-xs text-danger-500 mt-1">{{ form.errors.urutan }}</div>
                         </div>
                     </div>

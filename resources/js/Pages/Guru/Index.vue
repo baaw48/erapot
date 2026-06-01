@@ -300,38 +300,38 @@ const executeDelete = () => {
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Nama Lengkap</label>
-                            <input v-model="form.name" type="text" required placeholder="Nama guru..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.name" type="text" required placeholder="Nama guru..." class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.name" class="text-xs text-danger-500 mt-1">{{ form.errors.name }}</div>
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">NIP</label>
-                            <input v-model="form.nip" type="text" placeholder="1980xxxxxx" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.nip" type="text" placeholder="1980xxxxxx" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.nip" class="text-xs text-danger-500 mt-1">{{ form.errors.nip }}</div>
                         </div>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Username</label>
-                        <input v-model="form.username" type="text" required placeholder="username login" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                        <input v-model="form.username" type="text" required placeholder="username login" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                         <div v-if="form.errors.username" class="text-xs text-danger-500 mt-1">{{ form.errors.username }}</div>
                     </div>
 
                     <div v-if="isEditing || !isEditing" class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Password <span v-if="isEditing" class="text-slate-400 font-normal">(opsional)</span></label>
-                            <input v-model="form.password" type="password" :required="!isEditing" placeholder="Minimal 6 karakter" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.password" type="password" :required="!isEditing" placeholder="Minimal 6 karakter" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.password" class="text-xs text-danger-500 mt-1">{{ form.errors.password }}</div>
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Konfirmasi</label>
-                            <input v-model="form.password_confirmation" type="password" :required="form.password" placeholder="Ulangi password" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.password_confirmation" type="password" :required="form.password" placeholder="Ulangi password" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.password_confirmation" class="text-xs text-danger-500 mt-1">{{ form.errors.password_confirmation }}</div>
                         </div>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Wali Kelas</label>
-                        <select v-model="form.kelas_diampu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                        <select v-model="form.kelas_diampu" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                             <option value="">-- Bukan Wali Kelas --</option>
                             <option v-for="k in kelas" :key="k.id" :value="k.nama_kelas">{{ k.nama_kelas }}</option>
                         </select>

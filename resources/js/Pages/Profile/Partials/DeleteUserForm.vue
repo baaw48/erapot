@@ -79,7 +79,7 @@ const closeModal = () => {
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
-                            class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
+                            class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 dark:text-white rounded-2xl pl-11 pr-4 py-3.5 font-bold focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 transition-all placeholder:font-normal placeholder:dark:text-slate-400"
                             placeholder="Masukkan password Anda..."
                             @keyup.enter="deleteUser"
                         />

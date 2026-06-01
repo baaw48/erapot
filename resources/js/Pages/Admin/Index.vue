@@ -171,7 +171,7 @@ const closeDeleteModal = () => {
                         
                         <div class="w-full md:w-32 shrink-0">
                             <div class="relative">
-                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
+                                <select id="perPage" v-model="perPage" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 text-slate-700 rounded-xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all appearance-none cursor-pointer">
                                     <option value="10">10 Baris</option>
                                     <option value="25">25 Baris</option>
                                     <option value="50">50 Baris</option>
@@ -284,7 +284,7 @@ const closeDeleteModal = () => {
                 <form @submit.prevent="submit" class="space-y-6 relative z-10">
                     <div class="space-y-2">
                         <label for="name" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Nama Lengkap</label>
-                        <input id="name" v-model="form.name" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="Cth: Budi Santoso" />
+                        <input id="name" v-model="form.name" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="Cth: Budi Santoso" />
                         <div v-if="form.errors.name" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.name }}</div>
                     </div>
                     
@@ -294,14 +294,14 @@ const closeDeleteModal = () => {
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             </div>
-                            <input id="username" v-model="form.username" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl pl-11 pr-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="admin_budi" />
+                            <input id="username" v-model="form.username" type="text" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl pl-11 pr-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" required placeholder="admin_budi" />
                         </div>
                         <div v-if="form.errors.username" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.username }}</div>
                     </div>
 
                     <div class="space-y-2">
                         <label for="password" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Password</label>
-                        <input id="password" v-model="form.password" type="password" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" :required="!isEditing" placeholder="Minimal 8 karakter" />
+                        <input id="password" v-model="form.password" type="password" class="w-full bg-slate-50 dark:bg-slate-800/50 dark:bg-slate-800/50 border border-slate-200 dark:text-white rounded-2xl px-4 py-3 font-bold focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-400" :required="!isEditing" placeholder="Minimal 8 karakter" />
                         <p v-if="isEditing" class="text-[10px] font-semibold text-slate-400 mt-1">*Kosongkan jika tidak ingin mengubah password.</p>
                         <div v-if="form.errors.password" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.password }}</div>
                     </div>

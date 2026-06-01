@@ -223,7 +223,7 @@ const submitRapor = () => {
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                 Judul Penilaian Aktif
                             </label>
-                            <input id="jenis_asesmen" v-model="form.jenis_asesmen" type="text" class="w-full bg-white border border-brand-200 text-brand-900 rounded-xl px-4 py-3 font-black focus:border-brand-500 focus:ring-4 focus:ring-brand-500/20 transition-all text-lg" placeholder="Misal: ASTS, ASAS, PTS, PAT" required />
+                            <input id="jenis_asesmen" v-model="form.jenis_asesmen" type="text" class="w-full bg-white dark:bg-slate-800 border border-brand-200 text-brand-900 rounded-xl px-4 py-3 font-black focus:border-brand-500 focus:ring-4 focus:ring-brand-500/20 transition-all text-lg" placeholder="Misal: ASTS, ASAS, PTS, PAT" required />
                             <p class="text-xs font-semibold text-brand-600 mt-2">Judul ini akan digunakan secara otomatis di Kop Rapor dan judul halaman Nilai.</p>
                         </div>
 
@@ -274,12 +274,12 @@ const submitRapor = () => {
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                             <div class="md:col-span-5 space-y-2">
                                 <label for="tahun" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Tahun Ajaran</label>
-                                <input id="tahun" v-model="formTa.tahun" type="text" class="w-full bg-white border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" placeholder="Cth: 2025/2026" required />
+                                <input id="tahun" v-model="formTa.tahun" type="text" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" placeholder="Cth: 2025/2026" required />
                                 <div v-if="formTa.errors.tahun" class="text-rose-500 text-xs font-bold">{{ formTa.errors.tahun }}</div>
                             </div>
                             <div class="md:col-span-4 space-y-2">
                                 <label for="semester" class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Semester</label>
-                                <select id="semester" v-model="formTa.semester" class="w-full bg-white border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" required>
+                                <select id="semester" v-model="formTa.semester" class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:text-white rounded-xl px-4 py-2.5 font-bold focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all" required>
                                     <option value="Ganjil">Ganjil</option>
                                     <option value="Genap">Genap</option>
                                 </select>

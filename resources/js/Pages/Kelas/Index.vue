@@ -222,14 +222,14 @@ const executeDelete = () => {
                 <form @submit.prevent="submit" class="space-y-4">
                     <div>
                         <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Nama Kelas</label>
-                        <input v-model="form.nama_kelas" type="text" required placeholder="Contoh: VII-A, VIII-1" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                        <input v-model="form.nama_kelas" type="text" required placeholder="Contoh: VII-A, VIII-1" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                         <div v-if="form.errors.nama_kelas" class="text-xs text-danger-500 mt-1">{{ form.errors.nama_kelas }}</div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Tingkat</label>
-                            <select v-model="form.tingkat" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <select v-model="form.tingkat" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="7">Kelas 7</option>
                                 <option value="8">Kelas 8</option>
                                 <option value="9">Kelas 9</option>
@@ -237,7 +237,7 @@ const executeDelete = () => {
                         </div>
                         <div>
                             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">KKTP</label>
-                            <input v-model="form.kktp" type="number" min="0" max="100" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <input v-model="form.kktp" type="number" min="0" max="100" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.kktp" class="text-xs text-danger-500 mt-1">{{ form.errors.kktp }}</div>
                         </div>
                     </div>
