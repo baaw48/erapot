@@ -134,7 +134,7 @@ const executeProses = () => {
             <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
-                <div class="p-6 md:p-8 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10">
+                <div class="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm relative z-10">
                     <!-- Info Alert -->
                     <div class="mb-8 p-5 bg-blue-50 border border-blue-100 rounded-2xl flex gap-4 items-start">
                         <div class="p-2 bg-blue-100 text-blue-600 rounded-xl shrink-0">

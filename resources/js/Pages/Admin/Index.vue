@@ -141,7 +141,7 @@ const closeDeleteModal = () => {
             <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
-                <div class="p-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm relative z-10">
                     <div class="flex flex-col md:flex-row gap-4 mb-6">
                         <div class="flex-1 relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 dark:text-slate-500 group-focus-within:text-brand-500 transition-colors">
