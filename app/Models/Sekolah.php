@@ -22,11 +22,14 @@ class Sekolah extends Model
         'jenis_asesmen',
     ];
 
-    //Accessor untuk logo_url - agar compatible dengan frontend
+    // Append logo_url to all responses
+    protected $appends = ['logo_url'];
+
+    //Accessor untuk logo_url
     public function getLogoUrlAttribute()
     {
         if ($this->logo_path) {
-            return Storage::url($this->logo_path);
+            return asset('storage/' . $this->logo_path);
         }
         return null;
     }
