@@ -11,6 +11,12 @@ use Inertia\Inertia;
 Route::get('/', function () {
     $sekolah = Sekolah::first();
 
+    // Debug log
+    \Log::info('Welcome page sekolah data: ' . json_encode($sekolah ? [
+        'nama_sekolah' => $sekolah->nama_sekolah,
+        'logo_url' => $sekolah->getLogoUrl(),
+    ] : 'null'));
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -22,6 +28,17 @@ Route::get('/', function () {
             'logo_url' => $sekolah->getLogoUrl(),
             'alamat' => $sekolah->alamat,
         ] : null,
+    ]);
+});
+
+// Debug route
+Route::get('/debug-sekolah', function () {
+    $sekolah = Sekolah::first();
+    return response()->json([
+        'exists' => $sekolah ? true : false,
+        'nama_sekolah' => $sekolah ? $sekolah->nama_sekolah : 'null',
+        'logo_path' => $sekolah ? $sekolah->logo_path : 'null',
+        'logo_url' => $sekolah ? $sekolah->getLogoUrl() : 'null',
     ]);
 });
 
