@@ -159,7 +159,7 @@ const mapelOptions = computed(() => [
             <div v-if="siswas && siswas.length > 0" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <form @submit.prevent="submit">
                     <!-- Header Tabel -->
-                    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col md:flex-row justify-between items-center gap-4">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm shrink-0">
                                 {{ siswas.length }}
@@ -168,9 +168,9 @@ const mapelOptions = computed(() => [
                         </div>
                         <div class="flex items-center gap-3 w-full md:w-auto">
                             <!-- Fitur Setel Semua Nilai -->
-                            <div class="flex-1 md:flex-none flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
+                            <div class="flex-1 md:flex-none flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/50 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
                                 <span class="text-[10px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
-                                <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Ketik angka..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah akan otomatis terisi">
+                                <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Ketik angka..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 dark:bg-slate-900/50 dark:text-white rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah akan otomatis terisi">
                             </div>
                             
                             <button type="button" @click="submit" class="hidden md:flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -192,7 +192,7 @@ const mapelOptions = computed(() => [
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
-                                <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
+                                <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
                                     <td class="px-6 py-4 text-center">
                                         <span class="text-xs font-bold dark:text-slate-400 dark:text-slate-500 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
                                     </td>
@@ -231,7 +231,7 @@ const mapelOptions = computed(() => [
                     </div>
 
                     <!-- Footer / Floating Action Mobile -->
-                    <div class="px-6 py-5 border-t border-slate-100 bg-slate-50 flex justify-end">
+                    <div class="px-6 py-5 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/30 flex justify-end">
                         <button type="submit" :disabled="form.processing" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed">
                             <svg v-if="form.processing" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                             <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
@@ -242,7 +242,7 @@ const mapelOptions = computed(() => [
             </div>
 
             <!-- Empty State -->
-            <div v-else-if="form.kelas_id && form.mapel_id" class="bg-white border border-slate-100 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-else-if="form.kelas_id && form.mapel_id" class="bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>

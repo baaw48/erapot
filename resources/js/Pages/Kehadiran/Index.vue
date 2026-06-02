@@ -66,8 +66,8 @@ const submit = () => {
     });
 };
 
-const inputClass = "w-full text-center font-bold text-sm bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-xs placeholder:text-slate-300 py-2.5";
-const textInputClass = "w-full font-bold text-xs bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-300 py-2.5 px-3";
+const inputClass = "w-full text-center font-bold text-sm bg-slate-50 dark:bg-slate-900/50 dark:text-white border border-slate-200 dark:border-slate-700/50 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-xs placeholder:text-slate-300 py-2.5";
+const textInputClass = "w-full font-bold text-xs bg-slate-50 dark:bg-slate-900/50 dark:text-white border border-slate-200 dark:border-slate-700/50 rounded-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all placeholder:font-normal placeholder:text-slate-300 py-2.5 px-3";
 
 const kelasOptions = computed(() => [
     { value: '', label: '-- Klik untuk memilih kelas --' },
@@ -118,7 +118,7 @@ const kelasOptions = computed(() => [
             <div v-if="siswas && siswas.length > 0" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <form @submit.prevent="submit">
                     <!-- Header Tabel -->
-                    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                    <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-between items-center">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm">
                                 {{ siswas.length }}
@@ -132,13 +132,13 @@ const kelasOptions = computed(() => [
                     </div>
 
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent">
                             <thead>
                                 <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th rowspan="2" class="px-4 py-4 w-12 text-center border-r border-slate-200">No</th>
                                     <th rowspan="2" class="px-4 py-4 w-40 border-r border-slate-200">Nama Lengkap</th>
-                                    <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 border-b bg-blue-100 dark:bg-blue-900/30/50 text-blue-600 dark:text-blue-400">Kehadiran (Hari)</th>
-                                    <th colspan="6" class="px-4 py-3 text-center border-b border-slate-200 bg-purple-50/50 text-purple-600">Ekstrakurikuler</th>
+                                    <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 dark:border-slate-700/50 border-b bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">Kehadiran (Hari)</th>
+                                    <th colspan="6" class="px-4 py-3 text-center border-b border-slate-200 dark:border-slate-700/50 bg-purple-50/50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">Ekstrakurikuler</th>
                                 </tr>
                                 <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Sakit</th>
@@ -156,7 +156,7 @@ const kelasOptions = computed(() => [
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
-                                <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
+                                <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
                                     <td class="px-3 py-4 text-center border-r border-slate-50">
                                         <span class="text-xs font-bold text-slate-400 dark:text-slate-500 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
                                     </td>
@@ -187,7 +187,7 @@ const kelasOptions = computed(() => [
                     </div>
 
                     <!-- Footer / Floating Action Mobile -->
-                    <div class="px-6 py-5 border-t border-slate-100 bg-slate-50 flex justify-end">
+                    <div class="px-6 py-5 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/30 flex justify-end">
                         <button type="submit" :disabled="form.processing" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed">
                             <svg v-if="form.processing" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                             <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
@@ -198,7 +198,7 @@ const kelasOptions = computed(() => [
             </div>
 
             <!-- Empty State -->
-            <div v-else-if="form.kelas_id" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-else-if="form.kelas_id" class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>

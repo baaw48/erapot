@@ -193,7 +193,7 @@ const executeProses = () => {
 
                 <!-- Tabel Siswa -->
                 <div v-if="kelasAsalId" class="relative z-10">
-                    <div class="bg-slate-50 dark:bg-slate-800/50 border-y border-slate-100 px-8 py-4 flex items-center justify-between">
+                    <div class="bg-slate-50 dark:bg-slate-800/30 border-y border-slate-100 dark:border-slate-700/50 px-8 py-4 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="selectAll" v-model="selectAll" @change="toggleSelectAll" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer">
                             <label for="selectAll" class="text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest cursor-pointer select-none">Pilih Semua Siswa</label>
@@ -206,7 +206,7 @@ const executeProses = () => {
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
-                                <tr v-for="(siswa, index) in siswas" :key="siswa.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
+                                <tr v-for="(siswa, index) in siswas" :key="siswa.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
                                     <td class="px-8 py-4 w-12">
                                         <input type="checkbox" :id="'siswa_'+siswa.id" :value="siswa.id" v-model="selectedSiswas" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer">
                                     </td>
@@ -239,7 +239,7 @@ const executeProses = () => {
                         </table>
                     </div>
                     
-                    <div v-if="tipeMode === 'kenaikan' && siswas.length > 0" class="p-6 border-t border-slate-100 bg-white">
+                    <div v-if="tipeMode === 'kenaikan' && siswas.length > 0" class="p-6 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-end">
                         <button @click="confirmProses" :disabled="!kelasTujuanId || selectedSiswas.length === 0" class="w-full inline-flex items-center justify-center gap-2 px-5 py-4 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:translate-y-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
                             Proses Pindah Ke Kelas Tujuan
