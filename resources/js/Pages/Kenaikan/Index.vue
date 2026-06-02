@@ -121,11 +121,11 @@ const executeProses = () => {
             </div>
 
             <!-- Panel Mode Selector -->
-            <div class="flex gap-4 p-2 bg-slate-100 rounded-2xl max-w-md mx-auto relative z-10">
-                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+            <div class="flex gap-4 p-2 bg-slate-100 dark:bg-slate-800/50 rounded-2xl max-w-md mx-auto relative z-10">
+                <button @click="tipeMode = 'kenaikan'" :class="tipeMode === 'kenaikan' ? 'bg-white dark:bg-slate-700 shadow-sm text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kenaikan Kelas
                 </button>
-                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-500 dark:text-slate-400 dark:text-slate-500 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
+                <button @click="tipeMode = 'kelulusan'" :class="tipeMode === 'kelulusan' ? 'bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400 hover:dark:text-slate-200'" class="flex-1 py-2.5 text-sm font-bold rounded-xl transition-all">
                     Kelulusan (Alumni)
                 </button>
             </div>
@@ -136,13 +136,13 @@ const executeProses = () => {
                 
                 <div class="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm relative z-10">
                     <!-- Info Alert -->
-                    <div class="mb-8 p-5 bg-blue-50 border border-blue-100 rounded-2xl flex gap-4 items-start">
-                        <div class="p-2 bg-blue-100 text-blue-600 rounded-xl shrink-0">
+                    <div class="mb-8 p-5 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-2xl flex gap-4 items-start">
+                        <div class="p-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-xl shrink-0">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <h4 class="font-black text-blue-800 text-sm mb-1">{{ tipeMode === 'kenaikan' ? 'Petunjuk Kenaikan Kelas' : 'Petunjuk Kelulusan' }}</h4>
-                            <p class="text-xs font-semibold text-blue-600/80 leading-relaxed">
+                            <h4 class="font-black text-blue-800 dark:text-blue-400 text-sm mb-1">{{ tipeMode === 'kenaikan' ? 'Petunjuk Kenaikan Kelas' : 'Petunjuk Kelulusan' }}</h4>
+                            <p class="text-xs font-semibold text-blue-600/80 dark:text-blue-300 leading-relaxed">
                                 {{ tipeMode === 'kenaikan' 
                                     ? 'Pilih Kelas Asal untuk melihat daftar siswa. Hapus centang pada siswa yang tidak naik kelas (tinggal kelas), lalu pilih Kelas Tujuan.' 
                                     : 'Pilih Kelas Akhir (misal Kelas 9) untuk meluluskan siswa. Siswa yang diluluskan akan dihapus dari daftar siswa aktif dan masuk ke arsip Alumni.' 
@@ -154,8 +154,8 @@ const executeProses = () => {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
                         <!-- Kelas Asal -->
                         <div class="space-y-2">
-                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600 dark:text-slate-300">1</span>
+                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                <span class="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300">1</span>
                                 Pilih Kelas Asal
                             </label>
                             <SearchableSelect
@@ -168,8 +168,8 @@ const executeProses = () => {
 
                         <!-- Kelas Tujuan (Hanya Kenaikan) -->
                         <div v-if="tipeMode === 'kenaikan'" class="space-y-2">
-                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                                <span class="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-slate-600 dark:text-slate-300">2</span>
+                            <label class="flex items-center gap-2 text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                <span class="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300">2</span>
                                 Pilih Kelas Tujuan
                             </label>
                             <SearchableSelect
