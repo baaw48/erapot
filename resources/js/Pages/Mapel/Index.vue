@@ -122,7 +122,7 @@ const executeDelete = () => {
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="bg-slate-50 border-b border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                                 <th class="px-6 py-4 text-center w-16">No</th>
                                 <th class="px-6 py-4">Mata Pelajaran</th>
                                 <th class="px-6 py-4 text-center">Kelompok</th>
@@ -131,32 +131,32 @@ const executeDelete = () => {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
-                            <tr v-for="(mapel, index) in mapels.data" :key="mapel.id" class="hover:bg-slate-50/50 transition-colors">
+                            <tr v-for="(mapel, index) in mapels.data" :key="mapel.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                 <td class="px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
                                     {{ (mapels.current_page - 1) * mapels.per_page + index + 1 }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center shadow-inner">
+                                        <div class="h-10 w-10 rounded-xl bg-secondary-50 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 flex items-center justify-center shadow-inner">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                                         </div>
                                         <span class="font-semibold text-slate-700 dark:text-white dark:text-white dark:text-slate-200">{{ mapel.nama_mapel }}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-50 text-secondary-700 text-xs font-semibold border border-secondary-100">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-50 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-300 text-xs font-semibold border border-secondary-100 dark:border-secondary-800">
                                         {{ mapel.kelompok || '-' }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 font-semibold text-sm">{{ mapel.urutan || 0 }}</span>
+                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm">{{ mapel.urutan || 0 }}</span>
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-1">
-                                        <button @click="openEditModal(mapel)" class="p-2 text-primary-500 hover:bg-primary-50 rounded-lg transition-colors">
+                                        <button @click="openEditModal(mapel)" class="p-2 text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-colors">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                         </button>
-                                        <button @click="confirmDelete(mapel.id)" class="p-2 text-danger-500 hover:bg-danger-50 rounded-lg transition-colors">
+                                        <button @click="confirmDelete(mapel.id)" class="p-2 text-danger-500 hover:bg-danger-50 dark:hover:bg-danger-900/30 rounded-lg transition-colors">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                         </button>
                                     </div>
