@@ -15,7 +15,7 @@ const form = useForm({
 
 const showPassword = ref(false);
 const isDark = ref(false);
-const isPasswordFocused = ref(false);
+const focusedField = ref('');
 
 const toggleDark = () => {
     isDark.value = !isDark.value;
@@ -52,89 +52,130 @@ const submit = () => {
 <template>
     <Head title="Masuk - E-Rapor ASTS" />
 
-    <!-- Main Container -->
-    <div :style="{ backgroundColor: isDark ? '#0f172a' : '#f1f5f9' }" class="min-h-screen flex items-center justify-center p-6">
+    <!-- Main Container - Clean Minimalist -->
+    <div class="min-h-screen flex">
 
-        <!-- Dark Mode Toggle -->
-        <button
-            @click="toggleDark"
-            class="fixed top-6 right-6 z-50 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
-            :style="{ backgroundColor: isDark ? '#fbbf24' : '#1e293b' }"
-        >
-            <svg v-if="!isDark" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
-            </svg>
-            <svg v-else class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z"/>
-            </svg>
-        </button>
+        <!-- Left Side - Decorative Panel (Desktop Only) -->
+        <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12"
+            :style="{ backgroundColor: isDark ? '#0f172a' : '#f8fafc' }">
 
-        <!-- Login Card -->
-        <div class="w-full max-w-md">
+            <div class="max-w-md text-center">
 
-            <!-- Logo & Title -->
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6" style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                    </svg>
+                <!-- Logo Icon -->
+                <div class="mb-12">
+                    <div class="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-transform hover:scale-105"
+                        :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
                 </div>
-                <h1 class="text-3xl font-bold mb-2" :style="{ color: isDark ? '#ffffff' : '#1e293b' }">
-                    Selamat Datang
-                </h1>
-                <p class="text-base" :style="{ color: isDark ? '#94a3b8' : '#64748b' }">
-                    Masuk ke Sistem E-Rapor ASTS
-                </p>
-            </div>
 
-            <!-- Form Card -->
-            <div class="rounded-3xl p-8"
-                :style="{
-                    backgroundColor: isDark ? '#1e293b' : '#ffffff',
-                    boxShadow: isDark ? '0 25px 50px -12px rgba(0,0,0,0.5)' : '0 25px 50px -12px rgba(0,0,0,0.15)'
-                }">
+                <!-- Brand Text -->
+                <h1 class="text-5xl font-bold mb-4" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
+                    E-Rapor
+                </h1>
+                <p class="text-2xl font-medium mb-2" :style="{ color: '#3b82f6' }">
+                    ASTS
+                </p>
+                <p class="text-lg mt-8" :style="{ color: isDark ? '#64748b' : '#94a3b8' }">
+                    Sistem Informasi Raport Digital
+                </p>
+
+                <!-- Decorative Line -->
+                <div class="mt-16">
+                    <div class="w-16 h-1 mx-auto rounded-full"
+                        :style="{ backgroundColor: '#3b82f6' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12"
+            :style="{ backgroundColor: isDark ? '#000000' : '#ffffff' }">
+
+            <!-- Dark Mode Toggle -->
+            <button
+                @click="toggleDark"
+                class="fixed top-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                :style="{ backgroundColor: isDark ? '#fbbf24' : '#f1f5f9', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }"
+            >
+                <svg v-if="!isDark" class="w-5 h-5" :style="{ color: '#1e293b' }" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                </svg>
+                <svg v-else class="w-5 h-5" :style="{ color: '#000000' }" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z"/>
+                </svg>
+            </button>
+
+            <!-- Login Card -->
+            <div class="w-full max-w-md">
+
+                <!-- Mobile Logo (Visible only on mobile) -->
+                <div class="lg:hidden text-center mb-10">
+                    <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-4"
+                        :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
+                        E-Rapor ASTS
+                    </h1>
+                </div>
+
+                <!-- Title -->
+                <div class="mb-10">
+                    <h2 class="text-3xl font-bold mb-2" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
+                        Selamat Datang
+                    </h2>
+                    <p class="text-base" :style="{ color: isDark ? '#64748b' : '#64748b' }">
+                        Masukkan kredensial Anda untuk masuk
+                    </p>
+                </div>
 
                 <!-- Success Message -->
                 <div v-if="status" class="mb-6 p-4 rounded-xl text-center"
-                    :style="{ backgroundColor: isDark ? 'rgba(34,197,94,0.1)' : '#f0fdf4', borderColor: isDark ? '#22c55e' : '#bbf7d0' }">
-                    <p class="text-sm font-medium" :style="{ color: isDark ? '#4ade80' : '#16a34a' }">{{ status }}</p>
+                    :style="{ backgroundColor: isDark ? 'rgba(34,197,94,0.1)' : '#f0fdf4' }">
+                    <p class="text-sm font-medium" :style="{ color: isDark ? '#4ade80' : '#16a34a' }">
+                        {{ status }}
+                    </p>
                 </div>
 
+                <!-- Form -->
                 <form @submit.prevent="submit" class="space-y-6">
 
-                    <!-- Username Field -->
+                    <!-- Username -->
                     <div>
-                        <label for="username" class="block text-sm font-semibold mb-2 uppercase tracking-wider"
+                        <label for="username" class="block text-sm font-medium mb-2"
                             :style="{ color: isDark ? '#94a3b8' : '#475569' }">
                             Username
                         </label>
-                        <div class="relative">
-                            <input
-                                id="username"
-                                type="text"
-                                v-model="form.username"
-                                required
-                                autofocus
-                                autocomplete="username"
-                                placeholder="Masukkan username"
-                                class="w-full px-4 py-3.5 rounded-xl text-base transition-all outline-none"
-                                :style="{
-                                    backgroundColor: isDark ? '#0f172a' : '#f8fafc',
-                                    border: form.errors.username ? '2px solid #ef4444' : '2px solid ' + (isDark ? '#334155' : '#e2e8f0'),
-                                    color: isDark ? '#ffffff' : '#1e293b',
-                                }"
-                                @focus="(e) => e.target.style.borderColor = '#3b82f6'"
-                                @blur="(e) => e.target.style.borderColor = form.errors.username ? '#ef4444' : (isDark ? '#334155' : '#e2e8f0')"
-                            />
-                        </div>
+                        <input
+                            id="username"
+                            type="text"
+                            v-model="form.username"
+                            required
+                            autofocus
+                            autocomplete="username"
+                            placeholder="Masukkan username"
+                            class="w-full px-5 py-4 rounded-xl text-base transition-all outline-none"
+                            :style="{
+                                backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+                                border: '2px solid ' + (form.errors.username ? '#ef4444' : (focusedField === 'username' ? '#3b82f6' : (isDark ? '#1e293b' : '#e2e8f0'))),
+                                color: isDark ? '#ffffff' : '#0f172a',
+                            }"
+                            @focus="focusedField = 'username'"
+                            @blur="focusedField = ''"
+                        />
                         <p v-if="form.errors.username" class="mt-2 text-sm" style="color: #ef4444;">
                             {{ form.errors.username }}
                         </p>
                     </div>
 
-                    <!-- Password Field -->
+                    <!-- Password -->
                     <div>
-                        <label for="password" class="block text-sm font-semibold mb-2 uppercase tracking-wider"
+                        <label for="password" class="block text-sm font-medium mb-2"
                             :style="{ color: isDark ? '#94a3b8' : '#475569' }">
                             Password
                         </label>
@@ -146,22 +187,20 @@ const submit = () => {
                                 required
                                 autocomplete="current-password"
                                 placeholder="Masukkan password"
-                                class="w-full px-4 py-3.5 pr-12 rounded-xl text-base transition-all outline-none"
+                                class="w-full px-5 py-4 pr-14 rounded-xl text-base transition-all outline-none"
                                 :style="{
                                     backgroundColor: isDark ? '#0f172a' : '#f8fafc',
-                                    border: form.errors.password ? '2px solid #ef4444' : '2px solid ' + (isDark ? '#334155' : '#e2e8f0'),
-                                    color: isDark ? '#ffffff' : '#1e293b',
+                                    border: '2px solid ' + (form.errors.password ? '#ef4444' : (focusedField === 'password' ? '#3b82f6' : (isDark ? '#1e293b' : '#e2e8f0'))),
+                                    color: isDark ? '#ffffff' : '#0f172a',
                                 }"
-                                @focus="(e) => e.target.style.borderColor = '#3b82f6'"
-                                @blur="(e) => e.target.style.borderColor = form.errors.password ? '#ef4444' : (isDark ? '#334155' : '#e2e8f0')"
+                                @focus="focusedField = 'password'"
+                                @blur="focusedField = ''"
                             />
                             <button
                                 type="button"
                                 @click="showPassword = !showPassword"
-                                class="absolute right-4 top-1/2 -translate-y-1/2 transition-colors"
-                                :style="{ color: isDark ? '#64748b' : '#94a3b8' }"
-                                @mouseenter="(e) => e.target.style.color = '#3b82f6'"
-                                @mouseleave="(e) => e.target.style.color = isDark ? '#64748b' : '#94a3b8'"
+                                class="absolute right-5 top-1/2 -translate-y-1/2 transition-colors"
+                                :style="{ color: isDark ? '#475569' : '#94a3b8' }"
                             >
                                 <svg v-if="!showPassword" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
@@ -183,13 +222,16 @@ const submit = () => {
                             <input
                                 type="checkbox"
                                 v-model="form.remember"
-                                class="w-4 h-4 rounded border-2 mr-2 cursor-pointer"
+                                class="w-4 h-4 rounded cursor-pointer"
                                 :style="{
+                                    accentColor: '#3b82f6',
                                     backgroundColor: form.remember ? '#3b82f6' : 'transparent',
                                     borderColor: form.remember ? '#3b82f6' : (isDark ? '#475569' : '#cbd5e1')
                                 }"
                             />
-                            <span class="text-sm" :style="{ color: isDark ? '#94a3b8' : '#64748b' }">Ingat saya</span>
+                            <span class="ml-2 text-sm" :style="{ color: isDark ? '#94a3b8' : '#64748b' }">
+                                Ingat saya
+                            </span>
                         </label>
                         <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm font-medium transition-colors hover:underline"
                             style="color: #3b82f6;">
@@ -201,27 +243,27 @@ const submit = () => {
                     <button
                         type="submit"
                         :disabled="form.processing"
-                        class="w-full py-4 rounded-xl text-white font-bold text-base transition-all flex items-center justify-center gap-2"
+                        class="w-full py-4 rounded-xl text-white font-semibold text-base transition-all duration-200"
                         :style="{
                             backgroundColor: form.processing ? '#60a5fa' : '#3b82f6',
-                            boxShadow: form.processing ? 'none' : '0 10px 15px -3px rgba(59, 130, 246, 0.4)'
                         }"
-                        @mouseenter="(e) => !form.processing && (e.target.style.backgroundColor = '#2563eb')"
-                        @mouseleave="(e) => e.target.style.backgroundColor = form.processing ? '#60a5fa' : '#3b82f6'"
                     >
-                        <svg v-if="form.processing" class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                        </svg>
-                        <span>{{ form.processing ? 'Memproses...' : 'Masuk' }}</span>
+                        <span v-if="form.processing" class="flex items-center justify-center gap-2">
+                            <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                            </svg>
+                            Memproses...
+                        </span>
+                        <span v-else>Masuk</span>
                     </button>
                 </form>
-            </div>
 
-            <!-- Footer -->
-            <p class="text-center mt-8 text-sm" :style="{ color: isDark ? '#64748b' : '#94a3b8' }">
-                &copy; {{ new Date().getFullYear() }} E-Rapor ASTS
-            </p>
+                <!-- Footer -->
+                <p class="mt-10 text-center text-sm" :style="{ color: isDark ? '#475569' : '#94a3b8' }">
+                    &copy; {{ new Date().getFullYear() }} E-Rapor ASTS
+                </p>
+            </div>
         </div>
     </div>
 </template>
