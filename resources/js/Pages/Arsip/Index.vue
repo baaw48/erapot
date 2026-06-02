@@ -43,14 +43,14 @@ const urlLeger = (kelasId) => {
         <div class="animate-fade-in space-y-6 pb-12">
 
             <!-- Info Banner -->
-            <div class="bg-amber-50 border border-amber-200 p-5 rounded-2xl shadow-sm flex items-start gap-4 animate-slide-up">
-                <div class="p-2 bg-amber-100 rounded-xl text-amber-600 shrink-0 mt-0.5">
+            <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-5 rounded-2xl shadow-sm flex items-start gap-4 animate-slide-up">
+                <div class="p-2 bg-amber-100 dark:bg-amber-900/50 rounded-xl text-amber-600 dark:text-amber-400 shrink-0 mt-0.5">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </svg>
                 </div>
                 <div>
-                    <h4 class="text-sm font-black text-amber-800 uppercase tracking-widest mb-1">Mode Hanya Baca (Read-Only)</h4>
+                    <h4 class="text-sm font-black text-amber-800 dark:text-amber-400 uppercase tracking-widest mb-1">Mode Hanya Baca (Read-Only)</h4>
                     <p class="text-sm font-semibold dark:text-amber-300 leading-relaxed">
                         Halaman ini digunakan untuk <strong>melihat dan mencetak</strong> rapor dari tahun-tahun ajaran yang sudah tersimpan. Untuk mengedit data nilai tahun lalu, gunakan fitur <strong>Ganti Tahun Ajaran Aktif</strong> di menu Pengaturan.
                     </p>
@@ -59,10 +59,10 @@ const urlLeger = (kelasId) => {
 
             <!-- Step 1: Pilih Tahun Ajaran -->
             <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
-                <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-                <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-50 dark:bg-amber-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm relative z-10">
                     <div class="flex items-center gap-3 mb-1">
-                        <div class="h-7 w-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-black text-sm shrink-0">1</div>
+                        <div class="h-7 w-7 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center font-black text-sm shrink-0">1</div>
                         <h3 class="text-base font-black dark:text-white">Pilih Tahun Ajaran</h3>
                     </div>
                     <p class="text-sm font-semibold text-slate-400 dark:text-slate-500 ml-10">Pilih periode tahun ajaran yang ingin Anda lihat arsipnya.</p>
@@ -79,8 +79,8 @@ const urlLeger = (kelasId) => {
                             :class="[
                                 'relative rounded-2xl p-5 text-left border-2 transition-all duration-200 group',
                                 selectedTahunId == tahun.id
-                                    ? 'border-amber-400 bg-amber-50 shadow-lg shadow-amber-500/10'
-                                    : 'border-slate-100 bg-slate-50 dark:bg-slate-800/50 hover:border-amber-200 hover:bg-amber-50/50 hover:-translate-y-0.5'
+                                    ? 'border-amber-400 dark:border-amber-500/50 bg-amber-50 dark:bg-amber-900/30 shadow-lg shadow-amber-500/10'
+                                    : 'border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-amber-200 dark:hover:border-amber-700/50 hover:bg-amber-50/50 dark:hover:bg-amber-900/30 hover:-translate-y-0.5'
                             ]"
                         >
                             <div v-if="tahun.is_active" class="absolute top-3 right-3">
@@ -89,7 +89,7 @@ const urlLeger = (kelasId) => {
                                     Aktif
                                 </span>
                             </div>
-                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 dark:bg-amber-600 text-white' : 'bg-white text-slate-600 dark:text-slate-300 border border-slate-200 group-hover:bg-amber-100 group-hover:dark:text-amber-300']">
+                            <div :class="['h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm mb-3 transition-colors', selectedTahunId == tahun.id ? 'bg-amber-500 dark:bg-amber-600 text-white' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 group-hover:bg-amber-100 dark:group-hover:bg-amber-900/50 group-hover:dark:text-amber-300']">
                                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
@@ -106,24 +106,24 @@ const urlLeger = (kelasId) => {
                 <div v-if="selectedTahunId" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative">
                     <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-green-50 dark:bg-green-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-                    <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <div class="flex items-center gap-3 mb-1">
-                                <div class="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-sm shrink-0">2</div>
+                                <div class="h-7 w-7 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black text-sm shrink-0">2</div>
                                 <h3 class="text-base font-black dark:text-white">Pilih Kelas & Cetak Dokumen</h3>
                             </div>
                             <p class="text-sm font-semibold text-slate-400 dark:text-slate-500 ml-10">Klik tombol cetak di baris kelas yang ingin Anda unduh.</p>
                         </div>
-                        <div class="shrink-0 px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-2xl text-right">
+                        <div class="shrink-0 px-4 py-2.5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl text-right">
                             <p class="text-[10px] font-black text-amber-500 uppercase tracking-widest">Melihat Arsip Periode</p>
-                            <p class="text-sm font-black text-amber-800 mt-0.5">TA {{ tahunTerpilih?.tahun }} &mdash; Sem. {{ tahunTerpilih?.semester }}</p>
+                            <p class="text-sm font-black text-amber-800 dark:text-amber-400 mt-0.5">TA {{ tahunTerpilih?.tahun }} &mdash; Sem. {{ tahunTerpilih?.semester }}</p>
                         </div>
                     </div>
 
                     <div class="overflow-x-auto relative z-10">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700/50 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-8 py-4 w-1/3">Nama Kelas</th>
                                     <th class="px-8 py-4 w-1/3">Wali Kelas</th>
@@ -177,7 +177,7 @@ const urlLeger = (kelasId) => {
                                 </tr>
                                 <tr v-if="kelas.length === 0">
                                     <td colspan="4" class="px-8 py-16 text-center">
-                                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
+                                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 dark:text-slate-600 mb-4">
                                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                                         </div>
                                         <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Data Kelas</h3>
@@ -190,8 +190,8 @@ const urlLeger = (kelasId) => {
             </Transition>
 
             <!-- Placeholder ketika belum pilih tahun -->
-            <div v-if="!selectedTahunId" class="bg-slate-50 dark:bg-slate-800/50 border-2 border-dashed border-slate-200 rounded-3xl p-16 text-center animate-slide-up" style="animation-delay: 0.1s; animation-fill-mode: both;">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-50 text-amber-300 mb-4">
+            <div v-if="!selectedTahunId" class="bg-slate-50 dark:bg-slate-800/50 border-2 border-dashed border-slate-200 dark:border-slate-700/50 rounded-3xl p-16 text-center animate-slide-up" style="animation-delay: 0.1s; animation-fill-mode: both;">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-300 dark:text-amber-500 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 </div>
                 <h3 class="text-base font-black text-slate-500 dark:text-slate-400 dark:text-slate-500">Belum Ada Tahun Dipilih</h3>
