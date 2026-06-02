@@ -113,25 +113,25 @@ const closeDeleteModal = () => {
         
         <div class="animate-fade-in space-y-6 max-w-[90rem] mx-auto pb-12">
             
-            <div v-if="$page.props.flash && $page.props.flash.success" class="flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-2xl shadow-sm" role="alert">
+            <div v-if="$page.props.flash && $page.props.flash.success" class="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 px-5 py-4 rounded-2xl shadow-sm" role="alert">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-sm">{{ $page.props.flash.success }}</span>
             </div>
             
-            <div v-if="$page.props.flash && $page.props.flash.error" class="flex items-center gap-3 bg-rose-50 border border-rose-200 text-rose-700 px-5 py-4 rounded-2xl shadow-sm" role="alert">
+            <div v-if="$page.props.flash && $page.props.flash.error" class="flex items-center gap-3 bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-400 px-5 py-4 rounded-2xl shadow-sm" role="alert">
                 <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span class="font-bold text-sm">{{ $page.props.flash.error }}</span>
             </div>
 
-            <div class="bg-indigo-50 border border-indigo-200 p-5 rounded-2xl shadow-sm flex items-start gap-4 animate-slide-up">
-                <div class="p-2 bg-indigo-100 rounded-xl text-indigo-600 shrink-0 mt-0.5">
+            <div class="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800/50 p-5 rounded-2xl shadow-sm flex items-start gap-4 animate-slide-up">
+                <div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-xl text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
                 <div>
-                    <h4 class="text-sm font-black text-indigo-800 uppercase tracking-widest mb-1">Akses Penuh</h4>
-                    <p class="text-sm font-semibold text-indigo-700 leading-relaxed">
+                    <h4 class="text-sm font-black text-indigo-800 dark:text-indigo-400 uppercase tracking-widest mb-1">Akses Penuh</h4>
+                    <p class="text-sm font-semibold text-indigo-700 dark:text-indigo-300 leading-relaxed">
                         Akun Admin memiliki wewenang untuk mengelola semua data sekolah, tahun ajaran, dan pengguna lainnya. Pastikan Anda hanya memberikan akses ini kepada staf yang berwenang.
                     </p>
                 </div>
@@ -194,7 +194,7 @@ const closeDeleteModal = () => {
                 <div class="overflow-x-auto relative z-10">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                        <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700/50 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <th class="px-6 py-4 w-16 text-center">No.</th>
                                 <th class="px-8 py-4">Nama Lengkap</th>
                                 <th class="px-8 py-4">Username</th>
@@ -203,7 +203,7 @@ const closeDeleteModal = () => {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
-                            <tr v-for="(admin, index) in admins.data" :key="admin.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
+                            <tr v-for="(admin, index) in admins.data" :key="admin.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
                                 <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                     {{ (admins.current_page - 1) * admins.per_page + index + 1 }}
                                 </td>
@@ -221,13 +221,13 @@ const closeDeleteModal = () => {
                                     </div>
                                 </td>
                                 <td class="px-8 py-5">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 text-slate-600 dark:text-slate-300 text-xs font-bold border border-slate-200">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold border border-slate-200 dark:border-slate-600">
                                         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                         {{ admin.username }}
                                     </span>
                                 </td>
                                 <td class="px-8 py-5">
-                                    <span class="inline-flex items-center px-2 py-1 bg-brand-50 text-brand-700 text-[10px] font-black uppercase tracking-wider rounded-md border border-brand-100">
+                                    <span class="inline-flex items-center px-2 py-1 bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 text-[10px] font-black uppercase tracking-wider rounded-md border border-brand-100 dark:border-brand-800">
                                         Admin
                                     </span>
                                 </td>
@@ -254,7 +254,7 @@ const closeDeleteModal = () => {
                     </table>
                 </div>
                 <!-- Paginasi -->
-                <div class="px-8 py-4 border-t border-slate-100 bg-slate-50 dark:bg-slate-800/50" v-if="admins.links && admins.links.length > 3">
+                        <div class="px-8 py-4 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50" v-if="admins.links && admins.links.length > 3">
                     <Pagination :links="admins.links" />
                 </div>
             </div>
@@ -299,8 +299,8 @@ const closeDeleteModal = () => {
                         <div v-if="form.errors.password" class="text-rose-500 text-xs font-bold mt-1">{{ form.errors.password }}</div>
                     </div>
                     
-                    <div class="flex gap-3 pt-4 border-t border-slate-100">
-                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 hover:border-slate-300 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                    <div class="flex gap-3 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                             Batal
                         </button>
                         <button type="submit" :disabled="form.processing" class="flex-1 px-4 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-70 flex items-center justify-center gap-2">
@@ -324,7 +324,7 @@ const closeDeleteModal = () => {
                     Apakah Anda yakin ingin menghapus admin ini? <strong class="text-rose-600">Akses admin mereka akan segera dicabut.</strong>
                 </p>
                 <div class="flex gap-3 relative z-10">
-                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                    <button @click="closeDeleteModal" class="flex-1 px-4 py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
                     <button @click="executeDelete" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
