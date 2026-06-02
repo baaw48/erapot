@@ -310,7 +310,7 @@ const submitRapor = () => {
                                     <th class="px-6 py-4 text-right">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-50">
+                            <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                                 <tr v-for="(ta, index) in tahunAjarans" :key="ta.id" class="transition-colors group" :class="{'bg-emerald-50/30': ta.is_active, 'hover:bg-slate-50 dark:bg-slate-800/50': !ta.is_active}">
                                     <td class="px-6 py-4 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}

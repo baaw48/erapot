@@ -205,7 +205,7 @@ const executeProses = () => {
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
-                            <tbody class="divide-y divide-slate-100">
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
                                     <td class="px-8 py-4 w-12">
                                         <input type="checkbox" :id="'siswa_'+siswa.id" :value="siswa.id" v-model="selectedSiswas" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer">

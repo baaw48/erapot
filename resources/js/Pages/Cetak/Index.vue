@@ -53,7 +53,7 @@ const props = defineProps({
                                     <th class="px-8 py-4 text-center">Tindakan Pencetakan</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-50">
+                            <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                                 <tr v-for="(k, index) in kelas" :key="k.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
                                     <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                         {{ index + 1 }}

@@ -134,13 +134,13 @@ const kelasOptions = computed(() => [
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th rowspan="2" class="px-4 py-4 w-12 text-center border-r border-slate-200">No</th>
                                     <th rowspan="2" class="px-4 py-4 w-40 border-r border-slate-200">Nama Lengkap</th>
                                     <th colspan="3" class="px-4 py-3 text-center border-r border-slate-200 border-b bg-blue-100 dark:bg-blue-900/30/50 text-blue-600 dark:text-blue-400">Kehadiran (Hari)</th>
                                     <th colspan="6" class="px-4 py-3 text-center border-b border-slate-200 bg-purple-50/50 text-purple-600">Ekstrakurikuler</th>
                                 </tr>
-                                <tr class="bg-slate-50 border-b border-slate-100 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Sakit</th>
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Izin</th>
                                     <th class="px-2 py-2 text-center border-r border-slate-200">Alpa</th>
@@ -155,7 +155,7 @@ const kelasOptions = computed(() => [
                                     <th class="px-2 py-2 text-center">Nilai</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-50">
+                            <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="hover:bg-slate-50/50 transition-colors group">
                                     <td class="px-3 py-4 text-center border-r border-slate-50">
                                         <span class="text-xs font-bold text-slate-400 dark:text-slate-500 group-hover:text-brand-500 transition-colors">{{ index + 1 }}</span>
@@ -199,7 +199,7 @@ const kelasOptions = computed(() => [
 
             <!-- Empty State -->
             <div v-else-if="form.kelas_id" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 text-slate-300 mb-4">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
                 </div>
                 <h3 class="text-lg font-black text-slate-700 dark:text-white dark:text-white dark:text-slate-200 mb-1">Belum Ada Siswa</h3>

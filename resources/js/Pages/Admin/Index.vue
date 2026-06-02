@@ -202,7 +202,7 @@ const closeDeleteModal = () => {
                                 <th class="px-8 py-4 text-right">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-50">
+                        <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                             <tr v-for="(admin, index) in admins.data" :key="admin.id" class="hover:bg-slate-50 dark:bg-slate-800/50/50 transition-colors group">
                                 <td class="px-6 py-5 text-center text-sm font-bold text-slate-400 dark:text-slate-500">
                                     {{ (admins.current_page - 1) * admins.per_page + index + 1 }}
