@@ -3,16 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PembelajaranController;
+use App\Models\Sekolah;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
+    $sekolah = Sekolah::first();
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'sekolah' => $sekolah,
     ]);
 });
 
