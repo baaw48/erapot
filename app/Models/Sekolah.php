@@ -21,11 +21,10 @@ class Sekolah extends Model
         'jenis_asesmen',
     ];
 
-    // Helper function untuk get logo URL
     public function getLogoUrl()
     {
         if ($this->logo_path) {
-            return url('storage/' . $this->logo_path);
+            return '/storage/' . $this->logo_path;
         }
         return null;
     }
