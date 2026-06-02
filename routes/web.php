@@ -19,7 +19,7 @@ Route::get('/', function () {
         'sekolah' => $sekolah ? [
             'id' => $sekolah->id,
             'nama_sekolah' => $sekolah->nama_sekolah,
-            'logo_url' => $sekolah->logo_url,
+            'logo_url' => $sekolah->getLogoUrl(),
             'alamat' => $sekolah->alamat,
         ] : null,
     ]);

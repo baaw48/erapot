@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Sekolah extends Model
 {
@@ -22,11 +21,8 @@ class Sekolah extends Model
         'jenis_asesmen',
     ];
 
-    // Append logo_url to all responses
-    protected $appends = ['logo_url'];
-
-    //Accessor untuk logo_url - selalu return URL
-    public function getLogoUrlAttribute()
+    // Helper function untuk get logo URL
+    public function getLogoUrl()
     {
         if ($this->logo_path) {
             return url('storage/' . $this->logo_path);
