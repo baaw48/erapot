@@ -83,8 +83,7 @@ const submit = () => {
                 <!-- School Logo -->
                 <div class="mb-10">
                     <div v-if="sekolah && sekolah.logo_url" class="mb-8">
-                        <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-32 h-32 mx-auto object-contain rounded-2xl"
-                            style="filter: drop-shadow(0 20px 40px rgba(255,255,255,0.2));">
+                        <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-32 h-32 object-cover rounded-2xl bg-white p-2">
                     </div>
                     <div v-else class="w-28 h-28 mx-auto rounded-2xl flex items-center justify-center mb-8"
                         style="background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(99,102,241,0.9)); box-shadow: 0 20px 40px rgba(59,130,246,0.3);">
