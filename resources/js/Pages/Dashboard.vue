@@ -103,29 +103,29 @@ const calcOffset = (percent) => strokeDasharray - (strokeDasharray * percent) / 
         <div class="space-y-8 animate-fade-in-up">
             
             <!-- Dynamic Welcome Banner (Mesh Gradient) -->
-            <div class="relative overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl group">
+            <div class="relative overflow-hidden rounded-[2rem] bg-slate-50 dark:bg-slate-900 shadow-2xl group border border-slate-200 dark:border-transparent">
                 <!-- Abstract Mesh Background -->
-                <div class="absolute inset-0 opacity-60">
-                    <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-500 rounded-full mix-blend-multiply filter blur-[80px] animate-blob"></div>
-                    <div class="absolute top-0 -right-4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-[80px] animate-blob animation-delay-2000"></div>
-                    <div class="absolute -bottom-24 left-32 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[80px] animate-blob animation-delay-4000"></div>
+                <div class="absolute inset-0 opacity-40 dark:opacity-60">
+                    <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-400 dark:bg-primary-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[80px] animate-blob"></div>
+                    <div class="absolute top-0 -right-4 w-96 h-96 bg-indigo-400 dark:bg-indigo-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[80px] animate-blob animation-delay-2000"></div>
+                    <div class="absolute -bottom-24 left-32 w-96 h-96 bg-purple-400 dark:bg-purple-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[80px] animate-blob animation-delay-4000"></div>
                 </div>
                 
                 <div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 dark:bg-white/10 backdrop-blur-md border border-slate-200 dark:border-white/20 text-slate-800 dark:text-white text-sm font-bold mb-4 shadow-sm">
                             <span>{{ greetingIcon }}</span>
                             <span>{{ greeting }}</span>
                         </div>
-                        <h3 class="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight">
+                        <h3 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">
                             Halo, {{ $page.props.auth.user.name }}!
                         </h3>
-                        <p class="text-slate-300 text-lg md:text-xl font-medium max-w-xl leading-relaxed">
+                        <p class="text-slate-600 dark:text-slate-300 text-lg md:text-xl font-medium max-w-xl leading-relaxed">
                             Selamat datang kembali di Sistem E-Rapor. Mari kita kelola data akademik dengan lebih cepat dan mudah hari ini.
                         </p>
                     </div>
-                    <div class="hidden lg:flex p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.1)] transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500">
-                        <svg class="w-24 h-24 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <div class="hidden lg:flex p-6 bg-white/60 dark:bg-white/10 backdrop-blur-xl border border-white/40 dark:border-white/20 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_0_40px_rgba(255,255,255,0.1)] transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500">
+                        <svg class="w-24 h-24 text-primary-500 dark:text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>

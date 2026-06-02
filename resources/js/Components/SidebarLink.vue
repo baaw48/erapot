@@ -19,8 +19,8 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'nav-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white bg-white/15 border border-white/20 transition-all duration-200'
-        : 'nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200'
+        ? 'nav-item active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-primary-700 bg-primary-50 border border-primary-100 dark:text-white dark:bg-primary-500/20 dark:border-primary-500/30 transition-all duration-200'
+        : 'nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all duration-200'
 );
 </script>
 

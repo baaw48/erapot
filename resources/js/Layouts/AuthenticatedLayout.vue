@@ -66,7 +66,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
 
         <!-- SIDEBAR -->
         <aside
-            class="flex flex-col z-50 transition-all duration-300 ease-out relative bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-white/5 shadow-2xl"
+            class="flex flex-col z-50 transition-all duration-300 ease-out relative bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-slate-200 dark:border-white/5 shadow-2xl"
             :class="[
                 isSidebarCollapsed ? 'w-[72px]' : 'w-[260px]',
                 isMobileSidebarOpen ? 'fixed inset-y-0 left-0 translate-x-0' : 'fixed inset-y-0 left-0 -translate-x-full md:relative md:translate-x-0'
@@ -79,13 +79,13 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                         <template v-if="$page.props.sekolah && $page.props.sekolah.logo_url">
                             <img :src="$page.props.sekolah.logo_url" alt="Logo" class="h-6 w-6 object-contain" />
                         </template>
-                        <svg v-else class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg v-else class="h-5 w-5 text-primary-600 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
                     <div v-if="!isSidebarCollapsed" class="flex flex-col">
-                        <span class="font-bold text-white text-base">E-RAPOR</span>
-                        <span class="text-[10px] text-white/50 font-medium uppercase tracking-wider">Digital System</span>
+                        <span class="font-bold text-slate-800 dark:text-white text-base">E-RAPOR</span>
+                        <span class="text-[10px] text-slate-500 dark:text-white/50 font-medium uppercase tracking-wider">Digital System</span>
                     </div>
                 </Link>
             </div>
@@ -98,8 +98,8 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                             {{ userInitial }}
                         </div>
                         <div v-if="!isSidebarCollapsed" class="overflow-hidden min-w-0">
-                            <p class="text-sm font-semibold text-white truncate">{{ userName }}</p>
-                            <p class="text-[11px] text-primary-300 font-medium uppercase tracking-wider truncate">{{ userRole }}</p>
+                            <p class="text-sm font-semibold text-slate-800 dark:text-white truncate">{{ userName }}</p>
+                            <p class="text-[11px] text-primary-600 dark:text-primary-300 font-medium uppercase tracking-wider truncate">{{ userRole }}</p>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
 
             <!-- Navigation -->
             <nav class="flex-grow px-3 py-2 overflow-y-auto scrollbar-hide space-y-0.5">
-                <div v-if="!isSidebarCollapsed" class="px-3 pt-2 pb-3 text-[10px] font-semibold text-white/40 uppercase tracking-widest">
+                <div v-if="!isSidebarCollapsed" class="px-3 pt-2 pb-3 text-[10px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest">
                     Menu Utama
                 </div>
 
@@ -118,7 +118,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                     Beranda
                 </SidebarLink>
 
-                <div v-if="!isSidebarCollapsed && userRole === 'admin'" class="px-3 pt-5 pb-2 text-[10px] font-semibold text-white/40 uppercase tracking-widest">
+                <div v-if="!isSidebarCollapsed && userRole === 'admin'" class="px-3 pt-5 pb-2 text-[10px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest">
                     Data Master
                 </div>
 
@@ -157,7 +157,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                     Penugasan Mengajar
                 </SidebarLink>
 
-                <div v-if="!isSidebarCollapsed" class="px-3 pt-5 pb-2 text-[10px] font-semibold text-white/40 uppercase tracking-widest">
+                <div v-if="!isSidebarCollapsed" class="px-3 pt-5 pb-2 text-[10px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest">
                     Akademik & Penilaian
                 </div>
 
@@ -210,7 +210,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                     Kenaikan Kelas
                 </SidebarLink>
 
-                <div v-if="!isSidebarCollapsed && userRole === 'admin'" class="px-3 pt-5 pb-2 text-[10px] font-semibold text-white/40 uppercase tracking-widest">
+                <div v-if="!isSidebarCollapsed && userRole === 'admin'" class="px-3 pt-5 pb-2 text-[10px] font-bold text-slate-400 dark:text-white/40 uppercase tracking-widest">
                     Sistem
                 </div>
 
@@ -230,12 +230,12 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
             </nav>
 
             <!-- Logout -->
-            <div class="p-3 shrink-0 border-t border-white/10 mt-auto">
+            <div class="p-3 shrink-0 border-t border-slate-200 dark:border-white/10 mt-auto">
                 <Link
                     :href="route('logout')"
                     method="post"
                     as="button"
-                    class="w-full flex items-center justify-center py-2.5 rounded-lg text-sm font-medium text-white/60 hover:bg-danger-500 hover:text-white transition-all duration-200"
+                    class="w-full flex items-center justify-center py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-danger-600 hover:bg-danger-50 dark:text-white/60 dark:hover:bg-danger-500 dark:hover:text-white transition-all duration-200"
                     :title="isSidebarCollapsed ? 'Keluar' : ''"
                 >
                     <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
