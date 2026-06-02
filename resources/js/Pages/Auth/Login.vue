@@ -16,6 +16,7 @@ const form = useForm({
 const showPassword = ref(false);
 const isDark = ref(false);
 const focusedField = ref('');
+const isLoaded = ref(false);
 
 const toggleDark = () => {
     isDark.value = !isDark.value;
@@ -40,6 +41,7 @@ onMounted(() => {
         isDark.value = true;
         document.documentElement.classList.add('dark');
     }
+    setTimeout(() => { isLoaded.value = true; }, 100);
 });
 
 const submit = () => {
@@ -52,53 +54,85 @@ const submit = () => {
 <template>
     <Head title="Masuk - E-Rapor ASTS" />
 
-    <!-- Main Container - Clean Minimalist -->
-    <div class="min-h-screen flex">
+    <!-- Main Container -->
+    <div class="min-h-screen flex" :style="{ backgroundColor: isDark ? '#030712' : '#fafbfc' }">
 
-        <!-- Left Side - Decorative Panel (Desktop Only) -->
-        <div class="hidden lg:flex lg:w-1/2 items-center justify-center p-12"
-            :style="{ backgroundColor: isDark ? '#0f172a' : '#f8fafc' }">
+        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <div class="hidden lg:flex lg:w-1/2 items-center justify-center relative overflow-hidden"
+            :style="{ backgroundColor: isDark ? '#0f172a' : '#0f172a' }">
 
-            <div class="max-w-md text-center">
+            <!-- Animated Gradient Background -->
+            <div class="absolute inset-0">
+                <div class="absolute top-0 left-0 w-full h-full"
+                    style="background: linear-gradient(135deg, #1e3a8a 0%, #312e81 50%, #1e1b4b 100%);">
+                </div>
+                <!-- Decorative Circles -->
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
+                    style="background: radial-gradient(circle, #3b82f6, transparent); filter: blur(80px);">
+                </div>
+                <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-20"
+                    style="background: radial-gradient(circle, #8b5cf6, transparent); filter: blur(80px);">
+                </div>
+            </div>
 
-                <!-- Logo Icon -->
+            <!-- Content -->
+            <div class="relative z-10 text-center px-12" style="opacity: 0; transform: translateY(20px);"
+                :style="isLoaded ? { opacity: '1', transform: 'translateY(0)', transition: 'all 0.8s ease-out' } : {}">
                 <div class="mb-12">
-                    <div class="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-transform hover:scale-105"
-                        :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
-                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Premium Logo -->
+                    <div class="w-28 h-28 mx-auto rounded-2xl flex items-center justify-center mb-8"
+                        style="background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(99,102,241,0.9)); box-shadow: 0 20px 40px rgba(59,130,246,0.3);">
+                        <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
+                    <h1 class="text-6xl font-black text-white mb-4 tracking-tight">
+                        E-Rapor
+                    </h1>
+                    <p class="text-3xl font-semibold mb-8" style="color: #60a5fa;">
+                        ASTS
+                    </p>
+                    <p class="text-xl text-slate-300 max-w-md mx-auto leading-relaxed">
+                        Sistem Informasi Raport Digital yang modern dan efisien
+                    </p>
                 </div>
 
-                <!-- Brand Text -->
-                <h1 class="text-5xl font-bold mb-4" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
-                    E-Rapor
-                </h1>
-                <p class="text-2xl font-medium mb-2" :style="{ color: '#3b82f6' }">
-                    ASTS
-                </p>
-                <p class="text-lg mt-8" :style="{ color: isDark ? '#64748b' : '#94a3b8' }">
-                    Sistem Informasi Raport Digital
-                </p>
-
-                <!-- Decorative Line -->
+                <!-- Decorative Element -->
                 <div class="mt-16">
-                    <div class="w-16 h-1 mx-auto rounded-full"
-                        :style="{ backgroundColor: '#3b82f6' }"></div>
+                    <div class="w-24 h-1 mx-auto rounded-full"
+                        style="background: linear-gradient(90deg, #3b82f6, #8b5cf6);">
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="mt-16 grid grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-white">100%</p>
+                        <p class="text-sm text-slate-400 mt-1">Digital</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-white">24/7</p>
+                        <p class="text-sm text-slate-400 mt-1">Akses</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-white">Secure</p>
+                        <p class="text-sm text-slate-400 mt-1">Data</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Side - Login Form -->
-        <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12"
-            :style="{ backgroundColor: isDark ? '#000000' : '#ffffff' }">
+        <!-- Right Panel - Login Form -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 relative">
 
             <!-- Dark Mode Toggle -->
             <button
                 @click="toggleDark"
-                class="fixed top-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                :style="{ backgroundColor: isDark ? '#fbbf24' : '#f1f5f9', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }"
+                class="fixed top-8 right-8 z-50 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+                :style="{
+                    backgroundColor: isDark ? '#fbbf24' : '#f1f5f9',
+                    boxShadow: isDark ? '0 4px 20px rgba(251,191,36,0.4)' : '0 4px 20px rgba(0,0,0,0.1)'
+                }"
             >
                 <svg v-if="!isDark" class="w-5 h-5" :style="{ color: '#1e293b' }" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
@@ -109,46 +143,49 @@ const submit = () => {
             </button>
 
             <!-- Login Card -->
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-md" style="opacity: 0; transform: translateY(30px);"
+                :style="isLoaded ? { opacity: '1', transform: 'translateY(0)', transition: 'all 0.6s ease-out 0.2s' } : {}">
 
-                <!-- Mobile Logo (Visible only on mobile) -->
+                <!-- Mobile Logo -->
                 <div class="lg:hidden text-center mb-10">
-                    <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-4"
-                        :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-5"
+                        style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 15px 30px rgba(59,130,246,0.3);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <h1 class="text-2xl font-bold" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
-                        E-Rapor ASTS
-                    </h1>
+                    <h1 class="text-3xl font-bold text-white mb-1">E-Rapor</h1>
+                    <p class="text-lg font-semibold" style="color: #60a5fa;">ASTS</p>
                 </div>
 
-                <!-- Title -->
+                <!-- Header -->
                 <div class="mb-10">
-                    <h2 class="text-3xl font-bold mb-2" :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
+                    <h2 class="text-4xl font-bold mb-3" :style="{ color: isDark ? '#f9fafb' : '#0f172a' }">
                         Selamat Datang
                     </h2>
-                    <p class="text-base" :style="{ color: isDark ? '#64748b' : '#64748b' }">
-                        Masukkan kredensial Anda untuk masuk
+                    <p class="text-base" :style="{ color: isDark ? '#6b7280' : '#6b7280' }">
+                        Silakan masukkan kredensial akun Anda
                     </p>
                 </div>
 
                 <!-- Success Message -->
-                <div v-if="status" class="mb-6 p-4 rounded-xl text-center"
-                    :style="{ backgroundColor: isDark ? 'rgba(34,197,94,0.1)' : '#f0fdf4' }">
+                <div v-if="status" class="mb-8 p-5 rounded-2xl border"
+                    :style="{
+                        backgroundColor: isDark ? 'rgba(34,197,94,0.08)' : '#f0fdf4',
+                        borderColor: isDark ? 'rgba(34,197,94,0.3)' : '#bbf7d0'
+                    }">
                     <p class="text-sm font-medium" :style="{ color: isDark ? '#4ade80' : '#16a34a' }">
                         {{ status }}
                     </p>
                 </div>
 
                 <!-- Form -->
-                <form @submit.prevent="submit" class="space-y-6">
+                <form @submit.prevent="submit" class="space-y-7">
 
-                    <!-- Username -->
+                    <!-- Username Field -->
                     <div>
-                        <label for="username" class="block text-sm font-medium mb-2"
-                            :style="{ color: isDark ? '#94a3b8' : '#475569' }">
+                        <label for="username" class="block text-sm font-semibold mb-3"
+                            :style="{ color: isDark ? '#9ca3af' : '#374151' }">
                             Username
                         </label>
                         <input
@@ -158,25 +195,26 @@ const submit = () => {
                             required
                             autofocus
                             autocomplete="username"
-                            placeholder="Masukkan username"
-                            class="w-full px-5 py-4 rounded-xl text-base transition-all outline-none"
+                            placeholder="Ketik username Anda"
+                            class="w-full px-5 py-4 rounded-xl text-base transition-all duration-200 outline-none"
                             :style="{
-                                backgroundColor: isDark ? '#0f172a' : '#f8fafc',
-                                border: '2px solid ' + (form.errors.username ? '#ef4444' : (focusedField === 'username' ? '#3b82f6' : (isDark ? '#1e293b' : '#e2e8f0'))),
-                                color: isDark ? '#ffffff' : '#0f172a',
+                                backgroundColor: isDark ? '#111827' : '#ffffff',
+                                border: '2px solid ' + (form.errors.username ? '#f87171' : (focusedField === 'username' ? '#3b82f6' : (isDark ? '#1f2937' : '#e5e7eb'))),
+                                color: isDark ? '#ffffff' : '#111827',
+                                boxShadow: focusedField === 'username' ? (isDark ? '0 0 0 4px rgba(59,130,246,0.1)' : '0 0 0 4px rgba(59,130,246,0.1)') : 'none'
                             }"
                             @focus="focusedField = 'username'"
                             @blur="focusedField = ''"
                         />
-                        <p v-if="form.errors.username" class="mt-2 text-sm" style="color: #ef4444;">
+                        <p v-if="form.errors.username" class="mt-2 text-sm font-medium" style="color: #f87171;">
                             {{ form.errors.username }}
                         </p>
                     </div>
 
-                    <!-- Password -->
+                    <!-- Password Field -->
                     <div>
-                        <label for="password" class="block text-sm font-medium mb-2"
-                            :style="{ color: isDark ? '#94a3b8' : '#475569' }">
+                        <label for="password" class="block text-sm font-semibold mb-3"
+                            :style="{ color: isDark ? '#9ca3af' : '#374151' }">
                             Password
                         </label>
                         <div class="relative">
@@ -186,12 +224,13 @@ const submit = () => {
                                 v-model="form.password"
                                 required
                                 autocomplete="current-password"
-                                placeholder="Masukkan password"
-                                class="w-full px-5 py-4 pr-14 rounded-xl text-base transition-all outline-none"
+                                placeholder="Ketik password Anda"
+                                class="w-full px-5 py-4 pr-14 rounded-xl text-base transition-all duration-200 outline-none"
                                 :style="{
-                                    backgroundColor: isDark ? '#0f172a' : '#f8fafc',
-                                    border: '2px solid ' + (form.errors.password ? '#ef4444' : (focusedField === 'password' ? '#3b82f6' : (isDark ? '#1e293b' : '#e2e8f0'))),
-                                    color: isDark ? '#ffffff' : '#0f172a',
+                                    backgroundColor: isDark ? '#111827' : '#ffffff',
+                                    border: '2px solid ' + (form.errors.password ? '#f87171' : (focusedField === 'password' ? '#3b82f6' : (isDark ? '#1f2937' : '#e5e7eb'))),
+                                    color: isDark ? '#ffffff' : '#111827',
+                                    boxShadow: focusedField === 'password' ? (isDark ? '0 0 0 4px rgba(59,130,246,0.1)' : '0 0 0 4px rgba(59,130,246,0.1)') : 'none'
                                 }"
                                 @focus="focusedField = 'password'"
                                 @blur="focusedField = ''"
@@ -199,8 +238,8 @@ const submit = () => {
                             <button
                                 type="button"
                                 @click="showPassword = !showPassword"
-                                class="absolute right-5 top-1/2 -translate-y-1/2 transition-colors"
-                                :style="{ color: isDark ? '#475569' : '#94a3b8' }"
+                                class="absolute right-5 top-1/2 -translate-y-1/2 transition-all duration-200"
+                                :style="{ color: isDark ? '#6b7280' : '#9ca3af' }"
                             >
                                 <svg v-if="!showPassword" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
@@ -211,29 +250,30 @@ const submit = () => {
                                 </svg>
                             </button>
                         </div>
-                        <p v-if="form.errors.password" class="mt-2 text-sm" style="color: #ef4444;">
+                        <p v-if="form.errors.password" class="mt-2 text-sm font-medium" style="color: #f87171;">
                             {{ form.errors.password }}
                         </p>
                     </div>
 
                     <!-- Remember & Forgot -->
                     <div class="flex items-center justify-between">
-                        <label class="flex items-center cursor-pointer">
+                        <label class="flex items-center cursor-pointer group">
                             <input
                                 type="checkbox"
                                 v-model="form.remember"
-                                class="w-4 h-4 rounded cursor-pointer"
+                                class="w-5 h-5 rounded cursor-pointer transition-all duration-200"
                                 :style="{
                                     accentColor: '#3b82f6',
                                     backgroundColor: form.remember ? '#3b82f6' : 'transparent',
-                                    borderColor: form.remember ? '#3b82f6' : (isDark ? '#475569' : '#cbd5e1')
+                                    border: '2px solid ' + (form.remember ? '#3b82f6' : (isDark ? '#4b5563' : '#d1d5db'))
                                 }"
                             />
-                            <span class="ml-2 text-sm" :style="{ color: isDark ? '#94a3b8' : '#64748b' }">
+                            <span class="ml-3 text-sm" :style="{ color: isDark ? '#9ca3af' : '#6b7280' }">
                                 Ingat saya
                             </span>
                         </label>
-                        <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm font-medium transition-colors hover:underline"
+                        <Link v-if="canResetPassword" :href="route('password.request')"
+                            class="text-sm font-semibold transition-all duration-200 hover:underline"
                             style="color: #3b82f6;">
                             Lupa password?
                         </Link>
@@ -243,7 +283,7 @@ const submit = () => {
                     <button
                         type="submit"
                         :disabled="form.processing"
-                        class="w-full py-4 rounded-xl text-white font-semibold text-base transition-all duration-200"
+                        class="w-full py-4 rounded-xl text-white font-semibold text-base transition-all duration-300 relative overflow-hidden"
                         :style="{
                             backgroundColor: form.processing ? '#60a5fa' : '#3b82f6',
                         }"
@@ -255,13 +295,13 @@ const submit = () => {
                             </svg>
                             Memproses...
                         </span>
-                        <span v-else>Masuk</span>
+                        <span v-else class="relative z-10">Masuk ke Dashboard</span>
                     </button>
                 </form>
 
                 <!-- Footer -->
-                <p class="mt-10 text-center text-sm" :style="{ color: isDark ? '#475569' : '#94a3b8' }">
-                    &copy; {{ new Date().getFullYear() }} E-Rapor ASTS
+                <p class="mt-12 text-center text-sm" :style="{ color: isDark ? '#4b5563' : '#9ca3af' }">
+                    &copy; {{ new Date().getFullYear() }} E-Rapor ASTS. All rights reserved.
                 </p>
             </div>
         </div>
