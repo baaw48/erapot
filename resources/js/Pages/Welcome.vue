@@ -66,10 +66,9 @@ onMounted(() => {
             }">
 
             <!-- Logo -->
-            <div class="mb-8">
+            <div class="mb-6">
                 <div v-if="sekolah && sekolah.logo_url">
-                    <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-28 h-28 mx-auto object-contain rounded-2xl"
-                        style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));">
+                    <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-32 h-32 mx-auto object-contain rounded-2xl bg-white p-3 shadow-lg">
                 </div>
                 <div v-else class="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center mb-4"
                     :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
@@ -77,16 +76,16 @@ onMounted(() => {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
                 </div>
-
-                <!-- School Name -->
-                <h1 class="text-4xl md:text-5xl font-black mb-2"
-                    :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
-                    {{ sekolah?.nama_sekolah || 'E-Rapor ASTS' }}
-                </h1>
-                <p class="text-xl font-semibold" style="color: #3b82f6;">
-                    Sistem Raport Digital
-                </p>
             </div>
+
+            <!-- School Name - Large and Clear -->
+            <h1 class="text-3xl md:text-4xl font-black mb-3"
+                :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
+                {{ sekolah && sekolah.nama_sekolah ? sekolah.nama_sekolah : 'E-Rapor ASTS' }}
+            </h1>
+            <p class="text-lg font-semibold mb-8" style="color: #3b82f6;">
+                Sistem Raport Digital
+            </p>
 
             <!-- Decorative Line -->
             <div class="mb-10">
