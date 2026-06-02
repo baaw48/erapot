@@ -12,7 +12,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
     - name: Checkout code
@@ -27,7 +27,9 @@ jobs:
       run: npm install
 
     - name: Build assets
-      run: npm run build
+      run: |
+        npm run build
+        echo "Build completed!"
 
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.3
@@ -41,18 +43,16 @@ jobs:
         command_timeout: 15m
         debug: true
         script: |
-          # Don't use set -e - we want to continue even if some commands fail
+          set -e
           export DEPLOY_STATUS=0
 
           echo "=== Check basic server info ==="
           whoami
           pwd
-          uname -a
 
           echo "=== Navigate to deployment directory ==="
           cd ~/public_html/baawmyid || { echo "Failed to cd to deployment dir"; exit 1; }
           pwd
-          ls -la
 
           echo "=== Backup .env if exists ==="
           if [ -f erapot/.env ]; then
@@ -60,72 +60,58 @@ jobs:
             echo "Backed up existing .env"
           fi
 
-          echo "=== Remove old folder and clone fresh ==="
+          echo "=== Remove old folder ==="
           rm -rf erapot erapot.tar.gz 2>/dev/null || true
           mkdir -p erapot
           cd erapot
           echo "Downloading repository archive..."
           timeout 300 curl -L --max-time 300 -o erapot.zip https://github.com/baaw48/erapot/archive/refs/heads/main.zip 2>&1
-          CURL_EXIT=$?
-          if [ $CURL_EXIT -eq 124 ]; then
-            echo "Curl download timed out after 5 minutes!"
-            exit 1
-          elif [ $CURL_EXIT -ne 0 ]; then
-            echo "Curl failed with exit code: $CURL_EXIT"
-            exit 1
-          fi
+
           echo "Download complete, extracting..."
           unzip -q erapot.zip || { echo "Unzip failed"; exit 1; }
+
           # Move all files from erapot-* subfolder to current directory
           shopt -s dotglob nullglob
           mv erapot-*/* . 2>/dev/null || true
           rm -rf erapot-*
           rm erapot.zip
-          echo "Extract successful!"
-          ls -la
 
-          echo "=== Restore or Create .env file ==="
+          echo "=== Check extracted files ==="
+          ls -la
+          ls -la resources/js/Pages/ | head -20
+
+          echo "=== Restore .env file ==="
           if [ -f /tmp/erapot_env_backup ]; then
             cp /tmp/erapot_env_backup .env
             echo "Restored .env from backup!"
             rm /tmp/erapot_env_backup
-          elif [ -f .env.example ]; then
-            cp .env.example .env
-          else
-            echo "Creating basic .env file"
-            printf 'APP_NAME="E-RAPOT"\nAPP_ENV=production\nAPP_KEY=\nAPP_DEBUG=false\nAPP_URL=https://baaw48.my.id\n' > .env
           fi
 
           # Generate APP_KEY
           php artisan key:generate --force
 
-          # Update .env with production settings (KEEP MySQL settings!)
-          sed -i 's/APP_ENV=local/APP_ENV=production/' .env 2>/dev/null || true
-          sed -i 's|APP_URL=http://localhost|APP_URL=https://baaw48.my.id|' .env 2>/dev/null || true
-          sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env 2>/dev/null || true
-          sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env 2>/dev/null || true
-          sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 2>/dev/null || true
-          sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env 2>/dev/null || true
-
-          # Ensure MySQL connection is set correctly
-          sed -i 's/DB_CONNECTION=sqlite/DB_CONNECTION=mysql/' .env 2>/dev/null || true
-          sed -i 's/DB_HOST=127.0.0.1/DB_HOST=localhost/' .env 2>/dev/null || true
-
-          echo "=== Current .env content ==="
-          cat .env
-
           echo "=== Install composer dependencies ==="
-          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs 2>&1 || composer update --no-dev --prefer-dist --ignore-platform-reqs 2>&1 || true
+          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs 2>&1 || composer update --no-dev --prefer-dist --ignore-platform-reqs 2>&1
 
           echo "=== Set permissions ==="
           chmod -R 775 storage bootstrap/cache 2>/dev/null || true
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
 
-          echo "=== Clear all caches ==="
-          php artisan config:clear 2>/dev/null || true
-          php artisan cache:clear 2>/dev/null || true
-          php artisan view:clear 2>/dev/null || true
-          php artisan route:clear 2>/dev/null || true
+          echo "=== Clear ALL caches forcefully ==="
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan view:clear
+          php artisan route:clear
+          php artisan event:clear 2>/dev/null || true
+          php artisan optimize:clear
+
+          echo "=== Rebuild caches ==="
+          php artisan config:cache
+          php artisan route:cache 2>/dev/null || true
+          php artisan view:cache
+
+          echo "=== Verify Welcome.vue exists ==="
+          cat resources/js/Pages/Welcome.vue | head -50
 
           echo "=== Deploy completed! ==="
           echo "Please visit https://baaw48.my.id/erapot to verify"
