@@ -42,6 +42,15 @@ Route::get('/debug-sekolah', function () {
     ]);
 });
 
+// Route to serve logo safely without symlink issues
+Route::get('/school-logo/{path}', function ($path) {
+    $fullPath = storage_path('app/public/' . $path);
+    if (!\Illuminate\Support\Facades\File::exists($fullPath)) {
+        abort(404);
+    }
+    return response()->file($fullPath);
+})->where('path', '.*')->name('school.logo');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
         'stats' => [

@@ -24,7 +24,7 @@ class Sekolah extends Model
     public function getLogoUrl()
     {
         if ($this->logo_path) {
-            return asset('storage/' . $this->logo_path);
+            return route('school.logo', ['path' => $this->logo_path]);
         }
         return null;
     }

@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'sekolah' => fn () => tap(\App\Models\Sekolah::first(), function ($sekolah) {
                 if ($sekolah && $sekolah->logo_path) {
-                    $sekolah->logo_url = asset('storage/' . $sekolah->logo_path);
+                    $sekolah->logo_url = route('school.logo', ['path' => $sekolah->logo_path]);
                 }
             }),
             'tahun_aktif' => fn () => \App\Models\TahunAjaran::where('is_active', true)->first(),
