@@ -24,7 +24,9 @@ class Sekolah extends Model
     public function getLogoUrl()
     {
         if ($this->logo_path) {
-            return route('school.logo', ['path' => $this->logo_path], false);
+            // Use public/logos/ directly to avoid symlink issues on Windows/cPanel
+            $filename = basename($this->logo_path);
+            return '/logos/' . $filename;
         }
         return null;
     }

@@ -53,8 +53,11 @@ class SekolahController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public');
-            $validated['logo_path'] = $logoPath;
+            // Save directly to public/logos to avoid symlink issues
+            $file = $request->file('logo');
+            $filename = $file->hashName();
+            $file->move(public_path('logos'), $filename);
+            $validated['logo_path'] = 'logos/' . $filename;
         }
 
         $sekolah = Sekolah::first();
