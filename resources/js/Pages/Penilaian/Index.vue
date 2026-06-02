@@ -2,6 +2,7 @@
 import { ref, watch, computed } from 'vue';
 import { Head, useForm, router, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import PageHeader from '@/Components/PageHeader.vue';
 import Modal from '@/Components/Modal.vue';
 import SearchableSelect from '@/Components/SearchableSelect.vue';
 
@@ -101,21 +102,11 @@ const mapelOptions = computed(() => [
     <Head :title="$page.props.auth.user.role === 'admin' ? 'Monitoring Nilai' : `Input Nilai ${$page.props.sekolah?.jenis_asesmen || 'ASTS'}`" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">
-                        {{ $page.props.auth.user.role === 'admin' ? 'Monitoring Nilai' : `Input Nilai ${$page.props.sekolah?.jenis_asesmen || 'ASTS'}` }}
-                    </h2>
-                    <p class="text-xs font-bold dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Kelola & pantau nilai siswa</p>
-                </div>
-            </div>
-        </template>
+        <PageHeader 
+            :title="$page.props.auth.user.role === 'admin' ? 'Monitoring Nilai' : `Input Nilai ${$page.props.sekolah?.jenis_asesmen || 'ASTS'}`"
+            description="Kelola dan pantau nilai siswa per mata pelajaran."
+            icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+        />
 
         <div class="animate-fade-in space-y-6">
             
@@ -131,7 +122,7 @@ const mapelOptions = computed(() => [
             </div>
 
             <!-- Panel Filter -->
-            <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] p-6 shadow-2xl relative overflow-hidden">
                 <!-- Dekorasi Background -->
                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
@@ -165,7 +156,7 @@ const mapelOptions = computed(() => [
             </div>
 
             <!-- Area Data & Form -->
-            <div v-if="siswas && siswas.length > 0" class="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-if="siswas && siswas.length > 0" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <form @submit.prevent="submit">
                     <!-- Header Tabel -->
                     <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-4">

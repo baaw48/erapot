@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import PageHeader from '@/Components/PageHeader.vue';
 
 const props = defineProps({
     semuaTahun: Array,
@@ -33,19 +34,11 @@ const urlLeger = (kelasId) => {
 <template>
     <Head title="Arsip Rapor" />
     <AuthenticatedLayout>
-        <template #header>
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                    </svg>
-                </div>
-                <div>
-                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Arsip Rapor</h2>
-                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Cetak Rapor & Leger Tahun Lalu</p>
-                </div>
-            </div>
-        </template>
+        <PageHeader 
+            title="Arsip Rapor" 
+            description="Cetak Rapor dan Leger dari tahun ajaran yang sudah berlalu."
+            icon="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+        />
 
         <div class="animate-fade-in space-y-6 pb-12">
 
@@ -65,7 +58,7 @@ const urlLeger = (kelasId) => {
             </div>
 
             <!-- Step 1: Pilih Tahun Ajaran -->
-            <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10">
                     <div class="flex items-center gap-3 mb-1">
@@ -110,7 +103,7 @@ const urlLeger = (kelasId) => {
 
             <!-- Step 2: Pilih Kelas & Cetak (muncul setelah tahun dipilih) -->
             <Transition enter-active-class="transition-all duration-300 ease-out" enter-from-class="opacity-0 translate-y-4" enter-to-class="opacity-100 translate-y-0">
-                <div v-if="selectedTahunId" class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative">
+                <div v-if="selectedTahunId" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative">
                     <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-green-50 dark:bg-green-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
                     <div class="px-8 py-6 border-b border-slate-100 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">

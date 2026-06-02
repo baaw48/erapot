@@ -2,6 +2,7 @@
 import { ref, watch, onMounted, computed } from 'vue';
 import { Head, router, usePage } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import PageHeader from '@/Components/PageHeader.vue';
 import Modal from '@/Components/Modal.vue';
 import SearchableSelect from '@/Components/SearchableSelect.vue';
 
@@ -124,26 +125,16 @@ const saveAll = () => {
 <template>
     <Head title="Penugasan Mengajar" />
     <AuthenticatedLayout>
-        <template #header>
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-brand-50 text-brand-600 rounded-xl">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                    </svg>
-                </div>
-                <div>
-                    <h2 class="font-black text-xl dark:text-white leading-tight tracking-tight">Penugasan Mengajar</h2>
-                    <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">
-                        Tahun Ajaran Aktif: <span class="text-brand-600">{{ tahunAktif ? tahunAktif.tahun + ' - ' + tahunAktif.semester : 'Belum Ada' }}</span>
-                    </p>
-                </div>
-            </div>
-        </template>
+        <PageHeader 
+            title="Penugasan Mengajar" 
+            :description="tahunAktif ? 'Tahun Ajaran: ' + tahunAktif.tahun + ' - ' + tahunAktif.semester : 'Belum ada tahun ajaran aktif.'"
+            icon="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+        />
         
         <div class="animate-fade-in space-y-6 max-w-[90rem] mx-auto pb-12">
             
             <!-- Tabel Data -->
-            <div class="bg-white border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
                 <div class="p-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
