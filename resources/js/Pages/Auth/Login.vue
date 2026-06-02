@@ -18,6 +18,11 @@ const isDark = ref(false);
 const focusedField = ref('');
 const isLoaded = ref(false);
 
+// Get sekolah data
+const sekolah = ref(null);
+const namaSekolah = ref('E-Rapor ASTS');
+const logoUrl = ref(null);
+
 const toggleDark = () => {
     isDark.value = !isDark.value;
     if (isDark.value) {
@@ -30,6 +35,15 @@ const toggleDark = () => {
 };
 
 onMounted(() => {
+    // Get sekolah from page props
+    if (window.$page && window.$page.props && window.$page.props.sekolah) {
+        sekolah.value = window.$page.props.sekolah;
+        if (sekolah.value) {
+            namaSekolah.value = sekolah.value.nama_sekolah || 'E-Rapor ASTS';
+            logoUrl.value = sekolah.value.logo_url || null;
+        }
+    }
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         isDark.value = true;
@@ -57,7 +71,7 @@ const submit = () => {
     <!-- Main Container -->
     <div class="min-h-screen flex" :style="{ backgroundColor: isDark ? '#030712' : '#fafbfc' }">
 
-        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <!-- Left Panel - Branding with School Logo -->
         <div class="hidden lg:flex lg:w-1/2 items-center justify-center relative overflow-hidden"
             :style="{ backgroundColor: isDark ? '#0f172a' : '#0f172a' }">
 
@@ -78,22 +92,28 @@ const submit = () => {
             <!-- Content -->
             <div class="relative z-10 text-center px-12" style="opacity: 0; transform: translateY(20px);"
                 :style="isLoaded ? { opacity: '1', transform: 'translateY(0)', transition: 'all 0.8s ease-out' } : {}">
-                <div class="mb-12">
-                    <!-- Premium Logo -->
-                    <div class="w-28 h-28 mx-auto rounded-2xl flex items-center justify-center mb-8"
+
+                <!-- School Logo -->
+                <div class="mb-10">
+                    <div v-if="logoUrl" class="mb-8">
+                        <img :src="logoUrl" alt="Logo Sekolah" class="w-32 h-32 mx-auto object-contain rounded-2xl"
+                            style="filter: drop-shadow(0 20px 40px rgba(255,255,255,0.2));">
+                    </div>
+                    <div v-else class="w-28 h-28 mx-auto rounded-2xl flex items-center justify-center mb-8"
                         style="background: linear-gradient(135deg, rgba(59,130,246,0.9), rgba(99,102,241,0.9)); box-shadow: 0 20px 40px rgba(59,130,246,0.3);">
                         <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <h1 class="text-6xl font-black text-white mb-4 tracking-tight">
-                        E-Rapor
+
+                    <!-- School Name -->
+                    <h1 class="text-5xl font-black text-white mb-4 tracking-tight">
+                        {{ namaSekolah }}
                     </h1>
-                    <p class="text-3xl font-semibold mb-8" style="color: #60a5fa;">
-                        ASTS
-                    </p>
+
+                    <!-- Tagline -->
                     <p class="text-xl text-slate-300 max-w-md mx-auto leading-relaxed">
-                        Sistem Informasi Raport Digital yang modern dan efisien
+                        Sistem Informasi Raport Digital
                     </p>
                 </div>
 
@@ -146,16 +166,19 @@ const submit = () => {
             <div class="w-full max-w-md" style="opacity: 0; transform: translateY(30px);"
                 :style="isLoaded ? { opacity: '1', transform: 'translateY(0)', transition: 'all 0.6s ease-out 0.2s' } : {}">
 
-                <!-- Mobile Logo -->
+                <!-- Mobile Logo with School Name -->
                 <div class="lg:hidden text-center mb-10">
-                    <div class="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-5"
+                    <div v-if="logoUrl" class="mb-5">
+                        <img :src="logoUrl" alt="Logo Sekolah" class="w-20 h-20 mx-auto object-contain rounded-xl">
+                    </div>
+                    <div v-else class="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-5"
                         style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 15px 30px rgba(59,130,246,0.3);">
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <h1 class="text-3xl font-bold text-white mb-1">E-Rapor</h1>
-                    <p class="text-lg font-semibold" style="color: #60a5fa;">ASTS</p>
+                    <h1 class="text-3xl font-bold text-white mb-1">{{ namaSekolah }}</h1>
+                    <p class="text-base" style="color: #60a5fa;">Sistem Raport Digital</p>
                 </div>
 
                 <!-- Header -->
@@ -301,7 +324,7 @@ const submit = () => {
 
                 <!-- Footer -->
                 <p class="mt-12 text-center text-sm" :style="{ color: isDark ? '#4b5563' : '#9ca3af' }">
-                    &copy; {{ new Date().getFullYear() }} E-Rapor ASTS. All rights reserved.
+                    &copy; {{ new Date().getFullYear() }} {{ namaSekolah }}
                 </p>
             </div>
         </div>
