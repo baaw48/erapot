@@ -32,12 +32,12 @@ const props = defineProps({
                 <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-green-50 dark:bg-green-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
                 <div class="relative z-10">
-                    <div class="px-8 py-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 backdrop-blur-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <h3 class="text-lg font-black dark:text-white">Daftar Kelas</h3>
                             <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">Pilih kelas yang ingin dicetak rapor atau leger-nya.</p>
                         </div>
-                        <div class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 border border-brand-100 rounded-xl inline-flex flex-col">
+                        <div class="px-4 py-2 bg-blue-50 dark:bg-blue-900/30 border border-brand-100 dark:border-brand-900/50 rounded-xl inline-flex flex-col">
                             <span class="text-[10px] font-black text-brand-500 uppercase tracking-widest">Tahun Ajaran Aktif</span>
                             <span class="text-sm font-bold text-brand-700">{{ tahunAktif.tahun }} ({{ tahunAktif.semester }})</span>
                         </div>
@@ -46,7 +46,7 @@ const props = defineProps({
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700/50 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                     <th class="px-6 py-4 w-16 text-center">No.</th>
                                     <th class="px-8 py-4 w-1/3">Nama Kelas</th>
                                     <th class="px-8 py-4 w-1/3">Wali Kelas</th>
@@ -92,7 +92,7 @@ const props = defineProps({
                                 </tr>
                                 <tr v-if="kelas.length === 0">
                                     <td colspan="4" class="px-8 py-16 text-center">
-                                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 mb-4">
+                                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-300 dark:text-slate-600 mb-4">
                                             <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                                         </div>
                                         <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Kelas</h3>
