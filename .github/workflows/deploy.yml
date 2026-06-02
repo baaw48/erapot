@@ -12,7 +12,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
     - name: Checkout code
@@ -27,31 +27,26 @@ jobs:
       run: npm install
 
     - name: Build assets
-      run: |
-        npm run build
-        echo "Build completed!"
+      run: npm run build
 
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.3
+      env:
+        DEPLOY_STATUS: 0
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT || 22 }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE || '' }}
         timeout: 30m
-        command_timeout: 15m
+        command_timeout: 20m
         debug: true
         script: |
-          set -e
-          export DEPLOY_STATUS=0
-
-          echo "=== Check basic server info ==="
-          whoami
-          pwd
+          echo "=== Connecting to server ==="
 
           echo "=== Navigate to deployment directory ==="
-          cd ~/public_html/baawmyid || { echo "Failed to cd to deployment dir"; exit 1; }
+          cd ~/public_html/baawmyid 2>/dev/null || { echo "Trying alternative path..."; cd /home/baaw48/public_html/baawmyid 2>/dev/null || { echo "Cannot find directory"; exit 1; } }
           pwd
 
           echo "=== Backup .env if exists ==="
@@ -61,57 +56,65 @@ jobs:
           fi
 
           echo "=== Remove old folder ==="
-          rm -rf erapot erapot.tar.gz 2>/dev/null || true
+          rm -rf erapot erapot.tar.gz erapot.zip 2>/dev/null || true
           mkdir -p erapot
           cd erapot
-          echo "Downloading repository archive..."
-          timeout 300 curl -L --max-time 300 -o erapot.zip https://github.com/baaw48/erapot/archive/refs/heads/main.zip 2>&1
+          pwd
 
-          echo "Download complete, extracting..."
-          unzip -q erapot.zip || { echo "Unzip failed"; exit 1; }
+          echo "=== Downloading repository archive ==="
+          curl -L --max-time 300 -o erapot.zip "https://github.com/baaw48/erapot/archive/refs/heads/main.zip"
+          ls -la erapot.zip
 
-          # Move all files from erapot-* subfolder to current directory
-          shopt -s dotglob nullglob
-          mv erapot-*/* . 2>/dev/null || true
-          rm -rf erapot-*
-          rm erapot.zip
-
-          echo "=== Check extracted files ==="
+          echo "=== Extract files ==="
+          unzip -o erapot.zip
           ls -la
-          ls -la resources/js/Pages/ | head -20
+
+          # Move all files from erapot-* subfolder
+          if [ -d "erapot-main" ]; then
+            cp -r erapot-main/* .
+            cp -r erapot-main/.* . 2>/dev/null || true
+            rm -rf erapot-main
+          fi
+          rm -f erapot.zip
+
+          echo "=== Verify Welcome.vue ==="
+          if [ -f "resources/js/Pages/Welcome.vue" ]; then
+            echo "Welcome.vue found! Size: $(wc -c < resources/js/Pages/Welcome.vue) bytes"
+            head -10 resources/js/Pages/Welcome.vue
+          else
+            echo "WARNING: Welcome.vue not found!"
+          fi
 
           echo "=== Restore .env file ==="
           if [ -f /tmp/erapot_env_backup ]; then
             cp /tmp/erapot_env_backup .env
             echo "Restored .env from backup!"
-            rm /tmp/erapot_env_backup
+          else
+            echo "No backup found, creating new .env"
           fi
 
-          # Generate APP_KEY
+          echo "=== Generate APP_KEY ==="
           php artisan key:generate --force
 
           echo "=== Install composer dependencies ==="
-          composer install --no-dev --optimize-autoloader --prefer-dist --ignore-platform-reqs 2>&1 || composer update --no-dev --prefer-dist --ignore-platform-reqs 2>&1
+          composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 
           echo "=== Set permissions ==="
           chmod -R 775 storage bootstrap/cache 2>/dev/null || true
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
 
-          echo "=== Clear ALL caches forcefully ==="
+          echo "=== Clear ALL caches ==="
           php artisan config:clear
           php artisan cache:clear
           php artisan view:clear
           php artisan route:clear
-          php artisan event:clear 2>/dev/null || true
-          php artisan optimize:clear
+          php artisan optimize:clear 2>/dev/null || true
 
           echo "=== Rebuild caches ==="
           php artisan config:cache
-          php artisan route:cache 2>/dev/null || true
-          php artisan view:cache
+          php artisan view:cache 2>/dev/null || true
 
-          echo "=== Verify Welcome.vue exists ==="
-          cat resources/js/Pages/Welcome.vue | head -50
+          echo "=== Final file check ==="
+          ls -la resources/js/Pages/Welcome.vue
 
-          echo "=== Deploy completed! ==="
-          echo "Please visit https://baaw48.my.id/erapot to verify"
+          echo "=== Deploy completed successfully! ==="
