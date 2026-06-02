@@ -137,7 +137,7 @@ const saveAll = () => {
             <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
-                <div class="p-6 border-b border-slate-100 bg-white/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div class="flex-1 w-full md:max-w-md">
                         <label for="filter" class="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest mb-2"
                             :class="{
@@ -172,7 +172,7 @@ const saveAll = () => {
                 </div>
 
                 <div class="overflow-x-auto relative z-10 p-2">
-                    <table class="w-full text-left border-collapse bg-white dark:bg-slate-800/50 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700">
+                    <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700/50">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <th class="px-6 py-4 w-16 text-center">No</th>
@@ -182,7 +182,7 @@ const saveAll = () => {
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
-                            <tr v-for="(mapel, index) in mapels" :key="mapel.id" class="hover:bg-slate-50/50 transition-colors group" :class="{'bg-rose-50/20': !assignments[mapel.id]}">
+                            <tr v-for="(mapel, index) in mapels" :key="mapel.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group" :class="{'bg-rose-50/50 dark:bg-rose-900/20': !assignments[mapel.id]}">
                                 <td class="px-6 py-4 text-center font-bold text-slate-400 dark:text-slate-500">
                                     {{ index + 1 }}
                                 </td>
@@ -202,11 +202,11 @@ const saveAll = () => {
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center gap-1.5">
-                                        <button @click="saveAssignment(mapel.id)" :disabled="processingMapel === mapel.id" class="p-2 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 hover:text-emerald-700 rounded-lg transition-colors font-bold text-xs flex items-center justify-center min-w-[32px] disabled:opacity-50" title="Simpan Guru">
+                                        <button @click="saveAssignment(mapel.id)" :disabled="processingMapel === mapel.id" class="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center min-w-[32px] disabled:opacity-50" title="Simpan Guru">
                                             <svg v-if="processingMapel === mapel.id" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                                             <svg v-else class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                         </button>
-                                        <button @click="clearAssignment(mapel.id)" :disabled="processingMapel === mapel.id || !assignments[mapel.id]" class="p-2 bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 rounded-lg transition-colors font-bold text-xs flex items-center justify-center disabled:opacity-50" title="Kosongkan Guru">
+                                        <button @click="clearAssignment(mapel.id)" :disabled="processingMapel === mapel.id || !assignments[mapel.id]" class="p-2 bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 hover:text-rose-700 dark:hover:text-rose-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center disabled:opacity-50" title="Kosongkan Guru">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                                         </button>
                                     </div>
@@ -224,7 +224,7 @@ const saveAll = () => {
                     </table>
                 </div>
 
-                <div v-if="mapels.length > 0 && filterKelasId" class="p-6 border-t border-slate-100 bg-slate-50/50 flex justify-end">
+                <div v-if="mapels.length > 0 && filterKelasId" class="p-6 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-end">
                     <button @click="saveAll" :disabled="isSavingBulk" class="px-6 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-black rounded-xl shadow-md shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all flex items-center gap-2 disabled:opacity-70">
                         <svg v-if="isSavingBulk" class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                         <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
