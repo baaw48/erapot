@@ -24,7 +24,12 @@ class AuthenticatedSessionController extends Controller
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
-            'sekolah' => $sekolah,
+            'sekolah' => $sekolah ? [
+                'id' => $sekolah->id,
+                'nama_sekolah' => $sekolah->nama_sekolah,
+                'logo_url' => $sekolah->logo_url,
+                'alamat' => $sekolah->alamat,
+            ] : null,
         ]);
     }
 

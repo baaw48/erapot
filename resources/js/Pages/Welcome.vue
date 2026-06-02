@@ -34,15 +34,6 @@ onMounted(() => {
         document.documentElement.classList.add('dark');
     }
 });
-
-// Helper to get sekolah data
-const getNamaSekolah = (props) => {
-    return props.sekolah?.nama_sekolah || 'E-Rapor ASTS';
-};
-
-const getLogoUrl = (props) => {
-    return props.sekolah?.logo_url || null;
-};
 </script>
 
 <template>
@@ -76,7 +67,7 @@ const getLogoUrl = (props) => {
 
             <!-- Logo -->
             <div class="mb-8">
-                <div v-if="sekolah && sekolah.logo_url" class="mb-4">
+                <div v-if="sekolah && sekolah.logo_url">
                     <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-28 h-28 mx-auto object-contain rounded-2xl"
                         style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));">
                 </div>
@@ -90,7 +81,7 @@ const getLogoUrl = (props) => {
                 <!-- School Name -->
                 <h1 class="text-4xl md:text-5xl font-black mb-2"
                     :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
-                    {{ getNamaSekolah($page.props) }}
+                    {{ sekolah?.nama_sekolah || 'E-Rapor ASTS' }}
                 </h1>
                 <p class="text-xl font-semibold" style="color: #3b82f6;">
                     Sistem Raport Digital
@@ -141,7 +132,7 @@ const getLogoUrl = (props) => {
         <!-- Footer -->
         <p class="mt-10 text-sm"
             :style="{ color: isDark ? '#64748b' : '#94a3b8' }">
-            &copy; {{ new Date().getFullYear() }} {{ getNamaSekolah($page.props) }}
+            &copy; {{ new Date().getFullYear() }} {{ sekolah?.nama_sekolah || 'E-Rapor ASTS' }}
         </p>
     </div>
 </template>

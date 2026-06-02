@@ -16,7 +16,12 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'sekolah' => $sekolah,
+        'sekolah' => $sekolah ? [
+            'id' => $sekolah->id,
+            'nama_sekolah' => $sekolah->nama_sekolah,
+            'logo_url' => $sekolah->logo_url,
+            'alamat' => $sekolah->alamat,
+        ] : null,
     ]);
 });
 
