@@ -26,7 +26,7 @@ class Sekolah extends Model
         if ($this->logo_path) {
             // Use public/logos/ directly to avoid symlink issues on Windows/cPanel
             $filename = basename($this->logo_path);
-            return '/logos/' . $filename;
+            return asset('logos/' . $filename);
         }
         return null;
     }
