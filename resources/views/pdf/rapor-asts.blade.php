@@ -223,10 +223,10 @@
                 <td class="header-logo">
                     <!-- Placeholder logo, since we may not have direct base64 image here. If user uploads, we can use it. -->
                     <!-- Currently we fall back to a text if no logo, or use empty space -->
-                    @if($sekolah && $sekolah->getLogoUrl())
-                        <img src="{{ $sekolah->getLogoUrl() }}" alt="Logo">
-                    @else
-                        <!-- No Logo -->
+                    @if($logoBase64)
+                        <img src="{{ $logoBase64 }}" alt="Logo" style="max-width: 60px; max-height: 60px;">
+                    @elseif($sekolah && $sekolah->getLogoUrl())
+                        <img src="{{ $sekolah->getLogoUrl() }}" alt="Logo" style="max-width: 60px; max-height: 60px;">
                     @endif
                 </td>
                 <td class="header-text">

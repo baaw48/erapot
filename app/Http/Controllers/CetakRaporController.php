@@ -111,7 +111,8 @@ class CetakRaporController extends Controller
             'tahunAktif' => $tahunAktif,
             'siswas' => $siswas,
             'sekolah' => $sekolah,
-            'mapels' => $mapels
+            'mapels' => $mapels,
+            'logoBase64' => $sekolah ? $sekolah->getLogoUrl() : null,
         ])->setPaper([0, 0, 612.283, 936], 'portrait');
 
         return $pdf->stream('Rapor-ASTS-' . $kelas->nama_kelas . '.pdf');
@@ -196,7 +197,8 @@ class CetakRaporController extends Controller
             'tahunAktif' => $tahunAktif,
             'siswas' => $siswas,
             'sekolah' => $sekolah,
-            'mapels' => $mapels
+            'mapels' => $mapels,
+            'logoBase64' => $sekolah ? $sekolah->getLogoUrl() : null,
         ])->setPaper('A4', 'landscape');
 
         return $pdf->stream('Leger-ASTS-' . $kelas->nama_kelas . '.pdf');

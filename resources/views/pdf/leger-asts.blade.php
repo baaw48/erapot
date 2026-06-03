@@ -151,7 +151,9 @@
     <table class="kop-table" style="width: 100%;">
         <tr>
             <td class="kop-logo">
-                @if($sekolah && $sekolah->getLogoUrl())
+                @if($logoBase64)
+                    <img src="{{ $logoBase64 }}" alt="Logo">
+                @elseif($sekolah && $sekolah->getLogoUrl())
                     <img src="{{ $sekolah->getLogoUrl() }}" alt="Logo">
                 @endif
             </td>

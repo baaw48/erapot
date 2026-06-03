@@ -56,23 +56,57 @@ class Sekolah extends Model
 
     public function getLogoPath(): ?string
     {
+        // First try to find the logo file
         foreach ($this->getLogoSearchPaths() as $path) {
             if ($path && file_exists($path) && is_file($path)) {
                 return $path;
             }
         }
+
+        // Log for debugging if logo_path is set but file not found
+        if ($this->logo_path) {
+            Log::warning('Logo file not found in any path. logo_path in DB: ' . $this->logo_path);
+            Log::warning('Searched paths: ' . implode(', ', array_filter($this->getLogoSearchPaths())));
+        }
+
         return null;
     }
 
     public function getLogoUrl(): ?string
     {
+        // Try getLogoPath first
         $path = $this->getLogoPath();
 
-        if (!$path) {
-            Log::debug('Logo tidak ditemukan untuk sekolah ID: ' . $this->id . ', logo_path: ' . ($this->logo_path ?? 'null'));
-            return null;
+        if ($path) {
+            return $this->generateBase64FromPath($path);
         }
 
+        // Fallback: Try to load logo directly from known locations even if logo_path is empty/wrong
+        $fallbackPaths = [
+            public_path('logos/logo.png'),
+            public_path('logos/logo.jpg'),
+            public_path('logos/logo.jpeg'),
+            public_path('logos/logo.svg'),
+            public_path('favicon.png'),
+            public_path('favicon.ico'),
+            public_path('img/logo.png'),
+        ];
+
+        foreach ($fallbackPaths as $fallbackPath) {
+            if (file_exists($fallbackPath) && is_file($fallbackPath) && is_readable($fallbackPath)) {
+                return $this->generateBase64FromPath($fallbackPath);
+            }
+        }
+
+        Log::debug('Logo tidak ditemukan untuk sekolah ID: ' . $this->id . ', logo_path: ' . ($this->logo_path ?? 'null'));
+        return null;
+    }
+
+    /**
+     * Generate base64 data URL from file path
+     */
+    protected function generateBase64FromPath(string $path): ?string
+    {
         if (!file_exists($path) || !is_readable($path)) {
             Log::warning('Logo file exists but not readable: ' . $path);
             return null;
@@ -94,6 +128,7 @@ class Sekolah extends Model
                 'gif' => 'image/gif',
                 'svg' => 'image/svg+xml',
                 'webp' => 'image/webp',
+                'ico' => 'image/x-icon',
             ];
 
             $mime = $mimeTypes[strtolower($type)] ?? 'image/png';
