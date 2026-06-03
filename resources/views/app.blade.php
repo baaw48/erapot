@@ -7,11 +7,7 @@
 
         <title inertia>{{ config('app.name', 'E-RAPOT') }}</title>
 
-        @php
-            $sekolah = \App\Models\Sekolah::first();
-            $favicon = $sekolah && $sekolah->getLogoUrl() ? $sekolah->getLogoUrl() : asset('favicon.ico');
-        @endphp
-        <link rel="icon" href="{{ $favicon }}">
+        <link rel="icon" type="image/png" href="{{ route('logo') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -94,4 +94,13 @@ class SekolahController extends Controller
 
         return redirect()->back()->with('success', 'Pengaturan rapor berhasil diperbarui.');
     }
+
+    public function logo()
+    {
+        $sekolah = Sekolah::first();
+        if ($sekolah && $path = $sekolah->getLogoPath()) {
+            return response()->file($path);
+        }
+        return response()->file(public_path('favicon.ico'));
+    }
 }
