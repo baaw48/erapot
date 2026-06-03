@@ -37,101 +37,159 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Selamat Datang - E-Rapor ASTS" />
+    <Head title="Selamat Datang - E-Rapor Digital" />
 
     <!-- Main Container -->
-    <div class="min-h-screen flex flex-col items-center justify-center p-6"
-        :style="{ backgroundColor: isDark ? '#0f172a' : '#f8fafc' }">
+    <div class="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden transition-colors duration-300"
+        :class="isDark ? 'bg-slate-950' : 'bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50'">
 
-        <!-- Toggle Button -->
+        <!-- Background Decoration -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl opacity-30 transition-colors duration-300"
+                :class="isDark ? 'bg-blue-600' : 'bg-blue-400'"></div>
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl opacity-20 transition-colors duration-300"
+                :class="isDark ? 'bg-indigo-600' : 'bg-indigo-400'"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-10 transition-colors duration-300"
+                :class="isDark ? 'bg-purple-600' : 'bg-purple-300'"></div>
+        </div>
+
+        <!-- Dark Mode Toggle -->
         <button
             @click="toggleDark"
-            class="fixed top-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg"
-            :style="{ backgroundColor: isDark ? '#fbbf24' : '#e2e8f0' }"
+            class="fixed top-6 right-6 z-50 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-xl backdrop-blur-sm border"
+            :class="isDark
+                ? 'bg-slate-800/80 border-slate-700 text-amber-400 hover:bg-slate-700'
+                : 'bg-white/80 border-slate-200 text-slate-600 hover:bg-white'"
         >
-            <svg v-if="!isDark" class="w-6 h-6" :style="{ color: '#1e293b' }" fill="currentColor" viewBox="0 0 24 24">
+            <!-- Moon icon (show when light) -->
+            <svg v-if="!isDark" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
             </svg>
-            <svg v-else class="w-6 h-6" :style="{ color: '#000000' }" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0z"/>
+            <!-- Sun icon (show when dark) -->
+            <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.166 17.834a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 001.061-1.06l-1.59-1.591zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.166 6.166a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
             </svg>
         </button>
 
         <!-- Main Card -->
-        <div class="w-full max-w-lg rounded-3xl p-10 text-center border-4"
-            :style="{
-                backgroundColor: isDark ? '#1e293b' : '#ffffff',
-                borderColor: isDark ? '#334155' : '#e2e8f0',
-                boxShadow: isDark ? '0 25px 50px -12px rgba(0,0,0,0.5)' : '0 25px 50px -12px rgba(0,0,0,0.15)'
-            }">
+        <div class="w-full max-w-md relative z-10 animate-card-in">
+            <!-- Glassmorphism Card -->
+            <div class="rounded-[2.5rem] p-10 text-center backdrop-blur-xl border shadow-2xl transition-all duration-300"
+                :class="isDark
+                    ? 'bg-slate-800/70 border-slate-700/60 shadow-black/40'
+                    : 'bg-white/80 border-white/60 shadow-blue-100/50'">
 
-            <!-- Logo -->
-            <div class="mb-6">
-                <div v-if="sekolah && sekolah.logo_url">
-                    <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-32 h-32 mx-auto object-contain rounded-2xl bg-white p-3 shadow-lg">
+                <!-- Logo / Icon -->
+                <div class="mb-8 flex justify-center">
+                    <div v-if="sekolah && sekolah.logo_url"
+                        class="w-28 h-28 rounded-3xl overflow-hidden border-4 shadow-xl flex items-center justify-center"
+                        :class="isDark ? 'bg-slate-700 border-slate-600' : 'bg-white border-blue-100'">
+                        <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-full h-full object-contain p-2">
+                    </div>
+                    <div v-else
+                        class="w-24 h-24 rounded-3xl flex items-center justify-center shadow-xl shadow-blue-500/30"
+                        style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
                 </div>
-                <div v-else class="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center mb-4"
-                    :style="{ background: 'linear-gradient(135deg, #3b82f6, #6366f1)' }">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                    </svg>
+
+                <!-- App Badge -->
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-5 border"
+                    :class="isDark
+                        ? 'bg-blue-900/40 text-blue-400 border-blue-800/50'
+                        : 'bg-blue-50 text-blue-600 border-blue-100'">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                    Sistem Raport Digital
+                </div>
+
+                <!-- School Name -->
+                <h1 class="text-3xl font-black mb-2 leading-tight transition-colors duration-300"
+                    :class="isDark ? 'text-white' : 'text-slate-900'">
+                    {{ sekolah && sekolah.nama_sekolah ? sekolah.nama_sekolah : 'E-Rapor Digital' }}
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-sm font-semibold mb-8 transition-colors duration-300"
+                    :class="isDark ? 'text-slate-400' : 'text-slate-500'">
+                    Selamat datang! Silakan masuk untuk melanjutkan.
+                </p>
+
+                <!-- Divider -->
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="flex-1 h-px transition-colors duration-300"
+                        :class="isDark ? 'bg-slate-700' : 'bg-slate-100'"></div>
+                    <span class="text-[10px] font-black uppercase tracking-widest transition-colors duration-300"
+                        :class="isDark ? 'text-slate-600' : 'text-slate-300'">masuk dengan akun</span>
+                    <div class="flex-1 h-px transition-colors duration-300"
+                        :class="isDark ? 'bg-slate-700' : 'bg-slate-100'"></div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-col gap-3">
+                    <template v-if="$page.props.auth?.user">
+                        <Link :href="route('dashboard')"
+                            class="w-full px-8 py-4 text-white font-bold rounded-2xl transition-all text-base flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0"
+                            style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
+                            <span>Masuk Dashboard</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                        </Link>
+                    </template>
+                    <template v-else>
+                        <Link :href="route('login')"
+                            class="w-full px-8 py-4 text-white font-bold rounded-2xl transition-all text-base flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0"
+                            style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                            <span>Login ke Sistem</span>
+                        </Link>
+
+                        <Link v-if="canRegister" :href="route('register')"
+                            class="w-full px-8 py-4 font-bold rounded-2xl transition-all text-base flex items-center justify-center gap-2 border hover:-translate-y-0.5 active:translate-y-0"
+                            :class="isDark
+                                ? 'bg-slate-700/50 border-slate-600 text-slate-200 hover:bg-slate-700'
+                                : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                            <span>Daftar Akun</span>
+                        </Link>
+                    </template>
                 </div>
             </div>
 
-            <!-- School Name - Large and Clear -->
-            <h1 class="text-3xl md:text-4xl font-black mb-3"
-                :style="{ color: isDark ? '#f8fafc' : '#0f172a' }">
-                {{ sekolah && sekolah.nama_sekolah ? sekolah.nama_sekolah : 'E-Rapor ASTS' }}
-            </h1>
-            <p class="text-lg font-semibold mb-8" style="color: #3b82f6;">
-                Sistem Raport Digital
-            </p>
-
-            <!-- Decorative Line -->
-            <div class="mb-10">
-                <div class="w-20 h-1 mx-auto rounded-full"
-                    :style="{ backgroundColor: isDark ? '#475569' : '#e2e8f0' }"></div>
-            </div>
-
-            <!-- Description -->
-            <p class="text-base mb-10"
-                :style="{ color: isDark ? '#94a3b8' : '#64748b' }">
-                Selamat datang di sistem informasi raport digital. Silakan masuk untuk melanjutkan.
-            </p>
-
-            <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <template v-if="$page.props.auth?.user">
-                    <Link :href="route('dashboard')" class="px-8 py-4 text-white font-bold rounded-xl transition-all text-lg flex items-center justify-center gap-2"
-                        style="backgroundColor: #3b82f6;">
-                        <span>Masuk Dashboard</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                    </Link>
-                </template>
-                <template v-else>
-                    <Link :href="route('login')" class="px-8 py-4 text-white font-bold rounded-xl transition-all text-lg flex items-center justify-center gap-2"
-                        style="backgroundColor: #3b82f6; box-shadow: 0 10px 15px -3px rgba(59,130,246,0.3);">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                        <span>Login</span>
-                    </Link>
-
-                    <Link v-if="canRegister" :href="route('register')" class="px-8 py-4 font-bold rounded-xl transition-all text-lg flex items-center justify-center gap-2"
-                        :style="{
-                            backgroundColor: isDark ? '#334155' : '#f1f5f9',
-                            color: isDark ? '#f8fafc' : '#334155',
-                            border: '2px solid ' + (isDark ? '#475569' : '#e2e8f0')
-                        }">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                        <span>Daftar</span>
-                    </Link>
-                </template>
+            <!-- Feature Pills -->
+            <div class="flex items-center justify-center gap-3 mt-6 flex-wrap">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm border transition-colors duration-300"
+                    :class="isDark ? 'bg-slate-800/60 border-slate-700/50 text-slate-400' : 'bg-white/70 border-slate-200/70 text-slate-500'">
+                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    Raport Digital
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm border transition-colors duration-300"
+                    :class="isDark ? 'bg-slate-800/60 border-slate-700/50 text-slate-400' : 'bg-white/70 border-slate-200/70 text-slate-500'">
+                    <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    Aman & Terpercaya
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm border transition-colors duration-300"
+                    :class="isDark ? 'bg-slate-800/60 border-slate-700/50 text-slate-400' : 'bg-white/70 border-slate-200/70 text-slate-500'">
+                    <svg class="w-3.5 h-3.5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Cepat & Modern
+                </span>
             </div>
         </div>
 
         <!-- Footer -->
-        <p class="mt-10 text-sm"
-            :style="{ color: isDark ? '#64748b' : '#94a3b8' }">
-            &copy; {{ new Date().getFullYear() }} {{ sekolah?.nama_sekolah || 'E-Rapor ASTS' }}
+        <p class="mt-8 text-xs font-medium relative z-10 transition-colors duration-300"
+            :class="isDark ? 'text-slate-600' : 'text-slate-400'">
+            &copy; {{ new Date().getFullYear() }} {{ sekolah?.nama_sekolah || 'E-Rapor Digital' }} &mdash; All rights reserved.
         </p>
     </div>
 </template>
+
+<style scoped>
+.animate-card-in {
+    animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes cardIn {
+    0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
