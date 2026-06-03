@@ -37,7 +37,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Selamat Datang - E-Rapor Digital" />
+    <Head title="Selamat Datang - E-Rapor Digital">
+        <link v-if="sekolah && sekolah.logo_url" rel="icon" type="image/png" :href="sekolah.logo_url" />
+        <link v-else rel="icon" type="image/x-icon" href="/favicon.ico" />
+    </Head>
 
     <!-- Main Container -->
     <div class="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8 relative overflow-y-auto overflow-x-hidden transition-colors duration-300"

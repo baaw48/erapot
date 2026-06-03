@@ -17,6 +17,7 @@ const page = usePage();
 const userRole = computed(() => page.props.auth?.user?.role || 'guest');
 const userName = computed(() => page.props.auth?.user?.name || 'Pengguna');
 const kelasDiampu = computed(() => page.props.auth?.user?.kelas_diampu || null);
+const sekolah = computed(() => page.props.sekolah);
 
 // Dynamic Greeting based on time
 const greeting = ref('');
@@ -79,7 +80,10 @@ const gradeColor = (nilai) => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Dashboard">
+        <link v-if="sekolah && sekolah.logo_url" rel="icon" type="image/png" :href="sekolah.logo_url" />
+        <link v-else rel="icon" type="image/x-icon" href="/favicon.ico" />
+    </Head>
 
     <AuthenticatedLayout>
         <template #header>
