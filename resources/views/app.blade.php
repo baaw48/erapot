@@ -7,7 +7,8 @@
 
         <title inertia>{{ config('app.name', 'E-RAPOT') }}</title>
 
-        <link rel="icon" type="image/png" href="{{ route('logo') }}">
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
