@@ -40,7 +40,7 @@ onMounted(() => {
     <Head title="Selamat Datang - E-Rapor Digital" />
 
     <!-- Main Container -->
-    <div class="min-h-screen flex p-4 sm:p-6 md:p-8 relative overflow-y-auto overflow-x-hidden transition-colors duration-300"
+    <div class="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8 relative overflow-y-auto overflow-x-hidden transition-colors duration-300"
         :class="isDark ? 'bg-slate-950' : 'bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50'">
 
         <!-- Background Decoration (Isolated to prevent scrollbars) -->
@@ -83,9 +83,8 @@ onMounted(() => {
                 <!-- Logo / Icon -->
                 <div class="mb-6 sm:mb-8 flex justify-center">
                     <div v-if="sekolah && sekolah.logo_url"
-                        class="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl sm:rounded-3xl overflow-hidden border-4 shadow-xl flex items-center justify-center"
-                        :class="isDark ? 'bg-slate-700 border-slate-600' : 'bg-white border-blue-100'">
-                        <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-full h-full object-contain p-2">
+                        class="w-28 h-28 sm:w-36 sm:h-36 flex items-center justify-center">
+                        <img :src="sekolah.logo_url" alt="Logo Sekolah" class="w-full h-full object-contain filter drop-shadow-2xl">
                     </div>
                     <div v-else
                         class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl shadow-blue-500/30"
@@ -178,10 +177,12 @@ onMounted(() => {
         </div>
 
         <!-- Footer -->
-        <p class="mt-8 text-xs font-medium relative z-10 transition-colors duration-300"
-            :class="isDark ? 'text-slate-600' : 'text-slate-400'">
-            &copy; {{ new Date().getFullYear() }} {{ sekolah?.nama_sekolah || 'E-Rapor Digital' }} &mdash; All rights reserved.
-        </p>
+        <div class="mt-auto pt-8 pb-4 text-center">
+            <p class="text-xs font-medium relative z-10 transition-colors duration-300"
+                :class="isDark ? 'text-slate-600' : 'text-slate-400'">
+                &copy; {{ new Date().getFullYear() }} {{ sekolah?.nama_sekolah || 'E-Rapor Digital' }} &mdash; All rights reserved.
+            </p>
+        </div>
     </div>
 </template>
 
