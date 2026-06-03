@@ -49,10 +49,21 @@ jobs:
           cd ~/public_html/baawmyid 2>/dev/null || { echo "Trying alternative path..."; cd /home/baaw48/public_html/baawmyid 2>/dev/null || { echo "Cannot find directory"; exit 1; } }
           pwd
 
-          echo "=== Backup .env if exists ==="
+          echo "=== Backup critical files ==="
+          # Backup .env
           if [ -f erapot/.env ]; then
             cp erapot/.env /tmp/erapot_env_backup
-            echo "Backed up existing .env"
+            echo "Backed up .env"
+          fi
+          # Backup logos folder (file upload/logo sekolah)
+          if [ -d "erapot/public/logos" ]; then
+            cp -r erapot/public/logos /tmp/erapot_logos_backup
+            echo "Backed up logos folder"
+          fi
+          # Backup storage/app/public (file upload lainnya)
+          if [ -d "erapot/storage/app/public" ]; then
+            cp -r erapot/storage/app/public /tmp/erapot_storage_backup -r
+            echo "Backed up storage/app/public"
           fi
 
           echo "=== Remove old folder ==="
@@ -77,6 +88,32 @@ jobs:
           fi
           rm -f erapot.zip
 
+          echo "=== Restore backed up files ==="
+          # Restore .env
+          if [ -f /tmp/erapot_env_backup ]; then
+            cp /tmp/erapot_env_backup .env
+            echo "Restored .env"
+          fi
+          # Restore logos folder
+          if [ -d /tmp/erapot_logos_backup ]; then
+            mkdir -p public/logos
+            cp -r /tmp/erapot_logos_backup/* public/logos/
+            echo "Restored logos folder"
+          fi
+          # Restore storage/app/public
+          if [ -d /tmp/erapot_storage_backup ]; then
+            mkdir -p storage/app/public
+            cp -r /tmp/erapot_storage_backup/* storage/app/public/
+            echo "Restored storage/app/public"
+          fi
+
+          echo "=== Verify logo exists ==="
+          if [ -f "public/logos/"* ]; then
+            echo "Logo file found: $(ls -la public/logos/)"
+          else
+            echo "WARNING: No logo file found in public/logos/"
+          fi
+
           echo "=== Verify Welcome.vue ==="
           if [ -f "resources/js/Pages/Welcome.vue" ]; then
             echo "Welcome.vue found! Size: $(wc -c < resources/js/Pages/Welcome.vue) bytes"
@@ -85,16 +122,8 @@ jobs:
             echo "WARNING: Welcome.vue not found!"
           fi
 
-          echo "=== Restore .env file ==="
-          if [ -f /tmp/erapot_env_backup ]; then
-            cp /tmp/erapot_env_backup .env
-            echo "Restored .env from backup!"
-          else
-            echo "No backup found, creating new .env"
-          fi
-
-          echo "=== Generate APP_KEY ==="
-          php artisan key:generate --force
+          echo "=== Generate APP_KEY if needed ==="
+          php artisan key:generate --force 2>/dev/null || echo "key:generate skipped (may already exist)"
 
           echo "=== Install composer dependencies ==="
           composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
@@ -102,19 +131,28 @@ jobs:
           echo "=== Set permissions ==="
           chmod -R 775 storage bootstrap/cache 2>/dev/null || true
           chmod -R 777 storage/framework/views storage/framework/sessions storage/framework/cache storage/logs 2>/dev/null || true
+          chmod -R 775 public/logos 2>/dev/null || true
 
-          echo "=== Clear ALL caches ==="
+          echo "=== Clear ALL caches (IMPORTANT) ==="
           php artisan config:clear
           php artisan cache:clear
           php artisan view:clear
           php artisan route:clear
-          php artisan optimize:clear 2>/dev/null || true
+          php artisan event:clear 2>/dev/null || true
+          php artisan optimize:clear
+          php artisan clear-compiled 2>/dev/null || true
 
           echo "=== Rebuild caches ==="
           php artisan config:cache
           php artisan view:cache 2>/dev/null || true
+          php artisan route:cache 2>/dev/null || true
 
           echo "=== Final file check ==="
+          echo "Logo files:"
+          ls -la public/logos/ 2>/dev/null || echo "No logos folder"
+          echo ""
+          echo "Welcome.vue:"
           ls -la resources/js/Pages/Welcome.vue
 
           echo "=== Deploy completed successfully! ==="
+          date
