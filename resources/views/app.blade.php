@@ -9,7 +9,7 @@
 
         @php
             $sekolah = \App\Models\Sekolah::first();
-            $favicon = $sekolah && $sekolah->logo_path ? asset('storage/' . $sekolah->logo_path) : asset('favicon.ico');
+            $favicon = $sekolah && $sekolah->getLogoUrl() ? $sekolah->getLogoUrl() : asset('favicon.ico');
         @endphp
         <link rel="icon" href="{{ $favicon }}">
 

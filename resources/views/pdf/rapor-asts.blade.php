@@ -223,8 +223,8 @@
                 <td class="header-logo">
                     <!-- Placeholder logo, since we may not have direct base64 image here. If user uploads, we can use it. -->
                     <!-- Currently we fall back to a text if no logo, or use empty space -->
-                    @if($sekolah && $sekolah->logo_path && file_exists(public_path('storage/' . $sekolah->logo_path)))
-                        <img src="{{ public_path('storage/' . $sekolah->logo_path) }}" alt="Logo">
+                    @if($sekolah && $sekolah->getLogoUrl())
+                        <img src="{{ $sekolah->getLogoUrl() }}" alt="Logo">
                     @else
                         <!-- No Logo -->
                     @endif

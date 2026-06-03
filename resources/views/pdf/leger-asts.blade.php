@@ -151,8 +151,8 @@
     <table class="kop-table" style="width: 100%;">
         <tr>
             <td class="kop-logo">
-                @if($sekolah && $sekolah->logo_path && file_exists(public_path('storage/' . $sekolah->logo_path)))
-                    <img src="{{ public_path('storage/' . $sekolah->logo_path) }}" alt="Logo">
+                @if($sekolah && $sekolah->getLogoUrl())
+                    <img src="{{ $sekolah->getLogoUrl() }}" alt="Logo">
                 @endif
             </td>
             <td class="kop-text">
