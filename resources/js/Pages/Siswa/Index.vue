@@ -149,16 +149,17 @@ const executeDelete = () => {
             </div>
 
             <!-- Main Card -->
-            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden hover:shadow-primary-500/5 transition-all duration-300">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] shadow-2xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden hover:shadow-primary-500/5 transition-all duration-300">
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <!-- Filters -->
-                        <div class="flex flex-col sm:flex-row gap-3 flex-1">
-                            <div class="flex-1 max-w-xs">
-                                <label class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Cari</label>
+                <div class="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30">
+                    <!-- Mobile: Stacked filters -->
+                    <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                        <!-- Filters - Full width on mobile -->
+                        <div class="flex flex-col xs:flex-row gap-2 sm:gap-3 flex-1 w-full">
+                            <!-- Search -->
+                            <div class="flex-1 min-w-0">
                                 <div class="relative">
-                                    <input v-model="searchQuery" type="text" placeholder="Nama, NIS, NISN..." class="w-full bg-white dark:bg-slate-800 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
+                                    <input v-model="searchQuery" type="text" placeholder="Cari..." class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all pl-10" />
                                     <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                     <button v-if="searchQuery" @click="searchQuery = ''" class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 dark:text-slate-500 hover:text-rose-500">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -166,113 +167,106 @@ const executeDelete = () => {
                                 </div>
                             </div>
 
-                            <div class="w-full sm:w-44">
-                                <label class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Kelas</label>
-                                <div class="relative">
-                                    <select v-model="filterKelasId" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
-                                        <option value="">Semua Kelas</option>
+                            <!-- Kelas & Tampilkan - side by side on mobile -->
+                            <div class="flex gap-2 xs:flex-1">
+                                <div class="w-1/2 xs:w-auto xs:flex-1">
+                                    <select v-model="filterKelasId" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                                        <option value="">Kelas</option>
                                         <option v-for="k in kelas" :key="k.id" :value="k.id">{{ k.nama_kelas }}</option>
                                     </select>
-                                    <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
-                            </div>
-
-                            <div class="w-full sm:w-32">
-                                <label class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Tampilkan</label>
-                                <div class="relative">
-                                    <select v-model="perPage" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                                <div class="w-1/2 xs:w-auto">
+                                    <select v-model="perPage" class="w-full dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
                                     </select>
-                                    <svg class="h-4 w-4 text-slate-400 dark:text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Actions -->
-                        <div class="flex items-center gap-3">
-                            <div class="hidden md:block text-right mr-2">
-                                <span class="text-xs text-slate-400 dark:text-slate-500">Total:</span>
-                                <span class="text-lg font-bold text-primary-600 ml-1">{{ siswas.total }}</span>
-                            </div>
-                            <button @click="openImportModal" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
+                        <!-- Actions - Compact on mobile -->
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button @click="openImportModal" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 text-xs sm:text-sm font-medium rounded-xl transition-all">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                                Import
+                                <span class="hidden sm:inline">Import</span>
                             </button>
-                            <a :href="filterKelasId ? route('siswa.export', { kelas_id: filterKelasId }) : route('siswa.export')" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-white dark:text-white dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 text-sm font-medium rounded-xl transition-all">
-                                <svg class="h-4 w-4 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                Export
-                            </a>
-                            <button @click="openAddModal" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-primary-500/30 hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                            <button @click="openAddModal" class="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-500 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-lg shadow-primary-500/30 hover:shadow-xl hover:-translate-y-0.5 transition-all">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                                Tambah
+                                <span class="hidden xs:inline">Tambah</span>
                             </button>
                         </div>
                     </div>
+
+                    <!-- Total - only on desktop -->
+                    <div class="hidden lg:flex justify-end mt-3 pt-3 border-t border-slate-200/50 dark:border-slate-700/50">
+                        <span class="text-sm text-slate-500 dark:text-slate-400">Total: </span>
+                        <span class="text-lg font-bold text-primary-600 ml-1">{{ siswas.total }}</span>
+                    </div>
                 </div>
 
-                <!-- Table -->
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                <!-- Table - Scroll horizontally on mobile -->
+                <div class="overflow-x-auto -mx-4 sm:mx-0">
+                    <table class="w-full text-left min-w-[600px] sm:min-w-0">
                         <thead>
-                            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                                <th class="px-6 py-3.5 text-center w-16">No</th>
-                                <th class="px-6 py-3.5">NIS / NISN</th>
-                                <th class="px-6 py-3.5">Nama Siswa</th>
-                                <th class="px-6 py-3.5 text-center w-16">JK</th>
-                                <th class="px-6 py-3.5">Kelas</th>
-                                <th class="px-6 py-3.5 text-right w-32">Aksi</th>
+                            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                <th class="px-4 sm:px-6 py-3.5 text-center w-12">No</th>
+                                <th class="px-4 sm:px-6 py-3.5">Nama Siswa</th>
+                                <th class="px-4 sm:px-6 py-3.5 hidden xs:table-cell">NIS</th>
+                                <th class="px-4 sm:px-6 py-3.5 text-center w-12">JK</th>
+                                <th class="px-4 sm:px-6 py-3.5 hidden sm:table-cell">Kelas</th>
+                                <th class="px-4 sm:px-6 py-3.5 text-right w-20">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
                             <tr v-for="(siswa, index) in siswas.data" :key="siswa.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500">
+                                <td class="px-4 sm:px-6 py-3 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
                                     {{ (siswas.current_page - 1) * siswas.per_page + index + 1 }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="font-semibold text-slate-700 dark:text-white dark:text-white dark:text-slate-200 dark:text-slate-200">{{ siswa.nis }}</div>
-                                    <div class="text-xs text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500">{{ siswa.nisn || '-' }}</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-9 w-9 rounded-lg flex items-center justify-center font-bold text-sm"
+                                <td class="px-4 sm:px-6 py-3">
+                                    <div class="flex items-center gap-2 sm:gap-3">
+                                        <div class="h-8 w-8 sm:h-9 sm:w-9 rounded-lg flex items-center justify-center font-bold text-xs sm:text-sm shrink-0"
                                             :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400'">
                                             {{ siswa.nama_siswa.charAt(0) }}
                                         </div>
-                                        <span class="font-medium text-slate-700 dark:text-white dark:text-white dark:text-slate-200 dark:text-slate-200">{{ siswa.nama_siswa }}</span>
+                                        <div class="min-w-0">
+                                            <div class="font-medium text-slate-700 dark:text-white truncate max-w-[120px] sm:max-w-none">{{ siswa.nama_siswa }}</div>
+                                            <div class="text-xs text-slate-400 dark:text-slate-500 xs:hidden">{{ siswa.nis }}</div>
+                                        </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg font-semibold text-xs"
+                                <td class="px-4 sm:px-6 py-3 hidden xs:table-cell">
+                                    <div class="font-semibold text-slate-700 dark:text-white">{{ siswa.nis }}</div>
+                                    <div class="text-xs text-slate-400 dark:text-slate-500">{{ siswa.nisn || '-' }}</div>
+                                </td>
+                                <td class="px-4 sm:px-6 py-3 text-center">
+                                    <span class="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg font-semibold text-xs"
                                         :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400'">
                                         {{ siswa.jenis_kelamin }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium border border-blue-100 dark:border-blue-800">
+                                <td class="px-4 sm:px-6 py-3 hidden sm:table-cell">
+                                    <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium border border-blue-100 dark:border-blue-800">
                                         {{ siswa.kelas?.nama_kelas || '-' }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-right">
+                                <td class="px-4 sm:px-6 py-3 text-right">
                                     <div class="flex items-center justify-end gap-1">
-                                        <button @click="openEditModal(siswa)" class="p-2 text-slate-400 dark:text-slate-500 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all" title="Edit">
+                                        <button @click="openEditModal(siswa)" class="p-1.5 sm:p-2 text-slate-400 dark:text-slate-500 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-all" title="Edit">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                         </button>
-                                        <button @click="confirmDelete(siswa.id)" class="p-2 text-slate-400 dark:text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all" title="Hapus">
+                                        <button @click="confirmDelete(siswa.id)" class="p-1.5 sm:p-2 text-slate-400 dark:text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all" title="Hapus">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                             <tr v-if="siswas.data.length === 0">
-                                <td colspan="6" class="px-6 py-16 text-center">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-4">
-                                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <td colspan="5" class="px-4 sm:px-6 py-16 text-center">
+                                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-3 sm:mb-4">
+                                        <svg class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                     </div>
-                                    <p class="font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500">Belum ada data siswa</p>
-                                    <p class="text-xs text-slate-400 dark:text-slate-500 dark:text-slate-500 dark:text-slate-400 dark:text-slate-500 mt-1">Tambahkan data siswa baru atau import dari file Excel</p>
+                                    <p class="font-semibold text-slate-500 dark:text-slate-400 text-sm sm:text-base">Belum ada data siswa</p>
+                                    <p class="text-xs text-slate-400 dark:text-slate-500 mt-1 hidden sm:block">Tambahkan data siswa baru atau import dari file Excel</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -280,7 +274,7 @@ const executeDelete = () => {
                 </div>
 
                 <!-- Pagination -->
-                <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50" v-if="siswas.links?.length > 3">
+                <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50" v-if="siswas.links?.length > 3">
                     <Pagination :links="siswas.links" />
                 </div>
             </div>
@@ -288,49 +282,49 @@ const executeDelete = () => {
 
         <!-- Form Modal -->
         <Modal :show="showModal" @close="closeModal" maxWidth="md">
-            <div class="p-6 dark:bg-slate-800">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-xl">
-                        <svg v-if="isEditing" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                        <svg v-else class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+            <div class="p-4 sm:p-6 dark:bg-slate-800">
+                <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div class="p-2 sm:p-3 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-lg sm:rounded-xl">
+                        <svg v-if="isEditing" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        <svg v-else class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold text-slate-800 dark:text-white">{{ isEditing ? 'Edit Siswa' : 'Tambah Siswa Baru' }}</h2>
+                        <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">{{ isEditing ? 'Edit Siswa' : 'Tambah Siswa' }}</h2>
                         <p class="text-xs text-slate-500 dark:text-slate-400">Lengkapi data siswa</p>
                     </div>
                 </div>
 
-                <form @submit.prevent="submit" class="space-y-4">
+                <form @submit.prevent="submit" class="space-y-3 sm:space-y-4">
                     <div>
-                        <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Nama Lengkap</label>
-                        <input v-model="form.nama_siswa" type="text" required placeholder="Nama siswa..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
+                        <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 block">Nama Lengkap</label>
+                        <input v-model="form.nama_siswa" type="text" required placeholder="Nama siswa..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
                         <div v-if="form.errors.nama_siswa" class="text-xs text-danger-500 dark:text-red-400 mt-1">{{ form.errors.nama_siswa }}</div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">NIS</label>
-                            <input v-model="form.nis" type="text" required placeholder="Nomor NIS..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 block">NIS</label>
+                            <input v-model="form.nis" type="text" required placeholder="NIS..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
                             <div v-if="form.errors.nis" class="text-xs text-danger-500 dark:text-red-400 mt-1">{{ form.errors.nis }}</div>
                         </div>
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">NISN <span class="text-slate-400 dark:text-slate-500 font-normal">(opsional)</span></label>
-                            <input v-model="form.nisn" type="text" placeholder="Nomor NISN..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 block">NISN <span class="text-slate-400 dark:text-slate-500 font-normal">(opsional)</span></label>
+                            <input v-model="form.nisn" type="text" placeholder="NISN..." class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
                             <div v-if="form.errors.nisn" class="text-xs text-danger-500 dark:text-red-400 mt-1">{{ form.errors.nisn }}</div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Jenis Kelamin</label>
-                            <select v-model="form.jenis_kelamin" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 block">JK</label>
+                            <select v-model="form.jenis_kelamin" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Kelas</label>
-                            <select v-model="form.kelas_id" required class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 block">Kelas</label>
+                            <select v-model="form.kelas_id" required class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="" disabled>-- Pilih --</option>
                                 <option v-for="k in kelas" :key="k.id" :value="k.id">{{ k.nama_kelas }}</option>
                             </select>
@@ -338,9 +332,9 @@ const executeDelete = () => {
                         </div>
                     </div>
 
-                    <div class="flex gap-3 pt-4 border-t border-slate-100 dark:border-slate-700 mt-5">
-                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 font-medium rounded-xl transition-all">Batal</button>
-                        <button type="submit" :disabled="form.processing" class="flex-1 px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-60 flex items-center justify-center gap-2">
+                    <div class="flex gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-slate-100 dark:border-slate-700 mt-4 sm:mt-5">
+                        <button type="button" @click="closeModal" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 text-sm font-medium rounded-xl transition-all">Batal</button>
+                        <button type="submit" :disabled="form.processing" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-60 flex items-center justify-center gap-2 text-sm">
                             <svg v-if="form.processing" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                             {{ form.processing ? 'Menyimpan...' : 'Simpan' }}
                         </button>
