@@ -21,6 +21,19 @@ class Sekolah extends Model
         'jenis_asesmen',
     ];
 
+    public function getLogoPath()
+    {
+        if ($this->logo_path) {
+            $filename = basename($this->logo_path);
+            $fullPath = public_path('logos/' . $filename);
+            
+            if (file_exists($fullPath)) {
+                return $fullPath;
+            }
+        }
+        return null;
+    }
+
     public function getLogoUrl()
     {
         if ($this->logo_path) {
