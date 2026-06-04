@@ -66,7 +66,7 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
 
         <!-- SIDEBAR -->
         <aside
-            class="flex flex-col z-50 transition-all duration-300 ease-out relative bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-slate-200 dark:border-white/5 shadow-2xl"
+            class="flex flex-col z-50 transition-all duration-300 ease-out bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-slate-200 dark:border-white/5 shadow-2xl"
             :class="[
                 isSidebarCollapsed ? 'w-[72px]' : 'w-[260px]',
                 isMobileSidebarOpen ? 'fixed inset-y-0 left-0 translate-x-0' : 'fixed inset-y-0 left-0 -translate-x-full md:relative md:translate-x-0'
