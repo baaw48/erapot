@@ -252,20 +252,20 @@ const executeProses = () => {
 
         <!-- Confirm Modal -->
         <Modal :show="showConfirmModal" @close="showConfirmModal = false" maxWidth="sm">
-            <div class="p-8 text-center relative overflow-hidden">
+            <div class="p-6 sm:p-8 text-center relative overflow-hidden dark:bg-slate-800">
                 <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-20 pointer-events-none" :class="tipeMode === 'kenaikan' ? 'bg-blue-100 dark:bg-blue-900/300' : 'bg-indigo-500'"></div>
-                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full mb-6 relative z-10" :class="tipeMode === 'kenaikan' ? 'bg-blue-100 dark:bg-blue-900/30 text-brand-500' : 'bg-indigo-50 text-indigo-500'">
-                    <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="mx-auto flex items-center justify-center h-14 w-14 sm:h-20 sm:w-20 rounded-full mb-4 sm:mb-6 relative z-10" :class="tipeMode === 'kenaikan' ? 'bg-blue-100 dark:bg-blue-900/30 text-brand-500' : 'bg-indigo-50 text-indigo-500'">
+                    <svg class="h-7 w-7 sm:h-10 sm:w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <h2 class="text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Proses</h2>
-                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
+                <h2 class="text-lg sm:text-xl font-black dark:text-white mb-2 relative z-10">Konfirmasi Proses</h2>
+                <p class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mb-6 sm:mb-8 relative z-10">
                     Apakah Anda yakin ingin <strong :class="tipeMode === 'kenaikan' ? 'text-blue-600 dark:text-blue-400' : 'text-indigo-600'">{{ tipeMode === 'kenaikan' ? 'Menaikkan' : 'Meluluskan' }}</strong> {{ selectedSiswas.length }} siswa yang dipilih?
                 </p>
-                <div class="flex gap-3 relative z-10">
-                    <button @click="showConfirmModal = false" class="flex-1 px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800/50 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
+                <div class="flex gap-2 sm:gap-3 relative z-10">
+                    <button @click="showConfirmModal = false" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 dark:text-slate-200 text-sm font-bold rounded-xl transition-all">
                         Batal
                     </button>
-                    <button @click="executeProses" class="flex-1 px-4 py-3 text-white text-sm font-bold rounded-xl shadow-md transition-all" :class="tipeMode === 'kenaikan' ? 'bg-brand-600 hover:bg-brand-700' : 'bg-indigo-600 hover:bg-indigo-700'">
+                    <button @click="executeProses" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm font-bold rounded-xl shadow-md transition-all" :class="tipeMode === 'kenaikan' ? 'bg-brand-600 hover:bg-brand-700' : 'bg-indigo-600 hover:bg-indigo-700'">
                         Ya, Proses
                     </button>
                 </div>
@@ -274,17 +274,17 @@ const executeProses = () => {
 
         <!-- Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false" maxWidth="sm">
-            <div class="p-8 text-center relative overflow-hidden">
+            <div class="p-6 sm:p-8 text-center relative overflow-hidden dark:bg-slate-800">
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-green-50 dark:bg-green-900/200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-6 shadow-inner border border-emerald-100 relative z-10">
-                    <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <div class="mx-auto flex items-center justify-center h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-4 sm:mb-6 shadow-inner border border-emerald-100 relative z-10">
+                    <svg class="h-7 w-7 sm:h-10 sm:w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">Berhasil!</h2>
-                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
+                <h2 class="text-lg sm:text-2xl font-black dark:text-white mb-2 relative z-10">Berhasil!</h2>
+                <p class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mb-6 sm:mb-8 relative z-10">
                     Proses {{ tipeMode }} telah berhasil dilakukan untuk {{ form.siswa_ids.length }} siswa.
                 </p>
                 <div class="flex justify-center relative z-10">
-                    <button @click="showSuccessModal = false" class="px-8 py-3 bg-slate-800 hover:bg-slate-900 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                    <button @click="showSuccessModal = false" class="px-6 sm:px-8 py-2.5 sm:py-3 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                         Tutup
                     </button>
                 </div>

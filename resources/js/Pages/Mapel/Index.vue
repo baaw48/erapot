@@ -107,8 +107,8 @@ const executeDelete = () => {
             </div>
 
             <!-- Card -->
-            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden hover:shadow-primary-500/5 transition-all duration-300">
-                <div class="px-6 py-5 border-b border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] shadow-2xl border border-slate-200/50 dark:border-slate-700/50 overflow-hidden hover:shadow-primary-500/5 transition-all duration-300">
+                <div class="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <h3 class="font-semibold dark:text-white">Daftar Mata Pelajaran</h3>
                         <p class="text-xs dark:text-slate-400 dark:text-slate-500 mt-0.5">{{ mapels.total }} mapel terdaftar</p>
@@ -120,38 +120,38 @@ const executeDelete = () => {
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                    <table class="w-full text-left min-w-[600px]">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                                <th class="px-6 py-4 text-center w-16">No</th>
-                                <th class="px-6 py-4">Mata Pelajaran</th>
-                                <th class="px-6 py-4 text-center">Kelompok</th>
-                                <th class="px-6 py-4 text-center">Urutan</th>
-                                <th class="px-6 py-4 text-right w-28">Aksi</th>
+                                <th class="px-4 sm:px-6 py-4 text-center w-16">No</th>
+                                <th class="px-4 sm:px-6 py-4">Mata Pelajaran</th>
+                                <th class="px-4 sm:px-6 py-4 text-center hidden sm:table-cell">Kelompok</th>
+                                <th class="px-4 sm:px-6 py-4 text-center hidden xs:table-cell">Urutan</th>
+                                <th class="px-4 sm:px-6 py-4 text-right w-28">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
                             <tr v-for="(mapel, index) in mapels.data" :key="mapel.id" class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                                <td class="px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
+                                <td class="px-4 sm:px-6 py-4 text-center text-sm font-medium text-slate-400 dark:text-slate-500">
                                     {{ (mapels.current_page - 1) * mapels.per_page + index + 1 }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-4 sm:px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="h-10 w-10 rounded-xl bg-secondary-50 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 flex items-center justify-center shadow-inner">
                                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                                         </div>
-                                        <span class="font-semibold text-slate-700 dark:text-white dark:text-white dark:text-slate-200">{{ mapel.nama_mapel }}</span>
+                                        <span class="font-semibold text-slate-700 dark:text-slate-200">{{ mapel.nama_mapel }}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-center">
+                                <td class="px-4 sm:px-6 py-4 text-center hidden sm:table-cell">
                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-secondary-50 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-300 text-xs font-semibold border border-secondary-100 dark:border-secondary-800">
                                         {{ mapel.kelompok || '-' }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-center">
+                                <td class="px-4 sm:px-6 py-4 text-center hidden xs:table-cell">
                                     <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm">{{ mapel.urutan || 0 }}</span>
                                 </td>
-                                <td class="px-6 py-4 text-right">
+                                <td class="px-4 sm:px-6 py-4 text-right">
                                     <div class="flex items-center justify-end gap-1">
                                         <button @click="openEditModal(mapel)" class="p-2 text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/30 rounded-lg transition-colors">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -163,11 +163,11 @@ const executeDelete = () => {
                                 </td>
                             </tr>
                             <tr v-if="mapels.data.length === 0">
-                                <td colspan="5" class="px-6 py-16 text-center">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 text-slate-300 mb-4">
+                                <td colspan="5" class="px-4 sm:px-6 py-16 text-center">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-4">
                                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                                     </div>
-                                    <p class="font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500">Belum ada mata pelajaran</p>
+                                    <p class="font-semibold text-slate-500 dark:text-slate-400">Belum ada mata pelajaran</p>
                                     <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Tambahkan mapel baru</p>
                                 </td>
                             </tr>
@@ -175,7 +175,7 @@ const executeDelete = () => {
                     </table>
                 </div>
 
-                <div class="px-6 py-4 border-t border-slate-100 bg-slate-50" v-if="mapels.links?.length > 3">
+                <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/30" v-if="mapels.links?.length > 3">
                     <Pagination :links="mapels.links" />
                 </div>
             </div>
@@ -183,29 +183,29 @@ const executeDelete = () => {
 
         <!-- Form Modal -->
         <Modal :show="showModal" @close="closeModal" maxWidth="md">
-            <div class="p-6">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-primary-100 text-primary-600 rounded-xl">
-                        <svg v-if="isEditing" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                        <svg v-else class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <div class="p-4 sm:p-6 dark:bg-slate-800">
+                <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div class="p-2.5 sm:p-3 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-xl">
+                        <svg v-if="isEditing" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        <svg v-else class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold dark:text-white">{{ isEditing ? 'Edit Mapel' : 'Tambah Mapel' }}</h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-500">Lengkapi formulir</p>
+                        <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">{{ isEditing ? 'Edit Mapel' : 'Tambah Mapel' }}</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Lengkapi formulir</p>
                     </div>
                 </div>
 
                 <form @submit.prevent="submit" class="space-y-4">
                     <div>
-                        <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Nama Mapel</label>
-                        <input v-model="form.nama_mapel" type="text" required placeholder="Contoh: PAI" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                        <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Nama Mapel</label>
+                        <input v-model="form.nama_mapel" type="text" required placeholder="Contoh: PAI" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                         <div v-if="form.errors.nama_mapel" class="text-xs text-danger-500 mt-1">{{ form.errors.nama_mapel }}</div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Kelompok</label>
-                            <select v-model="form.kelompok" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Kelompok</label>
+                            <select v-model="form.kelompok" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all appearance-none cursor-pointer">
                                 <option value="A">Kelompok A</option>
                                 <option value="B">Kelompok B</option>
                                 <option value="C">Kelompok C</option>
@@ -213,15 +213,15 @@ const executeDelete = () => {
                             </select>
                         </div>
                         <div>
-                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 block">Urutan</label>
-                            <input v-model="form.urutan" type="number" min="1" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-200 rounded-xl px-4 py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 block">Urutan</label>
+                            <input v-model="form.urutan" type="number" min="1" class="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 font-medium focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all" />
                             <div v-if="form.errors.urutan" class="text-xs text-danger-500 mt-1">{{ form.errors.urutan }}</div>
                         </div>
                     </div>
 
-                    <div class="flex gap-3 pt-4 border-t border-slate-100 mt-5">
-                        <button type="button" @click="closeModal" class="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-600 dark:text-slate-300 font-medium rounded-xl hover:bg-slate-50 transition-all">Batal</button>
-                        <button type="submit" :disabled="form.processing" class="flex-1 px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-60 flex items-center justify-center gap-2">
+                    <div class="flex gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-slate-100 dark:border-slate-700 mt-4 sm:mt-5">
+                        <button type="button" @click="closeModal" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium rounded-xl hover:bg-slate-50 dark:hover:bg-slate-600 transition-all">Batal</button>
+                        <button type="submit" :disabled="form.processing" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-60 flex items-center justify-center gap-2">
                             <svg v-if="form.processing" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                             {{ form.processing ? 'Menyimpan...' : 'Simpan' }}
                         </button>
@@ -232,28 +232,28 @@ const executeDelete = () => {
 
         <!-- Delete Modal -->
         <Modal :show="showDeleteModal" @close="showDeleteModal = false" maxWidth="sm">
-            <div class="p-6 text-center">
-                <div class="mx-auto w-16 h-16 rounded-2xl bg-danger-50 flex items-center justify-center mb-4">
-                    <svg class="h-8 w-8 text-danger-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <div class="p-4 sm:p-6 text-center dark:bg-slate-800">
+                <div class="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-danger-50 dark:bg-danger-900/30 flex items-center justify-center mb-4">
+                    <svg class="h-7 w-7 sm:h-8 sm:w-8 text-danger-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
-                <h2 class="text-lg font-bold dark:text-white mb-2">Konfirmasi Hapus</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-6">Yakin hapus mapel ini? Data nilai terkait ikut terhapus.</p>
-                <div class="flex gap-3">
-                    <button @click="showDeleteModal = false" class="flex-1 px-4 py-3 bg-white border border-slate-200 text-slate-600 dark:text-slate-300 font-medium rounded-xl hover:bg-slate-50 transition-all">Batal</button>
-                    <button @click="executeDelete" class="flex-1 px-4 py-3 bg-danger-500 text-white font-medium rounded-xl hover:bg-danger-600 transition-all">Hapus</button>
+                <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi Hapus</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 sm:mb-6">Yakin hapus mapel ini? Data nilai terkait ikut terhapus.</p>
+                <div class="flex gap-2 sm:gap-3">
+                    <button @click="showDeleteModal = false" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium rounded-xl hover:bg-slate-50 dark:hover:bg-slate-600 transition-all">Batal</button>
+                    <button @click="executeDelete" class="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-danger-500 text-white font-medium rounded-xl hover:bg-danger-600 transition-all">Hapus</button>
                 </div>
             </div>
         </Modal>
 
         <!-- Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false" maxWidth="sm">
-            <div class="p-6 text-center">
-                <div class="mx-auto w-16 h-16 rounded-2xl bg-success-50 flex items-center justify-center mb-4 shadow-inner">
-                    <svg class="h-8 w-8 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <div class="p-4 sm:p-6 text-center dark:bg-slate-800">
+                <div class="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-success-50 dark:bg-success-900/30 flex items-center justify-center mb-4 shadow-inner">
+                    <svg class="h-7 w-7 sm:h-8 sm:w-8 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <h2 class="text-lg font-bold dark:text-white mb-2">Berhasil!</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-5">Data mapel berhasil disimpan.</p>
-                <button @click="showSuccessModal = false" class="px-8 py-3 bg-primary-600 text-white font-medium rounded-xl hover:bg-primary-700 transition-all">Tutup</button>
+                <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white mb-2">Berhasil!</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 sm:mb-5">Data mapel berhasil disimpan.</p>
+                <button @click="showSuccessModal = false" class="px-6 sm:px-8 py-2.5 sm:py-3 bg-primary-600 text-white font-medium rounded-xl hover:bg-primary-700 transition-all">Tutup</button>
             </div>
         </Modal>
     </AuthenticatedLayout>

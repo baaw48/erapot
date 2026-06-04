@@ -134,25 +134,26 @@ const saveAll = () => {
         <div class="animate-fade-in space-y-6 max-w-[90rem] mx-auto pb-12">
             
             <!-- Tabel Data -->
-            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl relative animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
                 
-                <div class="p-6 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div class="flex-1 w-full md:max-w-md">
+                <div class="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-100 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm relative z-10 flex flex-col xs:flex-row md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+                    <div class="flex-1 w-full">
                         <label for="filter" class="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest mb-2"
                             :class="{
-                                'text-rose-600': selectedKelas && selectedKelas.status_color === 'red',
-                                'text-amber-600': selectedKelas && selectedKelas.status_color === 'yellow',
-                                'text-emerald-600': selectedKelas && selectedKelas.status_color === 'green',
-                                'text-brand-600': !selectedKelas
+                                'text-rose-600 dark:text-rose-400': selectedKelas && selectedKelas.status_color === 'red',
+                                'text-amber-600 dark:text-amber-400': selectedKelas && selectedKelas.status_color === 'yellow',
+                                'text-emerald-600 dark:text-emerald-400': selectedKelas && selectedKelas.status_color === 'green',
+                                'text-brand-600 dark:text-brand-400': !selectedKelas
                             }">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                            Pilih Kelas untuk Diatur Jadwalnya
+                            <span class="hidden xs:inline">Pilih Kelas untuk Diatur Jadwalnya</span>
+                            <span class="xs:hidden">Pilih Kelas</span>
                             <span v-if="selectedKelas" class="ml-auto text-[9px] px-2 py-0.5 rounded-md border"
                                 :class="{
-                                    'bg-rose-100 text-rose-700 border-rose-200': selectedKelas.status_color === 'red',
-                                    'bg-amber-100 text-amber-700 border-amber-200': selectedKelas.status_color === 'yellow',
-                                    'bg-emerald-100 text-emerald-700 border-emerald-200': selectedKelas.status_color === 'green'
+                                    'bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-700': selectedKelas.status_color === 'red',
+                                    'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-700': selectedKelas.status_color === 'yellow',
+                                    'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-700': selectedKelas.status_color === 'green'
                                 }">
                                 {{ selectedKelas.status_text }}
                             </span>
@@ -171,26 +172,26 @@ const saveAll = () => {
                     </div>
                 </div>
 
-                <div class="overflow-x-auto relative z-10 p-2">
-                    <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700/50">
+                <div class="overflow-x-auto -mx-4 sm:mx-0 relative z-10">
+                    <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700/50 min-w-[500px]">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                                <th class="px-6 py-4 w-16 text-center">No</th>
-                                <th class="px-6 py-4 w-1/3">Mata Pelajaran</th>
-                                <th class="px-6 py-4">Guru Pengampu</th>
-                                <th class="px-6 py-4 w-32 text-center">Aksi</th>
+                                <th class="px-4 sm:px-6 py-4 w-12 text-center">No</th>
+                                <th class="px-4 sm:px-6 py-4">Mata Pelajaran</th>
+                                <th class="px-4 sm:px-6 py-4 hidden xs:table-cell">Guru Pengampu</th>
+                                <th class="px-4 sm:px-6 py-4 w-24 sm:w-32 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
                             <tr v-for="(mapel, index) in mapels" :key="mapel.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group" :class="{'bg-rose-50/50 dark:bg-rose-900/20': !assignments[mapel.id]}">
-                                <td class="px-6 py-4 text-center font-bold text-slate-400 dark:text-slate-500">
+                                <td class="px-4 sm:px-6 py-3 sm:py-4 text-center font-bold text-slate-400 dark:text-slate-500">
                                     {{ index + 1 }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-4 sm:px-6 py-3 sm:py-4">
                                     <div class="text-sm font-bold dark:text-white">{{ mapel.nama_mapel }}</div>
                                     <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-4 sm:px-6 py-3 sm:py-4 hidden xs:table-cell">
                                     <SearchableSelect
                                         v-model="assignments[mapel.id]"
                                         :options="guruOptions"
@@ -200,22 +201,22 @@ const saveAll = () => {
                                         :success="!!assignments[mapel.id]"
                                     />
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center justify-center gap-1.5">
-                                        <button @click="saveAssignment(mapel.id)" :disabled="processingMapel === mapel.id" class="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center min-w-[32px] disabled:opacity-50" title="Simpan Guru">
+                                <td class="px-4 sm:px-6 py-3 sm:py-4">
+                                    <div class="flex items-center justify-center gap-1">
+                                        <button @click="saveAssignment(mapel.id)" :disabled="processingMapel === mapel.id" class="p-1.5 sm:p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center min-w-[32px] disabled:opacity-50" title="Simpan Guru">
                                             <svg v-if="processingMapel === mapel.id" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                                             <svg v-else class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                         </button>
-                                        <button @click="clearAssignment(mapel.id)" :disabled="processingMapel === mapel.id || !assignments[mapel.id]" class="p-2 bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 hover:text-rose-700 dark:hover:text-rose-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center disabled:opacity-50" title="Kosongkan Guru">
+                                        <button @click="clearAssignment(mapel.id)" :disabled="processingMapel === mapel.id || !assignments[mapel.id]" class="p-1.5 sm:p-2 bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 hover:text-rose-700 dark:hover:text-rose-300 rounded-lg transition-colors font-bold text-xs flex items-center justify-center disabled:opacity-50" title="Kosongkan Guru">
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                             <tr v-if="mapels.length === 0">
-                                <td colspan="4" class="px-8 py-16 text-center">
-                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
-                                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                <td colspan="4" class="px-4 sm:px-6 py-12 sm:py-16 text-center">
+                                    <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
+                                        <svg class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                     </div>
                                     <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Mapel</h3>
                                 </td>
@@ -224,11 +225,12 @@ const saveAll = () => {
                     </table>
                 </div>
 
-                <div v-if="mapels.length > 0 && filterKelasId" class="p-6 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-end">
-                    <button @click="saveAll" :disabled="isSavingBulk" class="px-6 py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-black rounded-xl shadow-md shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all flex items-center gap-2 disabled:opacity-70">
-                        <svg v-if="isSavingBulk" class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                        {{ isSavingBulk ? 'Menyimpan...' : 'Simpan Semua Penugasan' }}
+                <div v-if="mapels.length > 0 && filterKelasId" class="px-4 sm:px-6 py-4 sm:py-5 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-end">
+                    <button @click="saveAll" :disabled="isSavingBulk" class="px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white font-black rounded-xl shadow-md shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all flex items-center gap-2 disabled:opacity-70 text-xs sm:text-sm">
+                        <svg v-if="isSavingBulk" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        <svg v-else class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <span class="hidden sm:inline">{{ isSavingBulk ? 'Menyimpan...' : 'Simpan Semua Penugasan' }}</span>
+                        <span class="sm:hidden">{{ isSavingBulk ? 'Menyimpan...' : 'Simpan Semua' }}</span>
                     </button>
                 </div>
             </div>
@@ -236,13 +238,13 @@ const saveAll = () => {
 
         <!-- Success Notif Toast (Fixed at bottom right) -->
         <transition enter-active-class="transition ease-out duration-300" enter-from-class="transform translate-y-2 opacity-0" enter-to-class="transform translate-y-0 opacity-100" leave-active-class="transition ease-in duration-200" leave-from-class="transform translate-y-0 opacity-100" leave-to-class="transform translate-y-2 opacity-0">
-            <div v-if="showSuccessModal" class="fixed bottom-8 right-8 z-50 flex items-center gap-3 bg-slate-800 text-white px-5 py-4 rounded-2xl shadow-xl border border-slate-700">
-                <div class="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center">
-                    <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <div v-if="showSuccessModal" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-center gap-2 sm:gap-3 bg-slate-800 dark:bg-slate-700 text-white px-4 sm:px-5 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-xl border border-slate-700">
+                <div class="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                    <svg class="h-4 w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </div>
                 <div>
-                    <h4 class="font-bold text-sm">Tersimpan!</h4>
-                    <p class="text-[11px] font-semibold text-slate-300">{{ page.props.flash.success || 'Data berhasil diperbarui.' }}</p>
+                    <h4 class="font-bold text-xs sm:text-sm">Tersimpan!</h4>
+                    <p class="text-[10px] sm:text-[11px] font-semibold text-slate-300">{{ page.props.flash.success || 'Data berhasil diperbarui.' }}</p>
                 </div>
             </div>
         </transition>

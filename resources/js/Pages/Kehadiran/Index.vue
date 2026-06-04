@@ -98,9 +98,9 @@ const kelasOptions = computed(() => [
             </div>
 
             <!-- Panel Filter -->
-            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] p-6 shadow-2xl relative overflow-hidden">
+            <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 shadow-2xl relative overflow-hidden">
                 <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-                <div class="max-w-xl relative z-10 space-y-2">
+                <div class="max-w-xl relative z-10 space-y-2 flex flex-col sm:flex-row sm:items-end gap-4">
                     <label class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                         Pilih Kelas
@@ -115,10 +115,10 @@ const kelasOptions = computed(() => [
             </div>
 
             <!-- Area Data & Form -->
-            <div v-if="siswas && siswas.length > 0" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] overflow-hidden shadow-2xl animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
+            <div v-if="siswas && siswas.length > 0" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl animate-slide-up" style="animation-delay: 0.05s; animation-fill-mode: both;">
                 <form @submit.prevent="submit">
                     <!-- Header Tabel -->
-                    <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-between items-center">
+                    <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-8 rounded-full bg-brand-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-sm">
                                 {{ siswas.length }}
@@ -216,21 +216,21 @@ const kelasOptions = computed(() => [
 
         <!-- Custom Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false">
-            <div class="p-8 text-center relative overflow-hidden">
+            <div class="p-6 sm:p-8 text-center relative overflow-hidden dark:bg-slate-800">
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-green-50 dark:bg-green-900/200 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-6 shadow-inner border border-emerald-100 relative z-10">
-                    <svg class="h-10 w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-green-50 dark:bg-green-900/20 mb-4 sm:mb-6 shadow-inner border border-emerald-100 relative z-10">
+                    <svg class="h-8 w-8 sm:h-10 sm:w-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h2 class="text-2xl font-black dark:text-white mb-2 relative z-10">
+                <h2 class="text-lg sm:text-2xl font-black dark:text-white mb-2 relative z-10">
                     Berhasil Disimpan!
                 </h2>
-                <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-500 mb-8 relative z-10">
+                <p class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mb-6 sm:mb-8 relative z-10">
                     {{ page.props.flash?.success || 'Seluruh data absensi & ekstrakurikuler telah berhasil disimpan ke database.' }}
                 </p>
                 <div class="flex justify-center relative z-10">
-                    <button @click="showSuccessModal = false" class="px-8 py-3 bg-slate-800 hover:bg-slate-900 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                    <button @click="showSuccessModal = false" class="px-6 sm:px-8 py-2.5 sm:py-3 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 dark:hover:bg-slate-600 text-white text-sm font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                         Tutup Jendela
                     </button>
                 </div>
