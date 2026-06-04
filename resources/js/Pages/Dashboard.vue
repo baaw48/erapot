@@ -143,7 +143,7 @@ const gradeColor = (nilai) => {
                 <h4 class="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Data Akademik</h4>
 
                 <!-- ADMIN stats -->
-                <div v-if="userRole === 'admin'" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div v-if="userRole === 'admin'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- Kelas -->
                     <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 dark:border-slate-700/50 group relative overflow-hidden">
                         <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/25 transition-colors duration-500"></div>
@@ -207,7 +207,7 @@ const gradeColor = (nilai) => {
                 </div>
 
                 <!-- GURU stats -->
-                <div v-if="userRole === 'guru'" class="grid grid-cols-2 gap-4">
+                <div v-if="userRole === 'guru'" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700/50 relative overflow-hidden group">
                         <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-colors duration-500"></div>
                         <div class="flex justify-between items-start relative z-10">
@@ -299,7 +299,7 @@ const gradeColor = (nilai) => {
                             </span>
                             Distribusi Gender Siswa
                         </h4>
-                        <div class="flex items-center justify-around">
+                        <div class="flex flex-col sm:flex-row items-center justify-around gap-6 sm:gap-0">
                             <!-- Laki-laki -->
                             <div class="flex flex-col items-center">
                                 <div class="relative w-28 h-28">
@@ -316,9 +316,9 @@ const gradeColor = (nilai) => {
                             </div>
                             <!-- VS divider -->
                             <div class="flex flex-col items-center gap-1">
-                                <div class="w-px h-16 bg-slate-100 dark:bg-slate-700"></div>
+                                <div class="w-16 sm:w-px h-px sm:h-16 bg-slate-100 dark:bg-slate-700"></div>
                                 <span class="text-xs font-black text-slate-300 dark:text-slate-600">VS</span>
-                                <div class="w-px h-16 bg-slate-100 dark:bg-slate-700"></div>
+                                <div class="w-16 sm:w-px h-px sm:h-16 bg-slate-100 dark:bg-slate-700"></div>
                             </div>
                             <!-- Perempuan -->
                             <div class="flex flex-col items-center">
