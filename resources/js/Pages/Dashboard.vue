@@ -312,6 +312,75 @@ const gradeColor = (nilai) => {
                 </div>
             </div>
 
+            <!-- ======================== PANDUAN PENGGUNAAN ======================== -->
+            <div v-if="userRole === 'guru'" class="mt-8">
+                <h4 class="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Panduan Penggunaan E-Rapor</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Panduan Guru Mapel -->
+                    <div class="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-3xl p-6 shadow-lg shadow-blue-500/20 text-white relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </div>
+                                <h3 class="text-lg font-black tracking-wide">Sebagai Guru Mata Pelajaran</h3>
+                            </div>
+                            <ol class="space-y-3 relative border-l border-white/30 ml-3 pl-4">
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white ring-4 ring-blue-500"></span>
+                                    <p class="text-sm font-semibold">Buka menu <strong>Input Nilai</strong> di sidebar.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-blue-500"></span>
+                                    <p class="text-sm font-medium text-blue-50">Pilih Kelas dan Mata Pelajaran yang Anda ampu.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-blue-500"></span>
+                                    <p class="text-sm font-medium text-blue-50">Masukkan nilai formatif, sumatif, atau nilai akhir siswa sesuai format yang tersedia.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-blue-500"></span>
+                                    <p class="text-sm font-medium text-blue-50">Pastikan untuk menekan tombol <strong>Simpan</strong> setelah selesai menginput nilai.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Panduan Wali Kelas -->
+                    <div v-if="kelasDiampu" class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-6 shadow-lg shadow-emerald-500/20 text-white relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <h3 class="text-lg font-black tracking-wide">Sebagai Wali Kelas ({{ kelasDiampu }})</h3>
+                            </div>
+                            <ol class="space-y-3 relative border-l border-white/30 ml-3 pl-4">
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white ring-4 ring-emerald-500"></span>
+                                    <p class="text-sm font-semibold">Pantau kelengkapan nilai dari seluruh guru mapel di menu <strong>Input Nilai</strong>.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-emerald-500"></span>
+                                    <p class="text-sm font-medium text-emerald-50">Input data absensi, catatan wali kelas, atau nilai ekstrakurikuler siswa jika diperlukan.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-emerald-500"></span>
+                                    <p class="text-sm font-medium text-emerald-50">Buka menu <strong>Cetak Rapor</strong> di sidebar untuk melihat pratinjau rapor.</p>
+                                </li>
+                                <li class="relative">
+                                    <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-white/50 ring-4 ring-emerald-500"></span>
+                                    <p class="text-sm font-medium text-emerald-50">Cetak rapor dalam format PDF atau print langsung untuk dibagikan kepada orang tua/wali.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ======================== VISUALISASI (ADMIN ONLY) ======================== -->
             <template v-if="userRole === 'admin'">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">

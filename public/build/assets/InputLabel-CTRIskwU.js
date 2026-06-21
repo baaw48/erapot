@@ -1,1 +1,0 @@
-import{E as e,L as t,O as n,y as r}from"./app-Co8xJ6S_.js";var i={class:`block text-sm font-medium text-slate-700 dark:text-slate-200 dark:text-slate-300 mb-1.5`},a={key:0},o={key:1},s={__name:`InputLabel`,props:{value:{type:String}},setup(s){return(c,l)=>(e(),r(`label`,i,[s.value?(e(),r(`span`,a,t(s.value),1)):(e(),r(`span`,o,[n(c.$slots,`default`)]))]))}};export{s as t};
