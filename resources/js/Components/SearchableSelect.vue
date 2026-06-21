@@ -22,6 +22,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    size: {
+        type: String,
+        default: 'md', // 'sm' | 'md'
+    },
     class: {
         type: String,
         default: '',
@@ -140,8 +144,10 @@ onUnmounted(() => {
             type="button"
             @click="open"
             :disabled="disabled"
-            class="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-sm text-left shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed border"
             :class="[
+                size === 'sm'
+                    ? 'w-full flex items-center justify-between gap-1 px-2 py-1 rounded-lg text-xs text-left transition-all duration-200 focus:outline-none focus:ring-1 disabled:opacity-50 disabled:cursor-not-allowed border'
+                    : 'w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-sm text-left shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed border',
                 isOpen ? 'border-blue-400 ring-2 ring-blue-400/20 bg-white dark:bg-slate-800' : 'dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200',
                 error && !isOpen ? 'border-red-300 dark:border-red-500 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:border-red-400 focus:ring-red-400' : '',
                 warning && !isOpen ? 'border-amber-300 dark:border-amber-500 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 hover:border-amber-400 focus:ring-amber-400' : '',

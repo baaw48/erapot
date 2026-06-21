@@ -191,12 +191,13 @@ const saveAll = () => {
                                     <div class="text-sm font-bold dark:text-white">{{ mapel.nama_mapel }}</div>
                                     <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
-                                <td class="px-4 sm:px-6 py-3 sm:py-4">
+                                <td class="px-4 sm:px-6 py-2 sm:py-3">
                                     <SearchableSelect
                                         v-model="assignments[mapel.id]"
                                         :options="guruOptions"
                                         placeholder="-- Pilih Guru --"
                                         searchPlaceholder="Cari guru..."
+                                        size="sm"
                                     />
                                 </td>
                                 <td class="px-4 sm:px-6 py-3 sm:py-4">
