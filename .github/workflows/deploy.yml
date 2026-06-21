@@ -55,6 +55,8 @@ jobs:
           # Try to find existing Laravel project
           PROJECT_DIR=""
           for dir in \
+            "$HOME/erapot.baaw48.my.id" \
+            "$HOME/public_html/erapot.baaw48.my.id" \
             "$HOME/erapot" \
             "$HOME/public_html/erapot" \
             "$HOME/public_html/e-rapot" \
