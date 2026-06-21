@@ -204,8 +204,45 @@ const executeDelete = () => {
                     </div>
                 </div>
 
-                <!-- Table - Scroll horizontally on mobile -->
-                <div class="overflow-x-auto -mx-4 sm:mx-0">
+                <!-- MOBILE: Card Layout -->
+                <div class="md:hidden divide-y divide-slate-100 dark:divide-slate-700/50">
+                    <div v-for="(siswa, index) in siswas.data" :key="siswa.id" class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-xl flex items-center justify-center font-bold text-sm shrink-0"
+                                    :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400'">
+                                    {{ siswa.nama_siswa.charAt(0) }}
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 dark:text-white text-sm">{{ siswa.nama_siswa }}</h4>
+                                    <div class="flex flex-wrap items-center gap-2 mt-1.5">
+                                        <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">{{ siswa.nis }}</span>
+                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-[10px] font-bold border border-blue-100 dark:border-blue-800">
+                                            {{ siswa.kelas?.nama_kelas || 'Tanpa Kelas' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1 bg-slate-50 dark:bg-slate-900/50 rounded-lg p-1 border border-slate-100 dark:border-slate-700/50">
+                                <button @click="openEditModal(siswa)" class="p-1.5 text-slate-400 dark:text-slate-500 hover:text-primary-500 hover:bg-primary-100 dark:hover:bg-primary-900/50 rounded-md transition-all" title="Edit">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                </button>
+                                <button @click="confirmDelete(siswa.id)" class="p-1.5 text-slate-400 dark:text-slate-500 hover:text-red-500 hover:bg-red-100 dark:hover:bg-red-900/50 rounded-md transition-all" title="Hapus">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="siswas.data.length === 0" class="p-8 text-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-3">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        </div>
+                        <p class="font-semibold text-slate-500 dark:text-slate-400 text-sm">Belum ada data siswa</p>
+                    </div>
+                </div>
+
+                <!-- DESKTOP: Table Layout -->
+                <div class="hidden md:block overflow-x-auto -mx-4 sm:mx-0">
                     <table class="w-full text-left min-w-[600px] sm:min-w-0">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
@@ -261,7 +298,7 @@ const executeDelete = () => {
                                 </td>
                             </tr>
                             <tr v-if="siswas.data.length === 0">
-                                <td colspan="5" class="px-4 sm:px-6 py-16 text-center">
+                                <td colspan="6" class="px-4 sm:px-6 py-16 text-center">
                                     <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-500 mb-3 sm:mb-4">
                                         <svg class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                     </div>
