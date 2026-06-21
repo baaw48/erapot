@@ -90,6 +90,24 @@ Route::get('/dashboard', function () {
             ->selectRaw('sum(sakit) as sakit, sum(izin) as izin, sum(alpa) as alpa')
             ->where('tahun_ajaran_id', \App\Models\TahunAjaran::where('is_active', true)->value('id'))
             ->first(),
+        'mapel_diampu' => (function() {
+            if (auth()->check() && auth()->user()->role === 'guru') {
+                $tahun_aktif = \App\Models\TahunAjaran::where('is_active', true)->first();
+                if ($tahun_aktif) {
+                    return \App\Models\Pembelajaran::with(['mapel', 'kelas'])
+                        ->where('guru_id', auth()->id())
+                        ->where('tahun_ajaran_id', $tahun_aktif->id)
+                        ->get()
+                        ->map(function ($p) {
+                            return [
+                                'nama_mapel' => $p->mapel->nama_mapel ?? '-',
+                                'kelas' => $p->kelas->nama_kelas ?? '-',
+                            ];
+                        });
+                }
+            }
+            return [];
+        })(),
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

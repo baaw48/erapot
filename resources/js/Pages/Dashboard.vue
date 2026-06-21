@@ -10,6 +10,7 @@ const props = defineProps({
     chart_nilai_kelas: Array,
     chart_nilai_mapel: Array,
     chart_kehadiran: Object,
+    mapel_diampu: Array,
 });
 
 // Fix: gunakan usePage() untuk ambil data user dengan benar
@@ -231,6 +232,22 @@ const gradeColor = (nilai) => {
                             </div>
                             <div class="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl text-white shadow-lg shadow-blue-500/30">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daftar Mapel Diampu (GURU) -->
+                <div v-if="userRole === 'guru' && mapel_diampu && mapel_diampu.length > 0" class="mt-6">
+                    <h4 class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Mata Pelajaran Diampu</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div v-for="(mapel, idx) in mapel_diampu" :key="idx" class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-700/50 flex items-center gap-4 hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-900/30 text-primary-500 flex items-center justify-center shrink-0 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-bold text-slate-800 dark:text-white leading-tight">{{ mapel.nama_mapel }}</h5>
+                                <p class="text-xs font-semibold text-slate-500 mt-0.5">Kelas {{ mapel.kelas }}</p>
                             </div>
                         </div>
                     </div>
