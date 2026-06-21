@@ -373,39 +373,50 @@ class CetakRaporController extends Controller
         return $pdf->stream('Arsip-Leger-' . $kelas->nama_kelas . '-' . $tahun->tahun . '.pdf');
     }
 
+    /**
+     * Assign ranks to students based on sorted order.
+     * Students are sorted before this call by:
+     *   Total Nilai DESC → Alpa ASC → Izin ASC → Sakit ASC → Nama ASC
+     *
+     * If all tie-breaker criteria are EQUAL, students share the same rank.
+     * The next distinct student gets the next sequential rank (no rank gap).
+     * Example: rank 1, 1, 2, 3 (not 1, 1, 3, 4)
+     */
     private function assignRanks($siswas)
     {
-        $rank = 1;
-        $actual_rank = 1;
+        $currentRank = 1;
+        $actualPosition = 1;
         $prev_siswa = null;
 
         foreach ($siswas as $siswa) {
             if ($prev_siswa !== null) {
                 $catatanSiswa = $siswa->catatanWaliKelas->first();
-                $catatanPrev = $prev_siswa->catatanWaliKelas->first();
-                
-                $alpaSiswa = $catatanSiswa ? ($catatanSiswa->alpa ?? 0) : 0;
-                $alpaPrev = $catatanPrev ? ($catatanPrev->alpa ?? 0) : 0;
-                
-                $izinSiswa = $catatanSiswa ? ($catatanSiswa->izin ?? 0) : 0;
-                $izinPrev = $catatanPrev ? ($catatanPrev->izin ?? 0) : 0;
-                
-                $sakitSiswa = $catatanSiswa ? ($catatanSiswa->sakit ?? 0) : 0;
-                $sakitPrev = $catatanPrev ? ($catatanPrev->sakit ?? 0) : 0;
+                $catatanPrev  = $prev_siswa->catatanWaliKelas->first();
 
-                $is_tie = ($siswa->total_nilai == $prev_siswa->total_nilai) &&
-                          ($alpaSiswa == $alpaPrev) &&
-                          ($izinSiswa == $izinPrev) &&
-                          ($sakitSiswa == $sakitPrev);
+                $alpa_s  = $catatanSiswa ? ($catatanSiswa->alpa  ?? 0) : 0;
+                $alpa_p  = $catatanPrev  ? ($catatanPrev->alpa   ?? 0) : 0;
+                $izin_s  = $catatanSiswa ? ($catatanSiswa->izin  ?? 0) : 0;
+                $izin_p  = $catatanPrev  ? ($catatanPrev->izin   ?? 0) : 0;
+                $sakit_s = $catatanSiswa ? ($catatanSiswa->sakit ?? 0) : 0;
+                $sakit_p = $catatanPrev  ? ($catatanPrev->sakit  ?? 0) : 0;
 
-                if (!$is_tie) {
-                    $rank = $actual_rank;
+                // True tie: all criteria are exactly equal
+                $is_tie = (
+                    $siswa->total_nilai == $prev_siswa->total_nilai &&
+                    $alpa_s  == $alpa_p  &&
+                    $izin_s  == $izin_p  &&
+                    $sakit_s == $sakit_p
+                );
+
+                // If not a tie, move rank forward to current position
+                if (! $is_tie) {
+                    $currentRank = $actualPosition;
                 }
             }
 
-            $siswa->peringkat = $rank;
+            $siswa->peringkat = $currentRank;
             $prev_siswa = $siswa;
-            $actual_rank++;
+            $actualPosition++;
         }
     }
 }
