@@ -182,8 +182,8 @@ const saveAll = () => {
                                 <th class="px-4 sm:px-6 py-4 w-24 sm:w-32 text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
-                            <tr v-for="(mapel, index) in mapels" :key="mapel.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group" :class="{'bg-rose-50/50 dark:bg-rose-900/20': !assignments[mapel.id]}">
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr v-for="(mapel, index) in mapels" :key="mapel.id" :class="['hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group', !assignments[mapel.id] ? 'bg-rose-50/50 dark:bg-rose-900/20' : '']">
                                 <td class="px-4 sm:px-6 py-3 sm:py-4 text-center font-bold text-slate-400 dark:text-slate-500">
                                     {{ index + 1 }}
                                 </td>
@@ -192,15 +192,13 @@ const saveAll = () => {
                                     <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
                                 <td class="px-4 sm:px-6 py-3 sm:py-4">
-                                    <div class="relative">
-                                        <select
-                                            v-model="assignments[mapel.id]"
-                                            class="w-full text-xs sm:text-sm bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 font-medium focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all appearance-none cursor-pointer"
-                                        >
-                                            <option value="">-- Pilih Guru --</option>
-                                            <option v-for="g in gurus" :key="g.id" :value="g.id">{{ g.name }} {{ g.nip ? '- ' + g.nip : '' }}</option>
-                                        </select>
-                                    </div>
+                                    <select
+                                        v-model="assignments[mapel.id]"
+                                        class="w-full text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg px-3 py-2 font-medium focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                                    >
+                                        <option value="">-- Pilih Guru --</option>
+                                        <option v-for="g in gurus" :key="g.id" :value="g.id">{{ g.name }}</option>
+                                    </select>
                                 </td>
                                 <td class="px-4 sm:px-6 py-3 sm:py-4">
                                     <div class="flex items-center justify-center gap-1">
