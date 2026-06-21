@@ -166,11 +166,11 @@ const mapelOptions = computed(() => [
                             </div>
                             <span class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300">Siswa Terdaftar</span>
                         </div>
-                        <div class="flex items-center gap-2 sm:gap-3 w-full md:w-auto">
+                        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full md:w-auto">
                             <!-- Fitur Setel Semua Nilai -->
-                            <div class="flex-1 md:flex-none flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/50 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
-                                <span class="text-[10px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest hidden sm:inline">Set Semua Nilai:</span>
-                                <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Ketik angka..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 dark:bg-slate-900/50 dark:text-white rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah akan otomatis terisi">
+                            <div class="w-full sm:w-auto flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/50 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all">
+                                <span class="text-[10px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest hidden sm:inline">Set Semua:</span>
+                                <input type="number" min="0" max="100" v-model="bulkNilai" @input="applyBulkNilai" placeholder="Input massal..." class="w-full sm:w-28 h-8 text-center text-sm font-black border-none bg-slate-50 dark:bg-slate-900/50 dark:text-white rounded-lg focus:ring-0" title="Ketik angka di sini, maka semua nilai siswa di bawah otomatis terisi">
                             </div>
                             
                             <button type="button" @click="submit" class="hidden md:flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -180,7 +180,39 @@ const mapelOptions = computed(() => [
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto min-w-[600px]">
+                    <!-- MOBILE: Card Layout -->
+                    <div class="md:hidden divide-y divide-slate-100 dark:divide-slate-700/50">
+                        <div v-for="(siswa, index) in siswas" :key="siswa.siswa_id" class="p-4 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center justify-center text-sm font-black uppercase shrink-0">
+                                        {{ siswa.nama_siswa.charAt(0) }}
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold dark:text-white">{{ siswa.nama_siswa }}</p>
+                                        <p class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 font-mono">{{ siswa.nis }}</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 rounded-full text-[10px] font-bold" :class="getGradeBadge(form.nilais[index].nilai_angka).class">
+                                    {{ getGradeBadge(form.nilais[index].nilai_angka).text }}
+                                </span>
+                            </div>
+                            <div>
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    max="100" 
+                                    v-model="form.nilais[index].nilai_angka"
+                                    class="w-full text-center font-black text-lg rounded-xl transition-all duration-300 placeholder:text-slate-300 dark:placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm py-3"
+                                    :class="getGradeClass(form.nilais[index].nilai_angka)"
+                                    placeholder="Input Nilai"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DESKTOP: Table Layout -->
+                    <div class="hidden md:block overflow-x-auto min-w-[600px]">
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[11px] font-black dark:text-slate-400 dark:text-slate-500 uppercase tracking-widest">
@@ -254,9 +286,21 @@ const mapelOptions = computed(() => [
                 <svg class="h-12 sm:h-16 w-12 sm:w-16 text-slate-300 dark:text-slate-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                 </svg>
-                <p class="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Silakan pilih Kelas & Mapel terlebih dahulu</p>
+                <p class="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">Silakan pilih Kelas & Mapel<br class="sm:hidden"> terlebih dahulu</p>
             </div>
         </div>
+
+        <!-- MOBILE: Floating Save Button -->
+        <teleport to="body">
+            <div v-if="siswas && siswas.length > 0" class="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-700 shadow-2xl">
+                <button @click="submit" :disabled="form.processing"
+                    class="w-full py-4 bg-gradient-to-r from-brand-600 to-brand-500 text-white text-sm font-black rounded-2xl shadow-lg shadow-brand-500/40 active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-70">
+                    <svg v-if="form.processing" class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                    <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+                    {{ form.processing ? 'Menyimpan...' : 'Simpan Semua Nilai' }}
+                </button>
+            </div>
+        </teleport>
 
         <!-- Custom Success Modal -->
         <Modal :show="showSuccessModal" @close="showSuccessModal = false">
