@@ -70,9 +70,9 @@ jobs:
             fi
           done
 
-          # If no existing project found, create one
+          # If no existing project found, create at hosting domain folder
           if [ -z "$PROJECT_DIR" ]; then
-            PROJECT_DIR="$HOME/erapot"
+            PROJECT_DIR="$HOME/erapot.baaw48.my.id"
             echo "No existing project found. Will create at: $PROJECT_DIR"
             mkdir -p "$PROJECT_DIR"
           fi
@@ -126,16 +126,18 @@ jobs:
           # Remove old files except backups
           rm -rf app bootstrap config database public resources routes storage vendor artisan composer.* package.* 2>/dev/null || true
 
-          # Copy new files
-          if [ -d "~/deploy_new/erapot-main" ]; then
-            cp -r ~/deploy_new/erapot-main/* .
-            cp -r ~/deploy_new/erapot-main/.* . 2>/dev/null || true
+          # Copy new files (use $HOME instead of ~ to avoid expansion issues in quotes)
+          DEPLOY_SRC="$HOME/deploy_new/erapot-main"
+          if [ -d "$DEPLOY_SRC" ]; then
+            cp -r "$DEPLOY_SRC"/* .
+            cp -r "$DEPLOY_SRC"/.[!.]* . 2>/dev/null || true
+            echo "Copied from: $DEPLOY_SRC"
           else
-            cp -r ~/deploy_new/* . 2>/dev/null || true
-            cp -r ~/deploy_new/.* . 2>/dev/null || true
+            echo "ERROR: Source folder $DEPLOY_SRC not found!"
+            ls -la "$HOME/deploy_new/"
           fi
 
-          rm -rf ~/deploy_new
+          rm -rf "$HOME/deploy_new"
 
           echo "Project files after deploy:"
           ls -la
