@@ -98,10 +98,29 @@ Route::get('/dashboard', function () {
                         ->where('guru_id', auth()->id())
                         ->where('tahun_ajaran_id', $tahun_aktif->id)
                         ->get()
-                        ->map(function ($p) {
+                        ->map(function ($p) use ($tahun_aktif) {
+                            $total_siswa = \App\Models\Siswa::where('kelas_id', $p->kelas_id)->where('status', 'aktif')->count();
+                            $siswa_dinilai = \App\Models\Nilai::where('mapel_id', $p->mapel_id)
+                                ->where('tahun_ajaran_id', $tahun_aktif->id)
+                                ->whereHas('siswa', function($q) use ($p) {
+                                    $q->where('kelas_id', $p->kelas_id);
+                                })->count();
+                            
+                            $status_nilai = 'Belum';
+                            if ($total_siswa == 0) {
+                                $status_nilai = 'Kosong';
+                            } elseif ($siswa_dinilai >= $total_siswa) {
+                                $status_nilai = 'Lengkap';
+                            } elseif ($siswa_dinilai > 0) {
+                                $status_nilai = 'Sebagian';
+                            }
+
                             return [
                                 'nama_mapel' => $p->mapel->nama_mapel ?? '-',
                                 'kelas' => $p->kelas->nama_kelas ?? '-',
+                                'total_siswa' => $total_siswa,
+                                'siswa_dinilai' => $siswa_dinilai,
+                                'status_nilai' => $status_nilai,
                             ];
                         });
                 }

@@ -245,9 +245,17 @@ const gradeColor = (nilai) => {
                             <div class="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-900/30 text-primary-500 flex items-center justify-center shrink-0 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                             </div>
-                            <div>
-                                <h5 class="text-sm font-bold text-slate-800 dark:text-white leading-tight">{{ mapel.nama_mapel }}</h5>
+                            <div class="flex-1 min-w-0">
+                                <h5 class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">{{ mapel.nama_mapel }}</h5>
                                 <p class="text-xs font-semibold text-slate-500 mt-0.5">Kelas {{ mapel.kelas }}</p>
+                            </div>
+                            <div class="shrink-0 flex flex-col items-end">
+                                <span v-if="mapel.status_nilai === 'Lengkap'" class="px-2 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">Lengkap</span>
+                                <span v-else-if="mapel.status_nilai === 'Sebagian'" class="px-2 py-1 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] font-bold">Sebagian</span>
+                                <span v-else-if="mapel.status_nilai === 'Belum'" class="px-2 py-1 rounded-md bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-[10px] font-bold">Belum Ada</span>
+                                <span v-else class="px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold">Kosong</span>
+                                
+                                <span v-if="mapel.total_siswa > 0" class="text-[9px] font-bold text-slate-400 mt-1">{{ mapel.siswa_dinilai }}/{{ mapel.total_siswa }} Dinilai</span>
                             </div>
                         </div>
                     </div>
