@@ -98,10 +98,7 @@ class CetakRaporController extends Controller
             return strcmp($a->nama_siswa, $b->nama_siswa);
         })->values();
 
-        $rank = 1;
-        foreach ($siswas as $siswa) {
-            $siswa->peringkat = $rank++;
-        }
+        $this->assignRanks($siswas);
 
         // Re-sort back by Name or NIS for the loop in PDF (optional, but good practice so they print in alphabetical order)
         $siswas = $siswas->sortBy('nama_siswa')->values();
@@ -183,11 +180,7 @@ class CetakRaporController extends Controller
             return strcmp($a->nama_siswa, $b->nama_siswa);
         })->values();
 
-        // Assign ranks (strictly sequential)
-        $rank = 1;
-        foreach ($siswas as $siswa) {
-            $siswa->peringkat = $rank++;
-        }
+        $this->assignRanks($siswas);
 
         // Re-sort by Nama Siswa for final display in Ledger
         $siswas = $siswas->sortBy('nama_siswa')->values();
@@ -288,10 +281,7 @@ class CetakRaporController extends Controller
             return strcmp($a->nama_siswa, $b->nama_siswa);
         })->values();
         
-        $rank = 1;
-        foreach ($siswas as $siswa) {
-            $siswa->peringkat = $rank++;
-        }
+        $this->assignRanks($siswas);
         $siswas = $siswas->sortBy('nama_siswa')->values();
 
         $pdf = Pdf::loadView('pdf.rapor-asts', [
@@ -369,10 +359,7 @@ class CetakRaporController extends Controller
             return strcmp($a->nama_siswa, $b->nama_siswa);
         })->values();
         
-        $rank = 1;
-        foreach ($siswas as $siswa) {
-            $siswa->peringkat = $rank++;
-        }
+        $this->assignRanks($siswas);
         $siswas = $siswas->sortBy('nama_siswa')->values();
 
         $pdf = Pdf::loadView('pdf.leger-asts', [
@@ -384,6 +371,42 @@ class CetakRaporController extends Controller
         ])->setPaper('A4', 'landscape');
 
         return $pdf->stream('Arsip-Leger-' . $kelas->nama_kelas . '-' . $tahun->tahun . '.pdf');
+    }
+
+    private function assignRanks($siswas)
+    {
+        $rank = 1;
+        $actual_rank = 1;
+        $prev_siswa = null;
+
+        foreach ($siswas as $siswa) {
+            if ($prev_siswa !== null) {
+                $catatanSiswa = $siswa->catatanWaliKelas->first();
+                $catatanPrev = $prev_siswa->catatanWaliKelas->first();
+                
+                $alpaSiswa = $catatanSiswa ? ($catatanSiswa->alpa ?? 0) : 0;
+                $alpaPrev = $catatanPrev ? ($catatanPrev->alpa ?? 0) : 0;
+                
+                $izinSiswa = $catatanSiswa ? ($catatanSiswa->izin ?? 0) : 0;
+                $izinPrev = $catatanPrev ? ($catatanPrev->izin ?? 0) : 0;
+                
+                $sakitSiswa = $catatanSiswa ? ($catatanSiswa->sakit ?? 0) : 0;
+                $sakitPrev = $catatanPrev ? ($catatanPrev->sakit ?? 0) : 0;
+
+                $is_tie = ($siswa->total_nilai == $prev_siswa->total_nilai) &&
+                          ($alpaSiswa == $alpaPrev) &&
+                          ($izinSiswa == $izinPrev) &&
+                          ($sakitSiswa == $sakitPrev);
+
+                if (!$is_tie) {
+                    $rank = $actual_rank;
+                }
+            }
+
+            $siswa->peringkat = $rank;
+            $prev_siswa = $siswa;
+            $actual_rank++;
+        }
     }
 }
 
