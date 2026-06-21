@@ -196,6 +196,13 @@ const tahunAktif = computed(() => page.props.tahun_aktif);
                     Input Kehadiran
                 </SidebarLink>
 
+                <SidebarLink v-if="userRole === 'guru' && $page.props.auth.user.kelas_diampu" :href="route('monitoring.index')" :active="route().current('monitoring.index')" :isCollapsed="isSidebarCollapsed">
+                    <template #icon>
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </template>
+                    Monitoring Nilai
+                </SidebarLink>
+
                 <SidebarLink v-if="userRole === 'admin' || (userRole === 'guru' && $page.props.auth.user.kelas_diampu)" :href="route('cetak.index')" :active="route().current('cetak.index')" :isCollapsed="isSidebarCollapsed">
                     <template #icon>
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>

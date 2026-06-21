@@ -152,6 +152,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/penilaian', [NilaiController::class, 'index'])->name('nilai.index');
     Route::post('/penilaian/batch', [NilaiController::class, 'storeBatch'])->name('nilai.storeBatch');
 
+    Route::get('/monitoring-nilai', [\App\Http\Controllers\MonitoringController::class, 'index'])->name('monitoring.index');
+
     Route::get('/cetak-rapor', [\App\Http\Controllers\CetakRaporController::class, 'index'])->name('cetak.index');
     Route::get('/cetak-rapor/pdf', [\App\Http\Controllers\CetakRaporController::class, 'cetakPdf'])->name('cetak.pdf');
     Route::get('/cetak-leger/pdf', [\App\Http\Controllers\CetakRaporController::class, 'legerPdf'])->name('cetak-leger.pdf');
