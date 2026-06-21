@@ -140,7 +140,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/migrate-db', function() {
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        return "Migrasi database berhasil dijalankan!";
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        return "Migrasi database dan pembersihan cache (route/config/view) berhasil dijalankan!";
     });
 
     Route::get('/penilaian', [NilaiController::class, 'index'])->name('nilai.index');
