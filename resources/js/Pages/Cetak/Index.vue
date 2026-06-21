@@ -43,7 +43,8 @@ const props = defineProps({
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto">
+                    <!-- Desktop Table -->
+                    <div class="hidden md:block overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700/50 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
@@ -101,6 +102,35 @@ const props = defineProps({
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="md:hidden space-y-4 p-4 sm:p-6">
+                        <div v-for="(k, index) in kelas" :key="'mob-'+k.id" class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700/50 overflow-hidden">
+                            <div class="p-4 sm:p-5 flex items-center gap-4 border-b border-slate-100 dark:border-slate-700/50">
+                                <div class="h-12 w-12 rounded-xl bg-brand-100 text-brand-600 dark:bg-brand-900/30 dark:text-brand-400 flex items-center justify-center font-black shadow-inner shrink-0 text-lg">
+                                    {{ k.tingkat }}
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-slate-800 dark:text-white text-base">{{ k.nama_kelas }}</h4>
+                                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">Wali: {{ k.wali_kelas ? k.wali_kelas.name : 'Belum Diatur' }}</div>
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 bg-slate-50 dark:bg-slate-800/50 flex flex-col gap-3">
+                                <a :href="route('cetak-leger.pdf', { kelas_id: k.id })" target="_blank" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 hover:bg-emerald-100 border border-emerald-200 dark:border-emerald-800 px-5 py-3 text-xs font-black tracking-widest uppercase transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    Cetak Leger
+                                </a>
+                                <a :href="route('cetak.pdf', { kelas_id: k.id })" target="_blank" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400 hover:bg-brand-100 border border-brand-200 dark:border-brand-800 px-5 py-3 text-xs font-black tracking-widest uppercase transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    Cetak Rapor
+                                </a>
+                            </div>
+                        </div>
+                        <div v-if="kelas.length === 0" class="text-center py-10 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50">
+                            <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Kelas</h3>
+                            <p class="text-xs font-medium text-slate-400 dark:text-slate-500 mt-1">Data kelas tidak ditemukan untuk dicetak.</p>
+                        </div>
                     </div>
                 </div>
             </div>
