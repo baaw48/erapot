@@ -45,25 +45,66 @@ jobs:
         script: |
           echo "=== Connecting to server ==="
 
-          echo "=== Navigate to deployment directory ==="
-          cd ~/public_html/baawmyid 2>/dev/null || { echo "Trying alternative path..."; cd /home/baaw48/public_html/baawmyid 2>/dev/null || { echo "Cannot find directory"; exit 1; } }
+          echo "=== Finding deployment directory ==="
+          # Try multiple possible paths
+          DEPLOY_DIR=""
+          for dir in \
+            "$HOME/public_html/erapot" \
+            "$HOME/public_html/e-rapot" \
+            "$HOME/public_html/baawmyid/erapot" \
+            "$HOME/erapot" \
+            "$HOME/e-rapot" \
+            "/var/www/erapot" \
+            "/var/www/html/erapot" \
+            "/home/baawmyid/erapot" \
+            "/home/baaw48/public_html/erapot" \
+            "$HOME" \
+            "$HOME/public_html" \
+            "."
+          do
+            if [ -d "$dir" ] || [ -f "$dir/.env" ] || [ -f "$dir/artisan" ]; then
+              DEPLOY_DIR="$dir"
+              echo "Found directory: $DEPLOY_DIR"
+              break
+            fi
+          done
+
+          if [ -z "$DEPLOY_DIR" ]; then
+            echo "WARNING: Could not auto-detect project directory"
+            echo "Listing available directories:"
+            ls -la ~/
+            ls -la ~/public_html/ 2>/dev/null || echo "public_html not found"
+            DEPLOY_DIR="."
+          fi
+
+          cd "$DEPLOY_DIR"
           pwd
 
           echo "=== Backup critical files ==="
+          PROJECT_DIR=$(pwd)
           # Backup .env
-          if [ -f erapot/.env ]; then
-            cp erapot/.env /tmp/erapot_env_backup
+          if [ -f .env ]; then
+            cp .env /tmp/erapot_env_backup
             echo "Backed up .env"
+          elif [ -f erapot/.env ]; then
+            cp erapot/.env /tmp/erapot_env_backup
+            echo "Backed up erapot/.env"
           fi
           # Backup logos folder (file upload/logo sekolah)
-          if [ -d "erapot/public/logos" ]; then
-            cp -r erapot/public/logos /tmp/erapot_logos_backup
+          if [ -d "public/logos" ]; then
+            cp -r public/logos /tmp/erapot_logos_backup
             echo "Backed up logos folder"
+          elif [ -d "erapot/public/logos" ]; then
+            cp -r erapot/public/logos /tmp/erapot_logos_backup
+            echo "Backed up erapot/public/logos"
           fi
           # Backup storage/app/public (file upload lainnya)
-          if [ -d "erapot/storage/app/public" ]; then
-            cp -r erapot/storage/app/public /tmp/erapot_storage_backup -r
+          if [ -d "storage/app/public" ]; then
+            cp -r storage/app/public /tmp/erapot_storage_backup
             echo "Backed up storage/app/public"
+          elif [ -d "erapot/storage/app/public" ]; then
+            cp -r erapot/storage/app/public /tmp/erapot_storage_backup
+            echo "Backed up erapot/storage/app/public"
           fi
 
           echo "=== Remove old folder ==="
@@ -97,13 +138,13 @@ jobs:
           # Restore logos folder
           if [ -d /tmp/erapot_logos_backup ]; then
             mkdir -p public/logos
-            cp -r /tmp/erapot_logos_backup/* public/logos/
+            cp -r /tmp/erapot_logos_backup/* public/logos/ 2>/dev/null || true
             echo "Restored logos folder"
           fi
           # Restore storage/app/public
           if [ -d /tmp/erapot_storage_backup ]; then
             mkdir -p storage/app/public
-            cp -r /tmp/erapot_storage_backup/* storage/app/public/
+            cp -r /tmp/erapot_storage_backup/* storage/app/public/ 2>/dev/null || true
             echo "Restored storage/app/public"
           fi
 
