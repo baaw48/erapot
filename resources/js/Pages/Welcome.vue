@@ -147,14 +147,6 @@ onMounted(() => {
                             <span>Login ke Sistem</span>
                         </Link>
 
-                        <Link v-if="canRegister" :href="route('register')"
-                            class="w-full px-6 py-3.5 sm:px-8 sm:py-4 font-bold rounded-xl sm:rounded-2xl transition-all text-sm sm:text-base flex items-center justify-center gap-2 border hover:-translate-y-0.5 active:translate-y-0"
-                            :class="isDark
-                                ? 'bg-slate-700/50 border-slate-600 text-slate-200 hover:bg-slate-700'
-                                : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                            <span>Daftar Akun</span>
-                        </Link>
                     </template>
                 </div>
             </div>
