@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
 use App\Models\CatatanWaliKelas;
+use App\Models\Ekskul;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -80,10 +81,14 @@ class KehadiranController extends Controller
                 });
         }
 
+        // Ambil master data ekskul
+        $ekskuls = Ekskul::where('is_active', true)->orderBy('nama_ekskul')->get(['id', 'nama_ekskul']);
+
         return Inertia::render('Kehadiran/Index', [
             'tahunAktif' => $tahunAktif,
             'kelas' => $kelas,
             'siswas' => $siswas,
+            'ekskuls' => $ekskuls,
             'kelasSudahInput' => $kelasSudahInput,
             'filters' => [
                 'kelas_id' => $selectedKelasId,

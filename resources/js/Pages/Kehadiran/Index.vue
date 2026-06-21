@@ -14,6 +14,7 @@ const props = defineProps({
         type: Array,
         default: () => []
     },
+    ekskuls: Array,
     filters: Object,
 });
 
@@ -92,6 +93,19 @@ const kelasOptions = computed(() => [
     { value: '', label: '-- Klik untuk memilih kelas --' },
     ...(props.kelas || []).map(k => ({ value: k.id, label: k.nama_kelas })),
 ]);
+
+const ekskulOptions = computed(() => [
+    { value: '', label: '-- Kosong / Tidak Ikut --' },
+    ...(props.ekskuls || []).map(e => ({ value: e.nama_ekskul, label: e.nama_ekskul })),
+]);
+
+const nilaiEkskulOptions = [
+    { value: '', label: '--' },
+    { value: 'A', label: 'A (Sangat Baik)' },
+    { value: 'B', label: 'B (Baik)' },
+    { value: 'C', label: 'C (Cukup)' },
+    { value: 'D', label: 'D (Kurang)' },
+];
 
 const tabColorClass = (tab, type) => {
     const colors = {
@@ -329,12 +343,30 @@ const gradeInputClass = "w-14 text-center font-bold text-sm bg-slate-50 dark:bg-
                                             <span class="text-xs font-bold text-slate-700 dark:text-white truncate max-w-[120px]">{{ siswa.nama_siswa }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].ekskul_1" :class="textInputClass" placeholder="Nama ekskul..." /></td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].nilai_ekskul_1" :class="gradeInputClass" placeholder="A/B" /></td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].ekskul_2" :class="textInputClass" placeholder="Nama ekskul..." /></td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].nilai_ekskul_2" :class="gradeInputClass" placeholder="A/B" /></td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].ekskul_3" :class="textInputClass" placeholder="Nama ekskul..." /></td>
-                                    <td class="px-2 py-3"><input type="text" v-model="form.kehadiran[index].nilai_ekskul_3" :class="gradeInputClass" placeholder="A/B" /></td>
+                                    <td class="px-2 py-3">
+                                        <SearchableSelect v-model="form.kehadiran[index].ekskul_1" :options="ekskulOptions" placeholder="Pilih Ekskul..." searchPlaceholder="Cari..." />
+                                    </td>
+                                    <td class="px-2 py-3">
+                                        <select v-model="form.kehadiran[index].nilai_ekskul_1" :class="gradeInputClass" class="pr-6">
+                                            <option v-for="opt in nilaiEkskulOptions" :key="opt.value" :value="opt.value">{{ opt.value || '--' }}</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-2 py-3">
+                                        <SearchableSelect v-model="form.kehadiran[index].ekskul_2" :options="ekskulOptions" placeholder="Pilih Ekskul..." searchPlaceholder="Cari..." />
+                                    </td>
+                                    <td class="px-2 py-3">
+                                        <select v-model="form.kehadiran[index].nilai_ekskul_2" :class="gradeInputClass" class="pr-6">
+                                            <option v-for="opt in nilaiEkskulOptions" :key="opt.value" :value="opt.value">{{ opt.value || '--' }}</option>
+                                        </select>
+                                    </td>
+                                    <td class="px-2 py-3">
+                                        <SearchableSelect v-model="form.kehadiran[index].ekskul_3" :options="ekskulOptions" placeholder="Pilih Ekskul..." searchPlaceholder="Cari..." />
+                                    </td>
+                                    <td class="px-2 py-3">
+                                        <select v-model="form.kehadiran[index].nilai_ekskul_3" :class="gradeInputClass" class="pr-6">
+                                            <option v-for="opt in nilaiEkskulOptions" :key="opt.value" :value="opt.value">{{ opt.value || '--' }}</option>
+                                        </select>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
