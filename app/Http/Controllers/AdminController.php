@@ -97,6 +97,46 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Data admin berhasil diperbarui.');
     }
 
+    public function exportAkun(Request $request)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $resetPassword = $request->boolean('reset_password', false);
+
+        $admins = User::where('role', 'admin')->orderBy('name')->get();
+
+        $akunData = [];
+
+        foreach ($admins as $admin) {
+            $plainPassword = null;
+
+            // Jangan reset password akun sendiri (admin yg sedang login)
+            if ($resetPassword && $admin->id !== auth()->id()) {
+                // Generate password baru: Admin + 4 digit angka acak
+                $plainPassword = 'Admin' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+                $admin->password = Hash::make($plainPassword);
+                $admin->save();
+            }
+
+            $akunData[] = [
+                'no'       => count($akunData) + 1,
+                'nama'     => $admin->name,
+                'username' => $admin->username,
+                'password' => $plainPassword ?? ($admin->id === auth()->id() && $resetPassword ? '(akun sendiri, tidak direset)' : '(tidak direset)'),
+            ];
+        }
+
+        $sekolah = \App\Models\Sekolah::first();
+        $tanggal = now()->locale('id')->isoFormat('dddd, D MMMM YYYY');
+        $resetLabel = $resetPassword ? 'Password Baru (Direset)' : 'Password';
+
+        $html = view('exports.daftar-akun-admin', compact('akunData', 'sekolah', 'tanggal', 'resetLabel', 'resetPassword'))->render();
+
+        return response($html)->header('Content-Type', 'text/html');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

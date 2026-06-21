@@ -172,10 +172,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/guru/template-import', [\App\Http\Controllers\GuruController::class, 'downloadTemplate'])->name('guru.template');
     Route::post('/guru/import', [\App\Http\Controllers\GuruController::class, 'import'])->name('guru.import');
     Route::get('/guru/export', [\App\Http\Controllers\GuruController::class, 'export'])->name('guru.export');
+    Route::get('/guru/export-akun', [\App\Http\Controllers\GuruController::class, 'exportAkun'])->name('guru.exportAkun');
     Route::resource('guru', \App\Http\Controllers\GuruController::class)->except(['create', 'show', 'edit']);
     Route::resource('kelas', \App\Http\Controllers\KelasController::class)->except(['create', 'show', 'edit']);
     Route::resource('mapel', \App\Http\Controllers\MapelController::class)->except(['create', 'show', 'edit']);
 
+    Route::get('/admin/export-akun', [\App\Http\Controllers\AdminController::class, 'exportAkun'])->name('admin.exportAkun');
     Route::resource('admin', \App\Http\Controllers\AdminController::class)->except(['create', 'show', 'edit']);
     Route::resource('tahun-ajaran', \App\Http\Controllers\TahunAjaranController::class)->except(['create', 'show', 'edit']);
     Route::post('tahun-ajaran/{tahunAjaran}/set-active', [\App\Http\Controllers\TahunAjaranController::class, 'setActive'])->name('tahun-ajaran.setActive');

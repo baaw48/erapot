@@ -85,6 +85,47 @@ class GuruController extends Controller
         return Excel::download(new \App\Exports\GuruExport, $fileName);
     }
 
+    public function exportAkun(Request $request)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $resetPassword = $request->boolean('reset_password', false);
+
+        $gurus = User::where('role', 'guru')->orderBy('name')->get();
+
+        $akunData = [];
+
+        foreach ($gurus as $guru) {
+            $plainPassword = null;
+
+            if ($resetPassword) {
+                // Generate password baru: Guru + 4 digit angka acak
+                $plainPassword = 'Guru' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+                $guru->password = Hash::make($plainPassword);
+                $guru->save();
+            }
+
+            $akunData[] = [
+                'no'       => count($akunData) + 1,
+                'nama'     => $guru->name,
+                'nip'      => $guru->nip ?? '-',
+                'username' => $guru->username,
+                'password' => $plainPassword ?? '(tidak direset)',
+                'kelas'    => $guru->kelas_diampu ?? '-',
+            ];
+        }
+
+        $sekolah = \App\Models\Sekolah::first();
+        $tanggal = now()->locale('id')->isoFormat('dddd, D MMMM YYYY');
+        $resetLabel = $resetPassword ? 'Password Baru (Direset)' : 'Password';
+
+        $html = view('exports.daftar-akun-guru', compact('akunData', 'sekolah', 'tanggal', 'resetLabel', 'resetPassword'))->render();
+
+        return response($html)->header('Content-Type', 'text/html');
+    }
+
     public function store(Request $request)
     {
         if (auth()->user()->role !== 'admin') {
