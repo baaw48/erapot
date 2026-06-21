@@ -138,6 +138,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/migrate-db', function() {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return "Migrasi database berhasil dijalankan!";
+    });
+
     Route::get('/penilaian', [NilaiController::class, 'index'])->name('nilai.index');
     Route::post('/penilaian/batch', [NilaiController::class, 'storeBatch'])->name('nilai.storeBatch');
 
