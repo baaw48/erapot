@@ -173,12 +173,12 @@ const saveAll = () => {
                 </div>
 
                 <div class="overflow-x-auto -mx-4 sm:mx-0 relative z-10">
-                    <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700/50 min-w-[500px]">
+                    <table class="w-full text-left border-collapse bg-white/50 dark:bg-transparent rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700/50 min-w-[600px]">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <th class="px-4 sm:px-6 py-4 w-12 text-center">No</th>
                                 <th class="px-4 sm:px-6 py-4">Mata Pelajaran</th>
-                                <th class="px-4 sm:px-6 py-4 hidden xs:table-cell">Guru Pengampu</th>
+                                <th class="px-4 sm:px-6 py-4 w-48 sm:w-56">Guru Pengampu</th>
                                 <th class="px-4 sm:px-6 py-4 w-24 sm:w-32 text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -191,15 +191,14 @@ const saveAll = () => {
                                     <div class="text-sm font-bold dark:text-white">{{ mapel.nama_mapel }}</div>
                                     <div class="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mt-0.5">Kelompok {{ mapel.kelompok }}</div>
                                 </td>
-                                <td class="px-4 sm:px-6 py-3 sm:py-4 hidden xs:table-cell">
-                                    <SearchableSelect
+                                <td class="px-4 sm:px-6 py-3 sm:py-4">
+                                    <select
                                         v-model="assignments[mapel.id]"
-                                        :options="guruOptions"
-                                        placeholder="-- Belum Ada Guru --"
-                                        searchPlaceholder="Cari guru..."
-                                        :error="!assignments[mapel.id]"
-                                        :success="!!assignments[mapel.id]"
-                                    />
+                                        class="w-full text-xs sm:text-sm bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 font-medium focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all appearance-none cursor-pointer"
+                                    >
+                                        <option value="">-- Pilih Guru --</option>
+                                        <option v-for="g in gurus" :key="g.id" :value="g.id">{{ g.name }} {{ g.nip ? '- ' + g.nip : '' }}</option>
+                                    </select>
                                 </td>
                                 <td class="px-4 sm:px-6 py-3 sm:py-4">
                                     <div class="flex items-center justify-center gap-1">
