@@ -124,7 +124,7 @@ class AdminController extends Controller
                 'no'       => count($akunData) + 1,
                 'nama'     => $admin->name,
                 'username' => $admin->username,
-                'password' => $plainPassword ?? ($admin->id === auth()->id() && $resetPassword ? '(akun sendiri, tidak direset)' : '(tidak direset)'),
+                'password' => $plainPassword ?? ($admin->id === auth()->id() && $resetPassword ? '(akun sendiri)' : '(disembunyikan)'),
             ];
         }
 

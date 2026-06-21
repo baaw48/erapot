@@ -43,7 +43,7 @@ class GuruImport implements ToCollection, WithHeadingRow
                     'name' => $row['nama_lengkap'],
                     'username' => $username,
                     'nip' => $nip,
-                    'password' => Hash::make($nip ?: 'Yaspih@702'),
+                    'password' => Hash::make($nip ?: 'guru123'),
                     'role' => 'guru',
                     'mapel_diampu' => $mapel_diampu,
                     'kelas_diampu' => $kelas_diampu,

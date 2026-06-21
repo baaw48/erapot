@@ -112,7 +112,7 @@ class GuruController extends Controller
                 'nama'     => $guru->name,
                 'nip'      => $guru->nip ?? '-',
                 'username' => $guru->username,
-                'password' => $plainPassword ?? '(tidak direset)',
+                'password' => $plainPassword ?? '(Default: guru123)',
                 'kelas'    => $guru->kelas_diampu ?? '-',
             ];
         }
@@ -146,7 +146,7 @@ class GuruController extends Controller
         }
 
         $validated['role'] = 'guru';
-        $validated['password'] = Hash::make('Yaspih@702');
+        $validated['password'] = Hash::make('guru123');
 
         $guru = User::create($validated);
 
@@ -154,7 +154,7 @@ class GuruController extends Controller
             \App\Models\Kelas::where('nama_kelas', $guru->kelas_diampu)->update(['wali_kelas_id' => $guru->id]);
         }
 
-        return redirect()->back()->with('success', 'Data guru berhasil ditambahkan dengan password default: Yaspih@702');
+        return redirect()->back()->with('success', 'Data guru berhasil ditambahkan dengan password default: guru123');
     }
 
     public function update(Request $request, User $guru)
