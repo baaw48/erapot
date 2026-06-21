@@ -91,7 +91,8 @@ const toggleStatus = (ekskul) => {
             </div>
 
             <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl">
-                <div class="overflow-x-auto">
+                <!-- Desktop Table View -->
+                <div class="hidden md:block overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-700 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
@@ -128,6 +129,32 @@ const toggleStatus = (ekskul) => {
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile Card View -->
+                <div class="md:hidden space-y-3 p-4">
+                    <div v-for="(ekskul, index) in ekskuls" :key="'mob-'+ekskul.id" class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700/50 p-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-white text-base">{{ ekskul.nama_ekskul }}</h4>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ ekskul.keterangan || '-' }}</div>
+                            </div>
+                            <button @click="toggleStatus(ekskul)" :class="ekskul.is_active ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400' : 'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-400'" class="px-2.5 py-1 text-[10px] font-black uppercase rounded-lg transition-colors">
+                                {{ ekskul.is_active ? 'Aktif' : 'Nonaktif' }}
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-700/50">
+                            <button @click="openEditModal(ekskul)" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors" title="Edit">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button @click="deleteEkskul(ekskul.id)" class="p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg transition-colors" title="Hapus">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div v-if="!ekskuls || ekskuls.length === 0" class="text-center py-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700/50">
+                        <div class="text-sm font-bold text-slate-500">Belum ada data ekstrakurikuler.</div>
+                    </div>
                 </div>
             </div>
         </div>

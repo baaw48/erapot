@@ -203,7 +203,8 @@ const executeProses = () => {
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto">
+                    <!-- Desktop Table -->
+                    <div class="hidden md:block overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
                                 <tr v-for="(siswa, index) in siswas" :key="siswa.id" class="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors group">
@@ -237,6 +238,26 @@ const executeProses = () => {
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Mobile List View -->
+                    <div class="md:hidden divide-y divide-slate-100 dark:divide-slate-700/50">
+                        <div v-for="(siswa, index) in siswas" :key="'mob-'+siswa.id" class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                            <label :for="'mob_siswa_'+siswa.id" class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" :id="'mob_siswa_'+siswa.id" :value="siswa.id" v-model="selectedSiswas" class="w-5 h-5 rounded-md border-slate-300 text-blue-600 dark:text-blue-400 focus:ring-brand-500 cursor-pointer shrink-0">
+                                <div class="h-10 w-10 rounded-full flex items-center justify-center font-black text-sm shrink-0"
+                                    :class="siswa.jenis_kelamin === 'L' ? 'bg-blue-100 text-blue-600' : 'bg-pink-100 text-pink-600'">
+                                    {{ siswa.nama_siswa.charAt(0) }}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-sm font-bold dark:text-white truncate">{{ siswa.nama_siswa }}</div>
+                                    <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 mt-0.5">NIS: {{ siswa.nis }}</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div v-if="siswas.length === 0" class="p-8 text-center">
+                            <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Siswa Tidak Ditemukan</h3>
+                        </div>
                     </div>
                     
                     <div v-if="tipeMode === 'kenaikan' && siswas.length > 0" class="p-6 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30 flex justify-end">

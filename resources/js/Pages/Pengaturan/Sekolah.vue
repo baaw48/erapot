@@ -298,8 +298,8 @@ const submitRapor = () => {
                         </div>
                     </form>
 
-                    <!-- Tabel TA -->
-                    <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
+                    <!-- Desktop Table TA -->
+                    <div class="hidden md:block overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-100 dark:border-slate-700/50 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
@@ -348,6 +348,38 @@ const submitRapor = () => {
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Mobile Card View TA -->
+                    <div class="md:hidden space-y-3">
+                        <div v-for="(ta, index) in tahunAjarans" :key="'mob-'+ta.id" class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border p-4" :class="{'border-emerald-300 dark:border-emerald-700 bg-emerald-50/20': ta.is_active, 'border-slate-200 dark:border-slate-700/50': !ta.is_active}">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-black text-slate-800 dark:text-white text-base">{{ ta.tahun }}</h4>
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1">Semester {{ ta.semester }}</div>
+                                </div>
+                                <div class="flex gap-1">
+                                    <button @click="editTahun(ta)" class="p-2 text-brand-500 hover:bg-brand-50 rounded-lg transition-colors">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                    </button>
+                                    <button @click="deleteTahun(ta.id)" :disabled="ta.is_active" class="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors" :class="{'opacity-30': ta.is_active}">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
+                                <span v-if="ta.is_active" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest border border-emerald-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Aktif Saat Ini
+                                </span>
+                                <button v-else @click="setActiveTa(ta.id)" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-500 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 text-[10px] font-black uppercase tracking-widest border border-slate-200 transition-all">
+                                    Jadikan Aktif
+                                </button>
+                            </div>
+                        </div>
+                        <div v-if="tahunAjarans.length === 0" class="text-center py-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700/50">
+                            <h3 class="text-sm font-black text-slate-600 dark:text-slate-300">Belum Ada Tahun Pelajaran</h3>
+                        </div>
                     </div>
                 </div>
             </div>
