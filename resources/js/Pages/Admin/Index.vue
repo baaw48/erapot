@@ -364,8 +364,6 @@ const closeDeleteModal = () => {
             </div>
         </Modal>
 
-        </Modal>
-
         <!-- Export Akun Modal -->
         <Modal :show="showExportAkunModal" @close="showExportAkunModal = false" maxWidth="sm">
             <div class="p-6 dark:bg-slate-800">
