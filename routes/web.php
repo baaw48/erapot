@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PembelajaranController;
+use App\Http\Controllers\SekolahController;
 use App\Models\Sekolah;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
