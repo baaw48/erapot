@@ -146,6 +146,9 @@ Route::middleware('auth')->group(function () {
         return "Migrasi database dan pembersihan cache (route/config/view) berhasil dijalankan!";
     });
 
+    // Master Data Ekskul
+    Route::resource('ekskul', EkskulController::class);
+
     Route::get('/penilaian', [NilaiController::class, 'index'])->name('nilai.index');
     Route::post('/penilaian/batch', [NilaiController::class, 'storeBatch'])->name('nilai.storeBatch');
 
